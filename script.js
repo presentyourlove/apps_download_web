@@ -1,91 +1,61 @@
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const html = document.documentElement;
-
-// Load saved theme or default to dark
-const savedTheme = localStorage.getItem('theme') || 'dark';
-html.setAttribute('data-theme', savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
-
-// Tab Navigation
-const navTabs = document.querySelectorAll('.nav-tab');
-const sidebarTabs = document.querySelectorAll('.sidebar-tab');
-const tabContents = document.querySelectorAll('.tab-content');
-
-// Mobile Sidebar
-const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-const mobileSidebar = document.getElementById('mobile-sidebar');
-const sidebarClose = document.getElementById('sidebar-close');
-const sidebarOverlay = document.getElementById('sidebar-overlay');
-
-// Function to switch tabs
-function switchTab(tabName) {
-  // Hide all tab contents
-  tabContents.forEach(content => {
-    content.classList.remove('active');
-  });
-
-  // Remove active class from all nav tabs
-  navTabs.forEach(tab => {
-    tab.classList.remove('active');
-  });
-  sidebarTabs.forEach(tab => {
-    tab.classList.remove('active');
-  });
-
-  // Show selected tab content
-  const selectedContent = document.getElementById(`tab-${tabName}`);
-  if (selectedContent) {
-    selectedContent.classList.add('active');
+// Component Loader
+async function loadComponent(componentPath, placeholderId) {
+  try {
+    const response = await fetch(componentPath);
+    if (!response.ok) throw new Error(`Failed to load ${componentPath}`);
+    const html = await response.text();
+    document.getElementById(placeholderId).innerHTML = html;
+  } catch (error) {
+    console.error('Error loading component:', error);
   }
-
-  // Add active class to clicked tab
-  document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(tab => {
-    tab.classList.add('active');
-  });
-
-  // Update URL hash
-  window.location.hash = tabName;
-
-  // Close mobile sidebar if open
-  closeSidebar();
 }
 
-// Desktop nav tab click handlers
-navTabs.forEach(tab => {
-  tab.addEventListener('click', (e) => {
-    e.preventDefault();
-    const tabName = tab.getAttribute('data-tab');
-    switchTab(tabName);
-  });
-});
+// Initialize theme
+function initTheme() {
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+}
 
-// Sidebar tab click handlers
-sidebarTabs.forEach(tab => {
-  tab.addEventListener('click', (e) => {
-    e.preventDefault();
-    const tabName = tab.getAttribute('data-tab');
-    switchTab(tabName);
-  });
-});
+// Theme toggle handler (will be attached after components load)
+function initThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+}
+
+// Tab Navigation (will be initialized after components load)
+let navTabs, sidebarTabs, tabContents;
+let mobileMenuToggle, mobileSidebar, sidebarClose, sidebarOverlay;
+
+// Function to switch tabs
+// Set active navigation tab based on current URL
+function setActiveNav() {
+  const currentPath = window.location.pathname;
+  const pageName = currentPath.split('/').pop() || 'index.html';
+
+  // Helper to set active class
+  const setActive = (link) => {
+    const href = link.getAttribute('href');
+    if (href === pageName || (pageName === 'index.html' && href === './') || (pageName === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  };
+
+  navTabs.forEach(setActive);
+  sidebarTabs.forEach(setActive);
+}
 
 // App card click handlers
-document.addEventListener('click', (e) => {
-  const appCard = e.target.closest('.app-card');
-  if (appCard) {
-    e.preventDefault();
-    const tabName = appCard.getAttribute('data-tab');
-    if (tabName) {
-      switchTab(tabName);
-    }
-  }
-});
+// App card click handlers (Removed as they are simple links now)
 
 // Mobile sidebar functions
 function openSidebar() {
@@ -100,35 +70,56 @@ function closeSidebar() {
   document.body.style.overflow = '';
 }
 
-// Mobile menu toggle
-if (mobileMenuToggle) {
-  mobileMenuToggle.addEventListener('click', openSidebar);
-}
 
-// Sidebar close button
-if (sidebarClose) {
-  sidebarClose.addEventListener('click', closeSidebar);
-}
+// Initialize all components and event handlers
+// Initialize all components and event handlers
+window.addEventListener('DOMContentLoaded', async () => {
+  // Load components first
+  await loadComponent('components/header.html', 'header-placeholder');
+  await loadComponent('components/footer.html', 'footer-placeholder');
 
-// Sidebar overlay click
-if (sidebarOverlay) {
-  sidebarOverlay.addEventListener('click', closeSidebar);
-}
+  // Initialize theme
+  initTheme();
 
-// Handle initial hash on page load
-window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash.substring(1);
-  if (hash && (hash === 'home' || hash === 'financeapp')) {
-    switchTab(hash);
-  } else {
-    switchTab('home');
-  }
+  // Initialize theme toggle
+  initThemeToggle();
+
+  // Initialize DOM references
+  navTabs = document.querySelectorAll('.nav-tab');
+  sidebarTabs = document.querySelectorAll('.sidebar-tab');
+  mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  mobileSidebar = document.getElementById('mobile-sidebar');
+  sidebarClose = document.getElementById('sidebar-close');
+  sidebarOverlay = document.getElementById('sidebar-overlay');
+
+  // Set active navigation
+  setActiveNav();
+
+  // Attach event handlers
+  attachEventHandlers();
 });
+
+// Attach all event handlers
+function attachEventHandlers() {
+  // Desktop nav tab click handlers
+  // No longer need to intercept nav clicks for tab switching
+  // Links will work natively
+
+  // Mobile menu toggle
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', openSidebar);
+  }
+
+  // Sidebar close button
+  if (sidebarClose) {
+    sidebarClose.addEventListener('click', closeSidebar);
+  }
+
+  // Sidebar overlay click
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeSidebar);
+  }
+}
 
 // Handle browser back/forward buttons
-window.addEventListener('hashchange', () => {
-  const hash = window.location.hash.substring(1);
-  if (hash && (hash === 'home' || hash === 'financeapp')) {
-    switchTab(hash);
-  }
-});
+// Browser back/forward handled natively by browser
