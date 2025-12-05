@@ -4,56 +4,34 @@
 
     /* Dark Theme (Default) */
     --bg-color: #0f172a;
-    /* Slate 900 */
     --bg-secondary: #1e293b;
-    /* Slate 800 */
     --text-primary: #f8fafc;
-    /* Slate 50 */
     --text-secondary: #94a3b8;
-    /* Slate 400 */
     --accent-color: #6366f1;
-    /* Indigo 500 */
     --accent-hover: #4f46e5;
-    /* Indigo 600 */
     --border-color: rgba(255, 255, 255, 0.1);
     --card-bg: rgba(30, 41, 59, 0.7);
     --shadow-color: rgba(0, 0, 0, 0.3);
-
-    /* Glassmorphism */
     --glass-border: 1px solid rgba(255, 255, 255, 0.1);
     --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-    /* Transition */
     --transition-speed: 0.3s;
-
     --btn-text-color: #ffffff;
-    /* Default white text for dark theme buttons */
     --hero-glow: rgba(99, 102, 241, 0.15);
-    /* Indigo glow for dark theme */
 }
 
 [data-theme="light"] {
     --bg-color: #87CEEB;
-    /* Sky Blue */
     --bg-secondary: #ffffff;
-    /* White */
     --text-primary: #0f172a;
-    /* Slate 900 */
     --text-secondary: #334155;
-    /* Slate 700 */
     --accent-color: #FFB7C5;
-    /* Pink */
     --accent-hover: #FF9EAF;
-    /* Darker Pink */
     --border-color: rgba(255, 255, 255, 0.4);
     --card-bg: rgba(255, 255, 255, 0.6);
     --shadow-color: rgba(0, 0, 0, 0.05);
-
     --glass-border: 1px solid rgba(255, 255, 255, 0.4);
     --btn-text-color: #0f172a;
-    /* Dark text for light pink buttons */
     --hero-glow: rgba(255, 183, 197, 0.6);
-    /* Pink glow for light theme */
 }
 
 * {
@@ -71,7 +49,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -85,16 +62,20 @@ body {
     top: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(var(--bg-color), 0.8);
-    /* Fallback */
+    background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(12px);
     border-bottom: var(--glass-border);
+}
+
+[data-theme="light"] .header {
+    background: rgba(135, 206, 235, 0.8);
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .logo-area {
@@ -115,6 +96,295 @@ body {
     letter-spacing: -0.025em;
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-btn:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-tabs {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+}
+
+.nav-tab {
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-tab:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-tab.active {
+    color: var(--accent-color);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    border-right: var(--glass-border);
+    z-index: 200;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: var(--glass-border);
+}
+
+.sidebar-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.sidebar-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.sidebar-close-btn:hover {
+    background-color: var(--bg-color);
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+}
+
+.sidebar-tabs {
+    list-style: none;
+}
+
+.sidebar-tab {
+    display: block;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-tab:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-tab.active {
+    color: var(--accent-color);
+    background-color: rgba(99, 102, 241, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Welcome Section */
+.welcome-section {
+    padding: 160px 0 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-container {
+    text-align: center;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.welcome-desc {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+}
+
+/* App Grid */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.app-card {
+    background: var(--card-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(12px);
+    padding: 40px 32px;
+    border-radius: 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-color) 0px 10px 30px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.app-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-color) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--accent-color) 0px 15px 50px -20px;
+    border-color: var(--accent-color);
+}
+
+.app-card:hover::before {
+    opacity: 0.1;
+}
+
+.app-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.app-card-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.app-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.app-card p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+.app-card-arrow {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.app-card:hover .app-card-arrow {
+    transform: translateX(5px);
+}
+
 /* Theme Toggle Button */
 .theme-btn {
     background: transparent;
@@ -133,7 +403,6 @@ body {
     background-color: var(--bg-secondary);
 }
 
-/* Theme Icons Logic */
 [data-theme="dark"] .icon-sun {
     display: block;
 }
@@ -150,7 +419,6 @@ body {
     display: block;
 }
 
-
 /* Hero Section */
 .hero {
     padding: 160px 0 80px;
@@ -159,7 +427,6 @@ body {
     overflow: hidden;
 }
 
-/* Abstract Background Glow */
 .hero::before {
     content: '';
     position: absolute;
@@ -235,25 +502,6 @@ body {
     color: var(--text-secondary);
     margin-bottom: 24px;
     font-size: 0.95rem;
-}
-
-/* QR Code Specifics */
-.qr-wrapper {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 24px;
-    padding: 10px;
-    background: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.qr-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
 }
 
 /* Buttons */
@@ -356,7 +604,16 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero-title {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .hero-title,
+    .welcome-title {
         font-size: 2.5rem;
     }
 
@@ -364,7 +621,12 @@ body {
         font-size: 1.1rem;
     }
 
-    .download-options {
+    .welcome-desc {
+        font-size: 1.2rem;
+    }
+
+    .download-options,
+    .app-grid {
         grid-template-columns: 1fr;
     }
 }
