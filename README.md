@@ -22,6 +22,12 @@ FinanceApp 是一款簡單、智慧、高效的理財記帳應用程式,幫助�
 
 [下載 Android APK](https://presentyourlove.github.io/apps_download_web/)
 
+### Web App
+
+跨平台網頁版，無需安裝即可使用。支援雲端同步功能。
+
+[開啟 Web App](https://aifinanceapp-2ce60.web.app/)
+
 ### iOS
 
 需要透過 AltStore 安裝 IPA 檔案。
@@ -41,6 +47,7 @@ FinanceApp 是一款簡單、智慧、高效的理財記帳應用程式,幫助�
 - **響應式佈局** - 完美適配各種螢幕尺寸
 - **SEO 優化** - 完整的 SEO meta 標籤與結構化資料
 - **主題切換** - 支援淺色/深色模式,淺色模式採用清新的天空藍與粉紅配色
+- **雲端同步** - 網頁版支援 Firebase 雲端資料同步
 
 ## 🛠️ 技術棧
 
@@ -64,7 +71,8 @@ Web/
 │   └── footer.html         # 頁尾
 ├── assets/                 # 資源檔案
 │   ├── FinanceApp(Android).apk # Android 安裝檔
-│   └── logo.png            # 應用程式 Logo
+│   ├── logo.png            # 應用程式 Logo
+│   └── presentyourlove_logo.png # 組織 Logo
 └── README.md               # 專案說明文件
 ```
 
