@@ -82,6 +82,8 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo-img {
@@ -600,6 +602,31 @@ body {
     color: var(--text-secondary);
     font-size: 0.875rem;
     border-top: var(--glass-border);
+}
+
+.footer-contact {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.contact-label {
+    color: var(--text-secondary);
+}
+
+.contact-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
 }
 
 /* Responsive */
