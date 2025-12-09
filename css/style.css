@@ -604,6 +604,22 @@ body {
     border-top: var(--glass-border);
 }
 
+.footer-nav {
+    margin-bottom: 16px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
 .footer-contact {
     margin-top: 16px;
     display: flex;
