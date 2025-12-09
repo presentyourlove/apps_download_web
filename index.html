@@ -13,6 +13,9 @@
   <meta name="author" content="Presentyourlove">
   <meta name="robots" content="index, follow">
   <meta name="language" content="zh-TW">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -37,6 +40,8 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/presentyourlove_logo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/presentyourlove_logo.png">
+  <link rel="preload" href="assets/presentyourlove_logo.png" as="image">
+  <link rel="preload" href="assets/logo.png" as="image">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
@@ -79,7 +84,7 @@
           <div class="app-grid">
             <a href="financeapp-content.html" class="app-card">
               <div class="app-card-icon">
-                <img src="assets/logo.png" alt="FinanceApp Icon">
+                <img src="assets/logo.png" alt="FinanceApp Icon" width="80" height="80">
               </div>
               <h3>FinanceApp</h3>
               <p>智慧理財助手</p>
