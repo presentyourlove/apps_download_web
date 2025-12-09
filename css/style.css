@@ -24,14 +24,14 @@
     --bg-secondary: #ffffff;
     --text-primary: #0f172a;
     --text-secondary: #334155;
-    --accent-color: #FFB7C5;
-    --accent-hover: #FF9EAF;
-    --border-color: rgba(255, 255, 255, 0.4);
-    --card-bg: rgba(255, 255, 255, 0.6);
-    --shadow-color: rgba(0, 0, 0, 0.05);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.4);
-    --btn-text-color: #0f172a;
-    --hero-glow: rgba(255, 183, 197, 0.6);
+    --accent-color: #E11D48;
+    --accent-hover: #BE123C;
+    --border-color: rgba(255, 255, 255, 0.6);
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --btn-text-color: #ffffff;
+    --hero-glow: rgba(225, 29, 72, 0.2);
 }
 
 * {
