@@ -50,6 +50,41 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
         rel="stylesheet">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Sub-Buddy",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD"
+      },
+      "description": "Sub-Buddy - 找個好夥伴，分擔訂閱費。Netflix, Spotify, YouTube Premium 合購媒合平台。",
+      "url": "https://sub-buddy-2025.web.app",
+      "screenshot": "https://presentyourlove.github.io/apps_download_web/assets/sub-buddy_icon.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首頁",
+        "item": "https://presentyourlove.github.io/apps_download_web/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sub-Buddy",
+        "item": "https://presentyourlove.github.io/apps_download_web/sub-buddy-content.html"
+      }]
+    }
+    </script>
 </head>
 
 <body>
@@ -73,8 +108,8 @@
                     <!-- Web App Link -->
                     <div class="download-card">
                         <div class="platform-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="currentColor">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                                viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12ZM11 7H13V15.5L16.25 12.25L17.66 13.66L12 19.33L6.34 13.66L7.75 12.25L11 15.5V7Z"
                                     opacity="0" />
