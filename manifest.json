@@ -1,0 +1,88 @@
+{
+    "name": "Presentyourlove",
+    "short_name": "PYL",
+    "id": "/apps_download_web/",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f172a",
+    "description": "Presentyourlove - 應用程式下載中心",
+    "icons": [
+        {
+            "src": "assets/presentyourlove_logo_192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/presentyourlove_logo_512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "assets/presentyourlove_logo_512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "assets/presentyourlove_logo_512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "FinanceApp",
+            "short_name": "Finance",
+            "description": "開啟 FinanceApp 下載頁面",
+            "url": "./financeapp-content.html",
+            "icons": [
+                {
+                    "src": "assets/financeapp_icon_192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "SubTrack",
+            "short_name": "SubTrack",
+            "description": "開啟 SubTrack 下載頁面",
+            "url": "./subtrack-content.html",
+            "icons": [
+                {
+                    "src": "assets/subtrack_icon_192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Sub-Buddy",
+            "short_name": "Sub-Buddy",
+            "description": "開啟 Sub-Buddy 下載頁面",
+            "url": "./sub-buddy-content.html",
+            "icons": [
+                {
+                    "src": "assets/sub-buddy_icon_192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "About & Social",
+            "short_name": "Social",
+            "description": "關於我們與社群連結",
+            "url": "./links.html",
+            "icons": [
+                {
+                    "src": "assets/presentyourlove_logo_192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}

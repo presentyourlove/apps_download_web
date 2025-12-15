@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container header-container">
         <!-- Mobile Menu Toggle -->
-        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="開啟選單">
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -11,8 +11,8 @@
         </button>
 
         <a href="index.html" class="logo-area">
-            <img src="assets/presentyourlove_logo.png" alt="Presentyourlove Logo" class="logo-img" width="40"
-                height="40">
+            <img src="assets/presentyourlove_logo_192.png" alt="Presentyourlove Logo" class="logo-img" width="40"
+                height="40" decoding="async">
             <span class="app-name">Presentyourlove</span>
         </a>
 
@@ -24,6 +24,7 @@
                 <li><a href="subtrack-content.html" class="nav-tab">SubTrack</a></li>
                 <li><a href="sub-buddy-content.html" class="nav-tab">Sub-Buddy</a></li>
                 <li><a href="links.html" class="nav-tab">關於我們</a></li>
+                <li><button class="nav-tab install-trigger nav-cta" hidden>安裝 App</button></li>
             </ul>
         </nav>
 
@@ -47,7 +48,7 @@
 <!-- Mobile Sidebar -->
 <aside id="mobile-sidebar" class="mobile-sidebar">
     <div class="sidebar-header">
-        <h2>選單</h2>
+        <h2>Presentyourlove</h2>
         <button id="sidebar-close" class="sidebar-close-btn" aria-label="關閉選單">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -63,6 +64,7 @@
             <li><a href="subtrack-content.html" class="sidebar-tab">SubTrack</a></li>
             <li><a href="sub-buddy-content.html" class="sidebar-tab">Sub-Buddy</a></li>
             <li><a href="links.html" class="sidebar-tab">關於我們</a></li>
+
         </ul>
     </nav>
 </aside>

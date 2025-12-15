@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="author" href="humans.txt" />
+    <title>無法連線 - 離線模式 | Presentyourlove</title>
+    <meta name="robots" content="noindex, follow">
+
+    <meta name="description" content="目前無法連線至網路。請檢查您的網路設定以繼續使用 Presentyourlove 應用程式下載中心。">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- iOS PWA -->
+    <link rel="apple-touch-icon" href="assets/presentyourlove_logo_192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Offline">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://presentyourlove.github.io/apps_download_web/offline.html">
+    <meta property="og:title" content="無法連線 - 離線模式 | Presentyourlove">
+    <meta property="og:description" content="目前無法連線至網路。請檢查您的網路設定以繼續使用。">
+    <meta property="og:image"
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="Presentyourlove Logo">
+    <meta property="og:site_name" content="Presentyourlove">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://presentyourlove.github.io/apps_download_web/offline.html">
+    <meta property="twitter:title" content="無法連線 - 離線模式 | Presentyourlove">
+    <meta property="twitter:description" content="目前無法連線至網路。請檢查您的網路設定以繼續使用。">
+    <meta property="twitter:image"
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
+
+    <!-- Stylesheets -->
+    <script>
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const themeColor = savedTheme === 'dark' ? '#0f172a' : '#ffffff';
+                const meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', themeColor);
+            } catch (e) { }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon Optimized -->
+    <link rel="icon" href="assets/presentyourlove_logo_32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/presentyourlove_logo_192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/presentyourlove_logo_192.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preload" href="components/header.html" as="fetch" crossorigin>
+    <link rel="preload" href="components/footer.html" as="fetch" crossorigin>
+
+
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">跳轉至主要內容</a>
+    <div id="header-placeholder"></div>
+
+    <main id="main-content" class="fade-in">
+        <section class="error-section">
+            <div class="container">
+                <div class="error-content">
+                    <div class="error-icon">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="120" height="120"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" class="mb-4 text-secondary">
+                            <path d="M1 1l22 22"></path>
+                            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+                            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+                            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+                            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                        </svg>
+                    </div>
+                    <h1 class="error-code">OFFLINE</h1>
+                    <h2 class="welcome-title">無法連線至網路</h2>
+                    <p class="error-message">看來您目前處於離線狀態。請檢查您的網路連線以繼續使用。</p>
+                    <div class="btn-group">
+                        <button id="retry-btn" class="btn btn-primary">
+                            <span class="btn-content-flex">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 4v6h-6"></path>
+                                    <path d="M1 20v-6h6"></path>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15">
+                                    </path>
+                                </svg>
+                                重試連線
+                            </span>
+                        </button>
+                        <a href="index.html" class="btn btn-primary btn-outline">返回首頁</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <div id="cookie-placeholder"></div>
+
+</body>
+
+</html>

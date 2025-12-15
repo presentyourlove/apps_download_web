@@ -1,119 +1,100 @@
-# FinanceApp - 智慧理財助手
+# Presentyourlove - 應用程式下載中心
 
-![FinanceApp](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![PWA](https://img.shields.io/badge/PWA-Supported-orange.svg)
 
-FinanceApp 是一款簡單、智慧、高效的理財記帳應用程式,幫助您輕鬆追蹤收支、規劃預算、設定目標,邁向財富自由。
+Presentyourlove 官方應用程式下載中心。這裡匯集了我們開發的所有實用工具，包括理財記帳、訂閱管理與拼團媒合服務。
 
-## 🌟 主要功能
+## 🌟 應用程式列表
+
+### 1. FinanceApp - 智慧理財助手
 
 - 📊 **收支追蹤** - 快速記錄每日收入與支出
 - 💰 **預算管理** - 設定預算目標,掌握財務狀況
-- 🎯 **目標設定** - 規劃儲蓄目標,實現理財夢想
 - 📈 **數據分析** - 視覺化圖表,清楚了解財務趨勢
-- 🌓 **深色模式** - 支援淺色/深色主題切換
-- 📱 **跨平台支援** - Android 與 iOS 雙平台
 
-## 📥 下載安裝
+### 2. SubTrack - 訂閱管理助手
 
-### Android
+- 📅 **週期追蹤** - 自動計算下期扣款日
+- 🔔 **付款提醒** - 避免忘記取消試用或過期
+- 💵 **支出統計** - 掌握每月/每年固定訂閱開銷
 
-直接下載 APK 檔案安裝即可使用。
+### 3. Sub-Buddy - 拼團小幫手
 
-[下載 Android APK](https://presentyourlove.github.io/apps_download_web/)
+- 🤝 **合購媒合** - 尋找 Netflix, Spotify 分母夥伴
+- 💬 **即時聊天** - 內建聊天室，溝通更順暢
+- ⭐ **信譽評價** - 安全可靠的拼團環境
 
-### Web App
+## 📥 下載與使用
 
-跨平台網頁版，無需安裝即可使用。支援雲端同步功能。
+本網站支援 **Progressive Web App (PWA)** 技術，您可以直接將此頁面安裝至手機桌面，享受如同原生 App 的離線瀏覽體驗。
 
-[開啟 Web App](https://aifinanceapp-2ce60.web.app/)
+### 網頁版 (Web App)
 
-### iOS
+訪問: [https://presentyourlove.github.io/apps_download_web/](https://presentyourlove.github.io/apps_download_web/)
 
-需要透過 AltStore 安裝 IPA 檔案。
+### 行動裝置 (Android / iOS)
 
-[下載 iOS IPA](https://presentyourlove.github.io/apps_download_web/)
-
-#### iOS 安裝步驟 (AltStore)
-
-1. 在電腦端安裝 [AltServer](https://altstore.io/)
-2. 將 AltStore 安裝至您的 iPhone
-3. 下載 IPA 檔案並儲存至「檔案」App
-4. 在 AltStore 中選擇 IPA 檔案進行安裝
+- **Android**: 提供 APK 直接下載。
+- **iOS**: 提供 IPA 檔案 (需透過 AltStore 安裝)。
 
 ## 🎨 網站特色
 
-- **現代化設計** - 採用 Glassmorphism 玻璃擬態設計風格
-- **響應式佈局** - 完美適配各種螢幕尺寸
-- **SEO 優化** - 完整的 SEO meta 標籤與結構化資料
-- **主題切換** - 支援淺色/深色模式,淺色模式採用清新的天空藍與粉紅配色
-- **雲端同步** - 網頁版支援 Firebase 雲端資料同步
-
-## 🛠️ 技術棧
-
-- **HTML5** - 語義化標籤
-- **CSS3** - 現代化樣式與動畫
-- **JavaScript** - 互動功能
-- **Google Fonts** - Inter & Noto Sans TC 字體
+- **最佳化 PWA 體驗**：支援手機與平板安裝，並具備離線瀏覽能力 (Service Worker)。全站支援 iOS `apple-touch-icon` 主畫面圖示。
+- **無障礙友善 (A11y)**：完整的 ARIA 標籤、鍵盤導航支援、焦點指示器與螢幕閱讀器優化。
+- **極致效能**：LCP 優化 (資源瘦身)、Anti-FOUC (無閃爍主題切換)、BFcache 支援、DNS Prefetch。
+- **現代化體驗**：View Transitions API (原生轉場動畫)、Print CSS (列印最佳化)、PWA 離線支援。
+- **隱私與安全**：Content-Security-Policy (CSP), Safe Storage 機制, HTTPS 強制, `noopener` 外鏈防護。
+- **SEO 增強**：完整的 JSON-LD 結構化資料, Open Graph 本地化 (Locale), Sitemap 自動生成, 語意化 HTML 標籤。
+- **代碼品質**：全書 JSDoc 註解, 嚴格的 Config 集中管理, 無 Magic Numbers, CSS 變數系統 (Single Source of Truth), ES6+ 語法。
 
 ## 📂 專案結構
 
 ```plaintext
 Web/
-├── index.html              # 主頁面 (Landing Page)
-├── financeapp-content.html # 下載與介紹頁面
-├── css/                    # 樣式表目錄
-│   └── style.css           # 全站樣式表
-├── js/                     # 腳本目錄
-│   └── script.js           # 全站邏輯腳本
-├── components/             # 共用元件
-│   ├── header.html         # 導航列
-│   └── footer.html         # 頁尾
-├── assets/                 # 資源檔案
-│   ├── FinanceApp(Android).apk # Android 安裝檔
-│   ├── logo.png            # 應用程式 Logo
-│   └── presentyourlove_logo.png # 組織 Logo
-└── README.md               # 專案說明文件
+├── index.html              # 下載中心首頁
+├── financeapp-content.html # FinanceApp 介紹頁
+├── subtrack-content.html   # SubTrack 介紹頁
+├── sub-buddy-content.html  # Sub-Buddy 介紹頁
+├── 404.html                # 自訂錯誤頁
+├── offline.html            # 離線Fallback頁
+├── css/                    # 樣式表 (style.css)
+├── js/                     # 腳本 (script.js)
+├── components/             # 共用元件 (Header, Footer)
+├── assets/                 # 圖片與安裝檔資源
+├── sw.js                   # Service Worker (PWA)
+├── manifest.json           # Web App Manifest
+├── humans.txt              # 開發團隊資訊
+├── robots.txt              # 爬蟲規則
+└── sitemap.xml             # 網站地圖
 ```
 
-## 🌐 線上預覽
+## 🛠️ 技術棧
 
-訪問: [https://presentyourlove.github.io/apps_download_web/](https://presentyourlove.github.io/apps_download_web/)
+- **Core**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
+- **PWA**: Service Worker, Web App Manifest
+- **Performance**: Intersection Observer, Async/Defer Scripts
+- **Tools**: VS Code, Git, PowerShell
+- **Automation**: Custom PowerShell scripts for maintenance
 
-## 📝 SEO 優化
+## 🤖 自動化維護 (Automation)
 
-本網站已實作完整的 SEO 優化:
+本專案包含自動化腳本以簡化維護流程：
 
-- ✅ Meta 標籤 (title, description, keywords)
-- ✅ Open Graph 標籤 (Facebook/社群媒體分享)
-- ✅ Twitter Cards
-- ✅ Canonical URL
-- ✅ 結構化資料 (JSON-LD Schema.org)
-- ✅ 語義化 HTML 標籤
-
-## 🎨 配色方案
-
-### 深色主題 (預設)
-
-- 背景: Slate 900 (#0f172a)
-- 強調色: Indigo 500 (#6366f1)
-
-### 淺色主題
-
-- 背景: Sky Blue (#87CEEB)
-- 強調色: Pink (#FFB7C5)
+- **`tools/update_timestamp.ps1`**:
+  - 自動掃描 HTML 檔案。
+  - 更新 `sitemap.xml` 與 `humans.txt` 的日期戳記。
+  - 執行方式: `.\tools\update_timestamp.ps1`
 
 ## 📄 授權
 
 Copyright © 2025 Presentyourlove. All rights reserved.
 
-## 🤝 貢獻
+## 🤝 貢獻與聯絡
 
-歡迎提交 Issue 或 Pull Request!
-
-## 📧 聯絡方式
-
-如有任何問題或建議,歡迎透過 GitHub Issues 聯繫我們。
+歡迎透過 GitHub Issues 提交建議。
+聯絡信箱: <presentyourlove@gmail.com>
 
 ---
 

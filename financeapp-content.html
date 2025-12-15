@@ -3,29 +3,50 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="author" href="humans.txt" />
 
     <!-- Primary Meta Tags -->
     <title>FinanceApp - 智慧理財助手 | 免費記帳 App 下載</title>
     <meta name="title" content="FinanceApp - 智慧理財助手 | 免費記帳 App 下載">
     <meta name="description"
-        content="FinanceApp 讓記帳變得簡單、智慧、高效。追蹤收支、規劃預算、設定目標,輕鬆掌握財務狀況。支援 Android APK 和 iOS IPA 下載,立即開啟您的財富自由之路。">
-    <meta name="keywords" content="FinanceApp, 記帳app, 理財app, 預算管理, 收支追蹤, 財務管理, Android記帳, iOS記帳, 免費記帳, 智慧理財">
+        content="立即下載 FinanceApp 智慧理財助手！簡單高效的免費記帳 App，提供收支追蹤、預算規劃與圖表分析，助您輕鬆管理財務，達成存錢目標。支援 Android 與 iOS。">
+    <meta name="keywords" content="FinanceApp, 記帳app, 理財app, 預算管理, 收支追蹤, 財務管理, Android記帳, iOS記帳, 免費記帳, 智慧理財, 省錢, 存錢">
     <meta name="author" content="Presentyourlove">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="language" content="zh-TW">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- iOS PWA -->
+    <link rel="apple-touch-icon" href="assets/financeapp_icon_192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FinanceApp">
+
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="zh_TW">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://presentyourlove.github.io/apps_download_web/financeapp-content.html">
     <meta property="og:title" content="FinanceApp - 智慧理財助手 | 免費記帳 App 下載">
     <meta property="og:description" content="FinanceApp 讓記帳變得簡單、智慧、高效。追蹤收支、規劃預算、設定目標,輕鬆掌握財務狀況。">
     <meta property="og:image"
-        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo.png">
-    <meta property="og:locale" content="zh_TW">
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="FinanceApp 理財記帳 App Icon">
     <meta property="og:site_name" content="Presentyourlove">
 
     <!-- Twitter -->
@@ -34,75 +55,109 @@
     <meta property="twitter:title" content="FinanceApp - 智慧理財助手 | 免費記帳 App 下載">
     <meta property="twitter:description" content="FinanceApp 讓記帳變得簡單、智慧、高效。追蹤收支、規劃預算、設定目標,輕鬆掌握財務狀況。">
     <meta property="twitter:image"
-        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo.png">
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://presentyourlove.github.io/apps_download_web/financeapp-content.html">
-    <!-- Favicon -->
-    <link rel="icon" href="assets/presentyourlove_logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/presentyourlove_logo.png">
-    <link rel="preload" href="assets/presentyourlove_logo.png" as="image">
+
+
+
+    <!-- Favicon Optimized -->
+    <link rel="icon" href="assets/presentyourlove_logo_32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/presentyourlove_logo_192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/presentyourlove_logo_192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preload" href="components/header.html" as="fetch" crossorigin>
+    <link rel="preload" href="components/footer.html" as="fetch" crossorigin>
 
     <!-- Stylesheets -->
+    <script>
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const themeColor = savedTheme === 'dark' ? '#0f172a' : '#ffffff';
+                const meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', themeColor);
+            } catch (e) { }
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "FinanceApp",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Android, iOS",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "TWD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250"
-    },
-    "description": "FinanceApp 讓記帳變得簡單、智慧、高效。追蹤收支、規劃預算、設定目標,輕鬆掌握財務狀況。",
-    "downloadUrl": "https://presentyourlove.github.io/apps_download_web/financeapp-content.html",
-    "screenshot": "https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo.png"
-  }
-  </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "首頁",
-        "item": "https://presentyourlove.github.io/apps_download_web/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
         "name": "FinanceApp",
-        "item": "https://presentyourlove.github.io/apps_download_web/financeapp-content.html"
-      }]
-    }
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Android, iOS",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1250"
+        },
+        "description": "FinanceApp 讓記帳變得簡單、智慧、高效。追蹤收支、規劃預算、設定目標,輕鬆掌握財務狀況。",
+        "downloadUrl": "https://presentyourlove.github.io/apps_download_web/financeapp-content.html",
+        "screenshot": "https://presentyourlove.github.io/apps_download_web/assets/financeapp_icon_192.png"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://presentyourlove.github.io/apps_download_web/"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FinanceApp",
+          "item": "https://presentyourlove.github.io/apps_download_web/financeapp-content.html"
+        }]
+      }
+    ]
     </script>
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">跳轉至主要內容</a>
     <div id="header-placeholder"></div>
 
-    <main>
+    <main id="main-content" class="fade-in">
         <!-- FinanceApp Hero Section -->
         <section class="hero">
             <div class="container hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">智慧理財,<br>從這裡開始</h1>
                     <p class="hero-desc">追蹤收支、規劃預算、設定目標。FinanceApp 協助您輕鬆掌握財務狀況,邁向財富自由。</p>
+                    <button class="share-btn" data-share-btn data-title="FinanceApp - 智慧理財"
+                        data-text="FinanceApp 讓記帳變得簡單、智慧、高效。" aria-label="分享本頁">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        分享頁面
+                    </button>
                 </div>
             </div>
         </section>
@@ -110,6 +165,7 @@
         <!-- Download Section -->
         <section class="download-section">
             <div class="container download-container">
+                <h2 class="sr-only">下載選項</h2>
                 <div class="download-options">
                     <!-- Android Download -->
                     <div class="download-card">
@@ -122,7 +178,8 @@
                         </div>
                         <h3>Android</h3>
                         <p>下載 APK 直接安裝</p>
-                        <a href="assets/FinanceApp(Android).apk" download class="btn btn-primary">下載 APK</a>
+                        <a href="assets/financeapp_android.apk" download class="btn btn-primary"
+                            aria-label="下載 FinanceApp Android APK 安裝檔">下載 APK</a>
                     </div>
 
                     <!-- iOS Download -->
@@ -145,16 +202,13 @@
                             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
                                 viewBox="0 0 24 24" fill="currentColor">
                                 <path
-                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12ZM11 7H13V15.5L16.25 12.25L17.66 13.66L12 19.33L6.34 13.66L7.75 12.25L11 15.5V7Z"
-                                    opacity="0" />
-                                <path
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                             </svg>
                         </div>
                         <h3>Web App</h3>
                         <p>免安裝 瀏覽器直接用</p>
                         <a href="https://aifinanceapp-2ce60.web.app/" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-primary">開啟 Web
+                            class="btn btn-primary" aria-label="開啟 FinanceApp 網頁版">開啟 Web
                             版</a>
                     </div>
                 </div>
@@ -162,6 +216,8 @@
         </section>
 
         <!-- AltStore Guide Section -->
+        <!-- AltStore Guide Section (Hidden until IPA available) -->
+        <!--
         <section class="guide-section">
             <div class="container">
                 <h2 class="section-title">如何安裝 iOS 版本? (AltStore)</h2>
@@ -188,11 +244,12 @@
                 </div>
             </div>
         </section>
+        -->
     </main>
 
     <div id="footer-placeholder"></div>
+    <div id="cookie-placeholder"></div>
 
-    <script src="js/script.js"></script>
 </body>
 
 </html>

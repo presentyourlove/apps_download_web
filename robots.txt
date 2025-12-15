@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+Disallow: /offline.html
 
 Sitemap: https://presentyourlove.github.io/apps_download_web/sitemap.xml

@@ -3,100 +3,167 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="author" href="humans.txt" />
 
     <!-- Primary Meta Tags -->
     <title>SubTrack - 訂閱管理助手 | 輕鬆管理訂閱開支</title>
     <meta name="title" content="SubTrack - 訂閱管理助手 | 輕鬆管理訂閱開支">
-    <meta name="description" content="SubTrack 幫助您輕鬆追蹤與管理所有訂閱服務。掌握每月固定支出,接收付款提醒,避免不必要的浪費。支援 Android APK 和 iOS IPA 下載。">
-    <meta name="keywords" content="SubTrack, 訂閱管理, 訂閱追蹤, 支出管理, 財務工具, Android, iOS">
+    <meta name="description" content="SubTrack 是您的終極訂閱管理助手。輕鬆追蹤 Netflix, Spotify 等訂閱服務,掌握每月固定支出,即時接收付款提醒,讓財務管理變得簡單又高效。">
+    <meta name="keywords" content="SubTrack, 訂閱管理, 訂閱追蹤, 支出管理, 財務工具, Android, iOS, 記帳, 訂閱費, Netflix, Spotify">
     <meta name="author" content="Presentyourlove">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="language" content="zh-TW">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- iOS PWA -->
+    <link rel="apple-touch-icon" href="assets/subtrack_icon_192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SubTrack">
+
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="zh_TW">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://presentyourlove.github.io/apps_download_web/subtrack-content.html">
     <meta property="og:title" content="SubTrack - 訂閱管理助手 | 輕鬆管理訂閱開支">
     <meta property="og:description" content="SubTrack 幫助您輕鬆追蹤與管理所有訂閱服務。掌握每月固定支出,接收付款提醒,避免不必要的浪費。">
+    <!-- Optimized: OG Image using 512px version -->
     <meta property="og:image"
-        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo.png">
-    <meta property="og:locale" content="zh_TW">
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="SubTrack 訂閱管理 App Icon">
     <meta property="og:site_name" content="Presentyourlove">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://presentyourlove.github.io/apps_download_web/subtrack-content.html">
-    <meta property="twitter:title" content="SubTrack - 訂閱管理助手 | 輕鬆管理訂閱開支">
-    <meta property="twitter:description" content="SubTrack 幫助您輕鬆追蹤與管理所有訂閱服務。掌握每月固定支出,接收付款提醒,避免不必要的浪費。">
+    <meta property="twitter:title" content="SubTrack - 訂閱管理助手 | 免費 iOS/Android App 下載">
+    <meta property="twitter:description"
+        content="SubTrack 協助您輕鬆管理所有訂閱服務。追蹤 Netflix, Spotify 等固定支出,接收即將付款提醒,分析每月花費,完全免費且無廣告。">
     <meta property="twitter:image"
-        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo.png">
+        content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove_logo_512.png">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://presentyourlove.github.io/apps_download_web/subtrack-content.html">
-    <!-- Favicon -->
-    <link rel="icon" href="assets/presentyourlove_logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/presentyourlove_logo.png">
-    <link rel="preload" href="assets/presentyourlove_logo.png" as="image">
+
+
+
+    <!-- Favicon Optimized -->
+    <link rel="icon" href="assets/presentyourlove_logo_32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/presentyourlove_logo_192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/presentyourlove_logo_192.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preload" href="components/header.html" as="fetch" crossorigin>
+    <link rel="preload" href="components/footer.html" as="fetch" crossorigin>
 
     <!-- Stylesheets -->
+    <script>
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const themeColor = savedTheme === 'dark' ? '#0f172a' : '#ffffff';
+                const meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', themeColor);
+            } catch (e) { }
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SubTrack",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Android, iOS",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "TWD"
-    },
-    "description": "SubTrack 幫助您輕鬆追蹤與管理所有訂閱服務。掌握每月固定支出,接收付款提醒,避免不必要的浪費。",
-    "downloadUrl": "https://presentyourlove.github.io/apps_download_web/subtrack-content.html",
-    "screenshot": "https://presentyourlove.github.io/apps_download_web/assets/subtrack_icon.png"
-  }
-  </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "首頁",
-        "item": "https://presentyourlove.github.io/apps_download_web/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
         "name": "SubTrack",
-        "item": "https://presentyourlove.github.io/apps_download_web/subtrack-content.html"
-      }]
-    }
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Android, iOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TWD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.7",
+            "ratingCount": "600"
+        },
+        "description": "SubTrack 是您的終極訂閱管理助手。輕鬆追蹤 Netflix, Spotify 等訂閱服務,掌握每月固定支出。",
+        "softwareVersion": "1.0.0",
+        "author": {
+            "@type": "Organization",
+            "name": "Presentyourlove"
+        },
+        "downloadUrl": "https://presentyourlove.github.io/apps_download_web/subtrack-content.html",
+        "screenshot": "https://presentyourlove.github.io/apps_download_web/assets/subtrack_icon_192.png"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://presentyourlove.github.io/apps_download_web/"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "SubTrack",
+          "item": "https://presentyourlove.github.io/apps_download_web/subtrack-content.html"
+        }]
+      }
+    ]
     </script>
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">跳轉至主要內容</a>
     <div id="header-placeholder"></div>
 
-    <main>
+    <main id="main-content" class="fade-in">
         <!-- SubTrack Hero Section -->
         <section class="hero">
             <div class="container hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">訂閱管理,<br>從未如此簡單</h1>
                     <p class="hero-desc">集中管理您的所有訂閱服務。SubTrack 協助您掌握每月固定開銷,避免忘記取消試用,讓每一分錢都花在刀口上。</p>
+                    <button class="share-btn" data-share-btn data-title="SubTrack - 訂閱管理"
+                        data-text="SubTrack 協助您掌握每月固定開銷,避免忘記取消試用。" aria-label="分享本頁">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        分享頁面
+                    </button>
                 </div>
             </div>
         </section>
@@ -104,8 +171,9 @@
         <!-- Download Section -->
         <section class="download-section">
             <div class="container download-container">
+                <h2 class="sr-only">下載選項</h2>
                 <div class="download-options">
-                    <!-- Android Download -->
+                    <!-- Android Download (Coming Soon) -->
                     <div class="download-card">
                         <div class="platform-icon">
                             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
@@ -115,39 +183,38 @@
                             </svg>
                         </div>
                         <h3>Android</h3>
-                        <p>即將推出</p>
-                        <a href="#" class="btn btn-primary disabled" aria-disabled="true">敬請期待</a>
+                        <p>Google Play 上架中</p>
+                        <button class="btn btn-primary" disabled aria-disabled="true">即將推出</button>
                     </div>
 
-                    <!-- iOS Download -->
-                    <!-- <div class="download-card">
-                        <div class="platform-icon">
-                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M17.65 1.637C16.92 2.508 15.75 3.033 15.75 4.35c0 2.65 2.378 3.525 2.457 3.555-.027.085-1.42 4.908-4.717 4.908-1.425 0-1.928-.857-3.593-.857-1.69 0-2.217.838-3.567.838-2.85 0-4.38-2.812-5.955-7.53C-1.25 1.05 3.095-.538 5.62.775c1.23.637 2.38 1.6 3.167 1.6.762 0 2.217-1.55 3.73-1.325 1.28.188 2.25.525 2.967 1.387.05-.035 1.705-1.002 2.166-.8z" />
-                            </svg>
-                        </div>
-                        <h3>iOS</h3>
-                        <p>即將推出</p>
-                        <a href="#" class="btn btn-primary disabled" aria-disabled="true">敬請期待</a>
-                    </div> -->
-
-                    <!-- Web App Link -->
+                    <!-- iOS Download (Active) -->
                     <div class="download-card">
                         <div class="platform-icon">
                             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
                                 viewBox="0 0 24 24" fill="currentColor">
                                 <path
-                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12ZM11 7H13V15.5L16.25 12.25L17.66 13.66L12 19.33L6.34 13.66L7.75 12.25L11 15.5V7Z"
-                                    opacity="0" />
+                                    d="M17.65 1.637C16.92 2.508 15.75 3.033 15.75 4.35c0 2.65 2.378 3.525 2.457 3.555-.027.085-1.42 4.908-4.717 4.908-1.425 0-1.928-.857-3.593-.857-1.69 0-2.217.838-3.567.838-2.85 0-4.38-2.812-5.955-7.53C-1.25 1.05 3.095-.538 5.62.775c1.23.637 2.38 1.6 3.167 1.6.762 0 2.217-1.55 3.73-1.325 1.28.188 2.25.525 2.967 1.387.05-.035 1.705-1.002 2.166-.8z" />
+                            </svg>
+                        </div>
+                        <h3>iOS</h3>
+                        <p>App Store 下載</p>
+                        <a href="https://apps.apple.com/us/app/subtrack-%E8%A8%82%E9%96%B1%E7%AE%A1%E7%90%86/id6449557022"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-primary"
+                            aria-label="在 App Store 下載 SubTrack">前往商店</a>
+                    </div>
+
+                    <!-- Web App (Coming Soon) -->
+                    <div class="download-card">
+                        <div class="platform-icon">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                                viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                             </svg>
                         </div>
                         <h3>Web App</h3>
-                        <p>即將推出</p>
-                        <a href="#" class="btn btn-primary disabled" aria-disabled="true">敬請期待</a>
+                        <p>瀏覽器直接使用</p>
+                        <button class="btn btn-primary" disabled aria-disabled="true">即將推出</button>
                     </div>
                 </div>
             </div>
@@ -183,8 +250,8 @@
     </main>
 
     <div id="footer-placeholder"></div>
+    <div id="cookie-placeholder"></div>
 
-    <script src="js/script.js"></script>
 </body>
 
 </html>
