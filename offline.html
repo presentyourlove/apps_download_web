@@ -51,17 +51,8 @@
         content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-512.png">
 
     <!-- Stylesheets -->
-    <script>
-        (function () {
-            try {
-                const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                const themeColor = savedTheme === 'dark' ? '#0f172a' : '#ffffff';
-                const meta = document.querySelector('meta[name="theme-color"]');
-                if (meta) meta.setAttribute('content', themeColor);
-            } catch (e) { }
-        })();
-    </script>
+    <!-- Theme initialization (同步載入以避免 FOUC) -->
+    <script src="js/theme-init.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Favicon Optimized -->

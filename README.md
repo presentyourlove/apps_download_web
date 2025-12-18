@@ -3,194 +3,182 @@
 ![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![PWA](https://img.shields.io/badge/PWA-Supported-orange.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
 
-Presentyourlove 官方應用程式下載中心。這裡匯集了我們開發的所有實用工具，包括理財記帳、訂閱管理與拼團媒合服務。
-
-## 🌟 應用程式列表
-
-### 1. FinanceApp - 智慧理財助手
-
-- 📊 **收支追蹤** - 快速記錄每日收入與支出
-- 💰 **預算管理** - 設定預算目標,掌握財務狀況
-- 📈 **數據分析** - 視覺化圖表,清楚了解財務趨勢
-
-### 2. SubTrack - 訂閱管理助手
-
-- 📅 **週期追蹤** - 自動計算下期扣款日
-- 🔔 **付款提醒** - 避免忘記取消試用或過期
-- 💵 **支出統計** - 掌握每月/每年固定訂閱開銷
-
-### 3. Sub-Buddy - 拼團小幫手
-
-- 🤝 **合購媒合** - 尋找 Netflix, Spotify 分母夥伴
-- 💬 **即時聊天** - 內建聊天室，溝通更順暢
-- ⭐ **信譽評價** - 安全可靠的拼團環境
-
-## 📥 下載與使用
-
-本網站支援 **Progressive Web App (PWA)** 技術，您可以直接將此頁面安裝至手機桌面，享受如同原生 App 的離線瀏覽體驗。
-
-### 網頁版 (Web App)
-
-訪問: [https://presentyourlove.github.io/apps_download_web/](https://presentyourlove.github.io/apps_download_web/)
-
-### 行動裝置 (Android / iOS)
-
-- **Android**: 提供 APK 直接下載。
-- **iOS**: 提供 IPA 檔案 (需透過 AltStore 安裝)。
-
-## 🎨 網站特色
-
-- **最佳化 PWA 體驗**：支援手機與平板安裝，並具備離線瀏覽能力 (Service Worker)。全站支援 iOS `apple-touch-icon` 主畫面圖示。
-- **無障礙友善 (A11y)**：完整的 ARIA 標籤、鍵盤導航支援、焦點指示器與螢幕閱讀器優化。
-- **極致效能**：LCP 優化 (資源瘦身)、Anti-FOUC (無閃爍主題切換)、BFcache 支援、DNS Prefetch。
-- **現代化體驗**：View Transitions API (原生轉場動畫)、Print CSS (列印最佳化)、PWA 離線支援。
-- **隱私與安全**：Content-Security-Policy (CSP), Safe Storage 機制, HTTPS 強制, `noopener` 外鏈防護。
-- **SEO 增強**：完整的 JSON-LD 結構化資料, Open Graph 本地化 (Locale), Sitemap 自動生成, 語意化 HTML 標籤。
-- **代碼品質**：全書 JSDoc 註解, 嚴格的 Config 集中管理, 無 Magic Numbers, CSS 變數系統 (Single Source of Truth), ES6+ 語法。
-
-## 📂 專案結構
-
-```plaintext
-apps_download_web/
-├── index.html              # 下載中心首頁
-├── financeapp-content.html # FinanceApp 介紹頁
-├── subtrack-content.html   # SubTrack 介紹頁
-├── sub-buddy-content.html  # Sub-Buddy 介紹頁
-├── links.html              # 關於與社群連結頁
-├── 404.html                # 自訂錯誤頁
-├── offline.html            # 離線 Fallback 頁
-├── css/
-│   └── style.css           # 主樣式表
-├── js/
-│   ├── script.js           # 主程式邏輯
-│   └── theme-init.js       # 主題初始化（避免 FOUC）
-├── components/             # 共用元件
-│   ├── header.html
-│   ├── footer.html
-│   └── cookie-consent.html
-├── assets/                 # 圖片與安裝檔資源
-├── sw.js                   # Service Worker (PWA)
-├── manifest.json           # Web App Manifest
-├── humans.txt              # 開發團隊資訊
-├── robots.txt              # 爬蟲規則
-└── sitemap.xml             # 網站地圖
-```
-
-## 🛠️ 技術棧
-
-- **Core**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
-- **PWA**: Service Worker, Web App Manifest
-- **Performance**: Intersection Observer, Async/Defer Scripts, Throttle優化
-- **Accessibility**: ARIA標籤, Focus Trap, 鍵盤導航支援
-- **Tools**: VS Code, Git
-
-## 🌐 環境需求
-
-### 執行環境
-
-- **伺服器**: 任何靜態檔案伺服器（Apache, Nginx, GitHub Pages, Netlify）
-- **HTTPS**: 必須（PWA 與 Service Worker 要求）
-- **Node.js**: 不需要（純靜態網站）
-
-### 瀏覽器支援
-
-| 瀏覽器 | 最低版本 | PWA 支援 | 備註 |
-|--------|----------|----------|------|
-| Chrome | 90+ | ✅ | 完整支援所有功能 |
-| Edge | 90+ | ✅ | 完整支援所有功能 |
-| Safari | 15+ | ⚠️ | 部分 PWA 限制 |
-| Firefox | 88+ | ⚠️ | Service Worker 支援 |
-| iOS Safari | 15+ | ⚠️ | 需手動「加入主畫面」 |
-
-**功能支援：**
-
-- ✅ ES6+ 語法（箭頭函式、Promise、async/await）
-- ✅ CSS Variables
-- ✅ Flexbox & Grid
-- ✅ Service Worker（需 HTTPS）
-- ✅ View Transitions API（Chrome 111+，其他瀏覽器優雅降級）
-
-## 🚀 部署指南
-
-### GitHub Pages（推薦）
-
-1. **Fork 本專案**至您的 GitHub 帳戶
-
-2. **啟用 GitHub Pages**：
-   - 前往 Repository Settings → Pages
-   - Source 選擇 `main` 分支
-   - 資料夾選擇 `/` (root)
-   - 儲存設定
-
-3. **等待部署完成**（約 1-2 分鐘）
-
-4. **存取網站**：
-
-   ```text
-   https://YOUR_USERNAME.github.io/REPOSITORY_NAME/
-   ```
-
-### Netlify
-
-1. **連接 Git Repository**
-
-2. **設定建置**：
-   - Build command: （留空，無需建置）
-   - Publish directory: `.`
-
-3. **部署**：自動部署，每次 push 都會觸發
-
-### 本地開發
-
-```powershell
-# 使用 Python 內建伺服器
-python -m http.server 8000
-
-# 或使用 Node.js http-server
-npx http-server -p 8000
-
-# 訪問
-# http://localhost:8000
-```
-
-> ⚠️ **注意**: 本地開發時 PWA 功能受限（需 HTTPS），建議使用 `ngrok` 或部署至測試環境進行完整測試。
-
-## 📊 專案架構
-
-```mermaid
-graph TB
-    A[index.html] --> B[Header Component]
-    A --> C[Footer Component]
-    A --> D[Cookie Consent]
-    A --> E[js/theme-init.js]
-    A --> F[js/script.js]
-    A --> G[css/style.css]
-    A --> H[Service Worker]
-    
-    F --> I[Config]
-    F --> J[Theme Toggle]
-    F --> K[Mobile Menu]
-    F --> L[PWA Install]
-    F --> M[Focus Trap]
-    
-    H --> N[Cache Strategy]
-    H --> O[Offline Support]
-    
-    style A fill:#6366f1,color:#fff
-    style H fill:#e11d48,color:#fff
-    style F fill:#22d3ee,color:#000
-```
-
-## 📄 授權
-
-Copyright © 2025 Presentyourlove. All rights reserved.
-
-## 🤝 貢獻與聯絡
-
-歡迎透過 GitHub Issues 提交建議。
-聯絡信箱: <presentyourlove@gmail.com>
+Presentyourlove 官方應用程式下載中心。我們致力於開發提升生活效率的工具，包括理財記帳、訂閱管理與拼團媒合服務。
 
 ---
 
+## 🌟 專案亮點 (Project Highlights)
+
+本專案不僅是一個靜態下載頁面，更是一個符合企業級標準的現代化 Web 專案：
+
+- **企業級規範**：嚴格遵循 `GEMINI.md` 開發規範，實作 Content Security Policy (CSP) 與 Docker 容器化。
+- **極致效能**：LCP 優化、資源快取策略 (Caching Strategy)、支援 PWA 離線瀏覽。
+- **自動化維運**：整合 GitHub Actions 實現 CI/CD，每次推送自動執行 ESLint 靜態檢查與 Playwright 端對端測試。
+
+## 🚀 功能特色 (Features)
+
+我們提供三大核心應用程式：
+
+1. **FinanceApp - 智慧理財助手**
+    - 📊 **收支追蹤** - 快速記錄每日收入與支出
+    - 💰 **預算管理** - 設定預算目標,掌握財務狀況
+    - 📈 **數據分析** - 視覺化圖表,清楚了解財務趨勢
+
+2. **SubTrack - 訂閱管理助手**
+    - 📅 **週期追蹤** - 自動計算下期扣款日
+    - 🔔 **付款提醒** - 避免忘記取消試用或過期
+    - 💵 **支出統計** - 掌握每月/每年固定訂閱開銷
+
+3. **Sub-Buddy - 拼團小幫手**
+    - 🤝 **合購媒合** - 尋找 Netflix, Spotify 分母夥伴
+    - 💬 **即時聊天** - 內建聊天室，溝通更順暢
+    - ⭐ **信譽評價** - 安全可靠的拼團環境
+
+## � 程式碼品質 (Code Quality)
+
+我們堅持最高的代碼品質標準：
+
+- **靜態分析**：使用 ESLint 與 Prettier 確保代碼風格一致且無錯誤。
+- **類型安全**：雖然是原生 JS 專案，但透過 JSDoc 與 TypeScript 檢查 (`checkJs`) 確保類型正確。
+- **無 Magic Numbers**：所有常數集中管理於 `CONFIG` 物件。
+- **嚴格 CSP**：移除所有 `'unsafe-inline'`，確保腳本執行安全。
+
+## ⚡ 快速開始 (Quick Start)
+
+若要在本地端預覽本專案：
+
+```powershell
+# 1. 複製專案
+git clone https://github.com/presentyourlove/apps_download_web.git
+
+# 2. 進入目錄
+cd apps_download_web
+
+# 3. 安裝依賴
+npm install
+
+# 4. 啟動開發伺服器
+npm start
+# 訪問 http://localhost:8080
+```
+
+## � 支援平台 (Supported Platforms)
+
+| 瀏覽器 | 最低版本 | PWA 支援 | 備註 |
+|--------|----------|----------|------|
+| Chrome | 90+ | ✅ | 完整功能支援 |
+| Edge | 90+ | ✅ | 完整功能支援 |
+| Safari | 15+ | ⚠️ | 需手動「加入主畫面」 |
+| Firefox | 88+ | ⚠️ | 支援 Service Worker |
+| Android | 5.0+ | ✅ | 支援 WebAPK 安裝 |
+| iOS | 14.0+ | ✅ | 支援 PWA 但限制較多 |
+
+## 🛠️ 技術堆疊 (Tech Stack)
+
+- **核心技術**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
+- **PWA 技術**: Service Worker, Web App Manifest
+- **開發運維 (DevOps)**: Docker, Nginx, GitHub Actions
+- **品質保證 (QA)**: Playwright (E2E Testing), ESLint
+
+## 📂 專案結構 (Project Structure)
+
+```plaintext
+apps_download_web/
+├── .github/                # GitHub Actions 自動化流程
+├── tests/                  # Playwright 測試腳本
+├── assets/                 # 圖片與安裝檔資源
+├── components/             # HTML 共用元件 (Header/Footer)
+├── css/                    # 樣式表 (Single Source of Truth)
+├── js/
+│   ├── script.js           # 核心邏輯
+│   └── theme-init.js       # 主題初始化 (Anti-FOUC)
+├── Dockerfile              # Docker 建置檔
+├── nginx.conf              # Nginx 伺服器配置
+└── playwright.config.ts    # 測試框架配置
+```
+
+## � 開發指南 (Development Guide)
+
+### 推薦環境
+
+- **IDE**: VS Code
+- **Extensions**: ESLint, Prettier, Live Server
+
+### 開發流程
+
+1. **修改代碼**：編輯 HTML/CSS/JS 檔案。
+2. **本地測試**：使用 `npm start` 預覽變更。
+3. **執行檢查**：提交前執行 `npm run lint` 確保無語法錯誤。
+
+## 🧪 測試 (Testing)
+
+本專案使用 **Playwright** 進行端對端 (E2E) 測試。
+
+```powershell
+# 執行所有 E2E 測試 (Headless 模式)
+npm run test
+
+# 啟動 UI 模式進行除錯
+npm run test:ui
+```
+
+測試範圍涵蓋：首頁載入、App 下載功能、主題切換、以及 404 錯誤頁面處理。
+
+## 📦 打包發布 (Build & Deploy)
+
+### Docker 部署 (推薦)
+
+```powershell
+# 建置映像檔
+npm run docker:build
+
+# 啟動容器
+npm run docker:run
+```
+
+### GitHub Pages (靜態託管)
+
+只需將代碼推送至 `main` 分支，並在 Repository Settings 中啟用 GitHub Pages 即可自動部署。
+
+## 🤝 貢獻 (Contribution)
+
+歡迎任何形式的貢獻！
+
+1. Fork 本專案
+2. 建立您的 Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. 提交變更 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 開啟 Pull Request
+
+## 📚 文件 (Documentation)
+
+更多詳細文件請參閱以下資源：
+
+- [專案任務追蹤 (Task)](./task.md)
+- [實作計畫 (Implementation Plan)](./implementation_plan.md)
+- [優化歷程 (Walkthrough)](./walkthrough.md)
+
+## 📄 授權 (License)
+
+本專案採用 **MIT License** 授權。詳細內容請參閱 [LICENSE](./LICENSE) 文件。
+
+## ✍️ 作者 (Author)
+
+### Presentyourlove Team
+
+- Email: <presentyourlove@gmail.com>
+- GitHub: [@presentyourlove](https://github.com/presentyourlove)
+
+## 致謝 (Acknowledgments)
+
+感謝以下開源專案與工具的支援：
+
+- [Playwright](https://playwright.dev/) - 強大的 E2E 測試框架
+- [Docker](https://www.docker.com/) - 容器化解決方案
+- [Nginx](https://nginx.org/) - 高效能網頁伺服器
+- [GitHub Actions](https://github.com/features/actions) - 自動化 CI/CD 平台
+
+---
 Made with ❤️ by Presentyourlove Team

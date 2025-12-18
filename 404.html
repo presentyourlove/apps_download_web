@@ -9,7 +9,7 @@
     <title>404 - 找不到頁面 | Presentyourlove</title>
     <meta name="robots" content="noindex, follow">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io;">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,17 +25,8 @@
     <meta name="apple-mobile-web-app-title" content="404 Error">
 
     <!-- Stylesheets -->
-    <script>
-        (function () {
-            try {
-                const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                const themeColor = savedTheme === 'dark' ? '#0f172a' : '#ffffff';
-                const meta = document.querySelector('meta[name="theme-color"]');
-                if (meta) meta.setAttribute('content', themeColor);
-            } catch (e) { }
-        })();
-    </script>
+    <!-- Theme initialization (同步載入以避免 FOUC) -->
+    <script src="/apps_download_web/js/theme-init.js"></script>
     <link rel="stylesheet" href="/apps_download_web/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
