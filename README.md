@@ -52,16 +52,23 @@ Presentyourlove 官方應用程式下載中心。這裡匯集了我們開發的�
 ## 📂 專案結構
 
 ```plaintext
-Web/
+apps_download_web/
 ├── index.html              # 下載中心首頁
 ├── financeapp-content.html # FinanceApp 介紹頁
 ├── subtrack-content.html   # SubTrack 介紹頁
 ├── sub-buddy-content.html  # Sub-Buddy 介紹頁
+├── links.html              # 關於與社群連結頁
 ├── 404.html                # 自訂錯誤頁
-├── offline.html            # 離線Fallback頁
-├── css/                    # 樣式表 (style.css)
-├── js/                     # 腳本 (script.js)
-├── components/             # 共用元件 (Header, Footer)
+├── offline.html            # 離線 Fallback 頁
+├── css/
+│   └── style.css           # 主樣式表
+├── js/
+│   ├── script.js           # 主程式邏輯
+│   └── theme-init.js       # 主題初始化（避免 FOUC）
+├── components/             # 共用元件
+│   ├── header.html
+│   ├── footer.html
+│   └── cookie-consent.html
 ├── assets/                 # 圖片與安裝檔資源
 ├── sw.js                   # Service Worker (PWA)
 ├── manifest.json           # Web App Manifest
@@ -74,18 +81,106 @@ Web/
 
 - **Core**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
 - **PWA**: Service Worker, Web App Manifest
-- **Performance**: Intersection Observer, Async/Defer Scripts
-- **Tools**: VS Code, Git, PowerShell
-- **Automation**: Custom PowerShell scripts for maintenance
+- **Performance**: Intersection Observer, Async/Defer Scripts, Throttle優化
+- **Accessibility**: ARIA標籤, Focus Trap, 鍵盤導航支援
+- **Tools**: VS Code, Git
 
-## 🤖 自動化維護 (Automation)
+## 🌐 環境需求
 
-本專案包含自動化腳本以簡化維護流程：
+### 執行環境
 
-- **`tools/update_timestamp.ps1`**:
-  - 自動掃描 HTML 檔案。
-  - 更新 `sitemap.xml` 與 `humans.txt` 的日期戳記。
-  - 執行方式: `.\tools\update_timestamp.ps1`
+- **伺服器**: 任何靜態檔案伺服器（Apache, Nginx, GitHub Pages, Netlify）
+- **HTTPS**: 必須（PWA 與 Service Worker 要求）
+- **Node.js**: 不需要（純靜態網站）
+
+### 瀏覽器支援
+
+| 瀏覽器 | 最低版本 | PWA 支援 | 備註 |
+|--------|----------|----------|------|
+| Chrome | 90+ | ✅ | 完整支援所有功能 |
+| Edge | 90+ | ✅ | 完整支援所有功能 |
+| Safari | 15+ | ⚠️ | 部分 PWA 限制 |
+| Firefox | 88+ | ⚠️ | Service Worker 支援 |
+| iOS Safari | 15+ | ⚠️ | 需手動「加入主畫面」 |
+
+**功能支援：**
+
+- ✅ ES6+ 語法（箭頭函式、Promise、async/await）
+- ✅ CSS Variables
+- ✅ Flexbox & Grid
+- ✅ Service Worker（需 HTTPS）
+- ✅ View Transitions API（Chrome 111+，其他瀏覽器優雅降級）
+
+## 🚀 部署指南
+
+### GitHub Pages（推薦）
+
+1. **Fork 本專案**至您的 GitHub 帳戶
+
+2. **啟用 GitHub Pages**：
+   - 前往 Repository Settings → Pages
+   - Source 選擇 `main` 分支
+   - 資料夾選擇 `/` (root)
+   - 儲存設定
+
+3. **等待部署完成**（約 1-2 分鐘）
+
+4. **存取網站**：
+
+   ```text
+   https://YOUR_USERNAME.github.io/REPOSITORY_NAME/
+   ```
+
+### Netlify
+
+1. **連接 Git Repository**
+
+2. **設定建置**：
+   - Build command: （留空，無需建置）
+   - Publish directory: `.`
+
+3. **部署**：自動部署，每次 push 都會觸發
+
+### 本地開發
+
+```powershell
+# 使用 Python 內建伺服器
+python -m http.server 8000
+
+# 或使用 Node.js http-server
+npx http-server -p 8000
+
+# 訪問
+# http://localhost:8000
+```
+
+> ⚠️ **注意**: 本地開發時 PWA 功能受限（需 HTTPS），建議使用 `ngrok` 或部署至測試環境進行完整測試。
+
+## 📊 專案架構
+
+```mermaid
+graph TB
+    A[index.html] --> B[Header Component]
+    A --> C[Footer Component]
+    A --> D[Cookie Consent]
+    A --> E[js/theme-init.js]
+    A --> F[js/script.js]
+    A --> G[css/style.css]
+    A --> H[Service Worker]
+    
+    F --> I[Config]
+    F --> J[Theme Toggle]
+    F --> K[Mobile Menu]
+    F --> L[PWA Install]
+    F --> M[Focus Trap]
+    
+    H --> N[Cache Strategy]
+    H --> O[Offline Support]
+    
+    style A fill:#6366f1,color:#fff
+    style H fill:#e11d48,color:#fff
+    style F fill:#22d3ee,color:#000
+```
 
 ## 📄 授權
 

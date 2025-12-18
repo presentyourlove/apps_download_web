@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const CACHE_NAME = 'pyl-cache-v13';
+const CACHE_NAME = 'pyl-cache-v15';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -16,12 +16,13 @@ const ASSETS_TO_CACHE = [
     './404.html',
     './css/style.css',
     './js/script.js',
-    './assets/presentyourlove_logo_32.png',
-    './assets/presentyourlove_logo_192.png',
-    './assets/presentyourlove_logo_512.png',
-    './assets/financeapp_icon_192.png',
-    './assets/subtrack_icon_192.png',
-    './assets/sub-buddy_icon_192.png',
+    './js/theme-init.js',
+    './assets/presentyourlove-logo-32.png',
+    './assets/presentyourlove-logo-192.png',
+    './assets/presentyourlove-logo-512.png',
+    './assets/financeapp-icon-192.png',
+    './assets/subtrack-icon-192.png',
+    './assets/sub-buddy-icon-192.png',
     './manifest.json',
     './components/header.html',
     './components/footer.html',

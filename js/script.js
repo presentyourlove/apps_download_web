@@ -27,7 +27,10 @@ const CONFIG = {
     HEADER_SCROLL_THRESHOLD: 100,
     THROTTLE_DELAY: 200,
     HEADER_THROTTLE_DELAY: 100,
-    TOAST_DURATION: 3000
+    TOAST_DURATION: 3000,
+    SCROLLBAR_WIDTH: 10,        // 捲軸寬度 (px)
+    SCROLLBAR_RADIUS: 5,        // 捲軸圓角半徑 (px)
+    FOCUS_DELAY: 100           // 焦點延遲時間 (ms)
   }
 };
 
@@ -153,7 +156,19 @@ function setActiveNav() {
 
 // App card click handlers
 
-// Focus Trap Logic
+/**
+ * Focus Trap Logic (焦點陷阱)
+ * 
+ * WHY: 為了符合 WCAG 無障礙標準，當模態視窗（如 Sidebar）開啟時，
+ * 必須將鍵盤焦點限制在該視窗內，防止焦點跳到背景內容。
+ * 這對螢幕閱讀器使用者至關重要，確保他們不會迷失在頁面中。
+ * 
+ * HOW: 監聽 Tab/Shift+Tab 鍵，當焦點到達邊界時循環回到另一端。
+ * 同時支援 Escape 鍵快速關閉，符合使用者預期的操作方式。
+ * 
+ * @param {KeyboardEvent} e - 鍵盤事件
+ * @param {HTMLElement} element - 需要陷阱焦點的容器元素
+ */
 const focusTrap = (e, element) => {
   const focusableElements = element.querySelectorAll('a[href], button:not([disabled]), textarea, input, select');
   const firstElement = focusableElements[0];
@@ -187,7 +202,9 @@ function openSidebar() {
   // Trap focus
   mobileSidebar.addEventListener('keydown', handleFocusTrap);
   const closeBtn = document.getElementById('sidebar-close');
-  if (closeBtn) setTimeout(() => closeBtn.focus(), 100);
+  // WHY: 延遲焦點設定是為了等待 CSS 動畫完成（sidebar 滑入動畫），
+  // 避免在元素還未完全顯示時就嘗試聚焦，這可能導致螢幕閱讀器混淆。
+  if (closeBtn) setTimeout(() => closeBtn.focus(), CONFIG.UI.FOCUS_DELAY);
   if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'true');
 }
 
@@ -251,10 +268,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * Throttle Utility
- * Limits the rate at which a function can fire.
+ * Throttle Utility (節流函式)
+ * 
+ * WHY: 在處理高頻率事件（如 scroll, resize）時，必須限制函式執行頻率
+ * 以避免效能問題。選擇 throttle 而非 debounce 的原因是：
+ * - throttle: 確保函式在固定時間間隔內至少執行一次（適合滾動進度追蹤）
+ * - debounce: 只在事件停止後執行（適合搜尋輸入）
+ * 
+ * 使用 throttle 可確保使用者在滾動時能看到即時反饋（如 header 隱藏），
+ * 而不是等到滾動完全停止才有反應。
+ * 
  * @param {Function} func - The function to throttle
  * @param {number} limit - The limit in milliseconds
+ * @returns {Function} Throttled function
  */
 const throttle = (func, limit) => {
   let inThrottle;

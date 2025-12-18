@@ -1,4 +1,4 @@
-{
+﻿{
     "name": "Presentyourlove",
     "short_name": "PYL",
     "id": "/apps_download_web/",
@@ -9,13 +9,13 @@
     "description": "Presentyourlove - 應用程式下載中心",
     "icons": [
         {
-            "src": "assets/presentyourlove_logo_192.png",
+            "src": "assets/presentyourlove-logo-192.png",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "assets/presentyourlove_logo_512.png",
+            "src": "assets/presentyourlove-logo-512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
@@ -23,13 +23,13 @@
     ],
     "screenshots": [
         {
-            "src": "assets/presentyourlove_logo_512.png",
+            "src": "assets/presentyourlove-logo-512.png",
             "sizes": "512x512",
             "type": "image/png",
             "form_factor": "wide"
         },
         {
-            "src": "assets/presentyourlove_logo_512.png",
+            "src": "assets/presentyourlove-logo-512.png",
             "sizes": "512x512",
             "type": "image/png",
             "form_factor": "narrow"
@@ -43,7 +43,7 @@
             "url": "./financeapp-content.html",
             "icons": [
                 {
-                    "src": "assets/financeapp_icon_192.png",
+                    "src": "assets/financeapp-icon-192.png",
                     "sizes": "192x192"
                 }
             ]
@@ -55,7 +55,7 @@
             "url": "./subtrack-content.html",
             "icons": [
                 {
-                    "src": "assets/subtrack_icon_192.png",
+                    "src": "assets/subtrack-icon-192.png",
                     "sizes": "192x192"
                 }
             ]
@@ -67,7 +67,7 @@
             "url": "./sub-buddy-content.html",
             "icons": [
                 {
-                    "src": "assets/sub-buddy_icon_192.png",
+                    "src": "assets/sub-buddy-icon-192.png",
                     "sizes": "192x192"
                 }
             ]
@@ -79,7 +79,7 @@
             "url": "./links.html",
             "icons": [
                 {
-                    "src": "assets/presentyourlove_logo_192.png",
+                    "src": "assets/presentyourlove-logo-192.png",
                     "sizes": "192x192"
                 }
             ]
