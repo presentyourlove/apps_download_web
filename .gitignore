@@ -39,3 +39,6 @@ desktop.ini
 
 # Husky (if not needed)
 # .husky/
+
+*storybook.log
+storybook-static

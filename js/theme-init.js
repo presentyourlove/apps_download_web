@@ -1,5 +1,5 @@
 /**
- * Theme Initialization Script
+ * 主題初始化腳本 (Theme Initialization Script)
  * 
  * WHY: 這個腳本必須在 <head> 中同步執行，以避免 FOUC (Flash of Unstyled Content)。
  * 如果等到 DOMContentLoaded 或外部腳本載入後才設定主題，使用者會看到短暫的主題閃爍。
@@ -17,15 +17,26 @@
 
 (function () {
     /**
+     * 檢查是否在深色模式時間範圍內 (18:00 - 06:00)
+     * @returns {boolean}
+     */
+    function isNightTime() {
+        const hour = new Date().getHours();
+        return hour >= 18 || hour < 6;
+    }
+
+    /**
      * 根據設定取得實際的主題色
-     * @param {string} savedTheme - 儲存的主題設定 ('light' | 'dark' | 'system')
+     * @param {string} savedTheme - 儲存的主題設定 ('light' | 'dark' | 'system' | 'schedule')
      * @returns {string} 實際要套用的主題 ('light' | 'dark')
      */
     function getEffectiveTheme(savedTheme) {
         if (savedTheme === 'system') {
-            // 使用 matchMedia 偵測 OS 主題偏好
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             return prefersDark ? 'dark' : 'light';
+        }
+        if (savedTheme === 'schedule') {
+            return isNightTime() ? 'dark' : 'light';
         }
         return savedTheme;
     }
@@ -42,7 +53,7 @@
     }
 
     try {
-        // 支援三種模式：light, dark, system (預設為 dark)
+        // 支援四種模式：light, dark, system, schedule (預設為 dark)
         const savedTheme = localStorage.getItem('pyl-theme') || 'dark';
         const effectiveTheme = getEffectiveTheme(savedTheme);
         applyTheme(effectiveTheme);
@@ -55,7 +66,7 @@
             });
         }
     } catch (e) {
-        // Silently fail if localStorage is not available (e.g., private browsing)
-        console.warn('Theme initialization failed:', e);
+        // 如果 localStorage 無法存取，則靜默失敗
+        console.warn('主題初始化失敗:', e);
     }
 })();

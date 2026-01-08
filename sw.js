@@ -1,7 +1,7 @@
 /**
  * Service Worker
  * Handles offline caching and PWA capabilities.
- * Strategy: Cache First, then Network (Stale-while-revalidate for some).
+ * Strategy: Cache First, then Network (Stale-while-revalidate for APIs).
  */
 'use strict';
 
@@ -63,6 +63,24 @@ self.addEventListener('activate', (event) => {
 
 // Fetch Event
 self.addEventListener('fetch', (event) => {
+    // API Strategy: Stale-while-revalidate
+    // 優先回傳快取內容，並同時在背景更新快取
+    if (event.request.url.includes('/api/')) {
+        event.respondWith(
+            caches.open(CACHE_NAME).then((cache) => {
+                return cache.match(event.request).then((cachedResponse) => {
+                    const fetchPromise = fetch(event.request).then((networkResponse) => {
+                        cache.put(event.request, networkResponse.clone());
+                        return networkResponse;
+                    });
+                    return cachedResponse || fetchPromise;
+                });
+            })
+        );
+        return;
+    }
+
+    // Default Strategy: Cache First, then Network
     event.respondWith(
         caches.match(event.request)
             .then((response) => {

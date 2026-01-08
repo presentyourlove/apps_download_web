@@ -1,13 +1,17 @@
 /**
- * Critical CSS Generator Script
+ * Critical CSS Generator Script (ESM)
  * 提取首屏關鍵 CSS 並內嵌至 HTML
  * 
- * 用法: node scripts/generate-critical.js
+ * 用法: node scripts/generate-critical.mjs
  */
 
-const critical = require('critical');
-const fs = require('fs/promises');
-const path = require('path');
+import { generate } from 'critical';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const HTML_FILES = [
     'index.html',
@@ -34,7 +38,9 @@ async function generateCriticalCSS(htmlFile) {
 
         console.log(`⏳ 處理中: ${htmlFile}`);
 
-        const result = await critical.generate({
+        const shouldInline = process.argv.includes('--inline');
+
+        const result = await generate({
             // 來源 HTML
             src: htmlPath,
             // CSS 檔案
@@ -45,20 +51,27 @@ async function generateCriticalCSS(htmlFile) {
                 { width: 768, height: 1024 },  // iPad
                 { width: 1440, height: 900 }   // Desktop
             ],
-            // 僅提取 Critical CSS，不修改 HTML
+            // 僅提取 Critical CSS，不修改 HTML (除非開啟 inline)
             extract: true,
             // 輸出為字串
-            inline: false
+            inline: shouldInline
         });
 
-        // 儲存 Critical CSS
+        // 若開啟 inline 模式，直接覆寫 HTML
+        if (shouldInline) {
+            await fs.writeFile(htmlPath, result.html);
+            console.log(`✅ Critical CSS 已內嵌至: ${htmlFile}`);
+            return { file: htmlFile, size: result.css.length, inlined: true };
+        }
+
+        // 否則僅儲存 CSS 檔案
         const criticalCssPath = path.join(BASE_DIR, 'css', `critical-${htmlFile.replace('.html', '')}.css`);
         await fs.writeFile(criticalCssPath, result.css);
 
-        console.log(`✅ 完成: ${htmlFile} → critical-${htmlFile.replace('.html', '')}.css`);
+        console.log(`✅ CSS 產生完成: critical-${htmlFile.replace('.html', '')}.css`);
         console.log(`   大小: ${(result.css.length / 1024).toFixed(1)} KB`);
 
-        return { file: htmlFile, size: result.css.length };
+        return { file: htmlFile, size: result.css.length, inlined: false };
     } catch (error) {
         if (error.code === 'ENOENT') {
             console.log(`⏭️  跳過: ${htmlFile} (檔案不存在)`);
@@ -73,7 +86,7 @@ async function generateCriticalCSS(htmlFile) {
  * 主程式
  */
 async function main() {
-    console.log('🎨 Critical CSS 產生器\n');
+    console.log('🎨 Critical CSS 產生器 (ESM)\n');
     console.log('此腳本會為每個頁面提取首屏關鍵 CSS');
     console.log('產生的 CSS 可手動內嵌至各頁面 <head> 中\n');
 
@@ -95,7 +108,7 @@ async function main() {
     }
 
     console.log('\n💡 下一步:');
-    console.log('   1. 將 css/critical-*.css 內容內嵌至對應 HTML 的 <head>');
+    console.log('   1. 若未使用 --inline，請將 css/critical-*.css 內容內嵌至對應 HTML 的 <head>');
     console.log('   2. 將完整 CSS 改為延遲載入');
 }
 

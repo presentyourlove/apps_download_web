@@ -36,7 +36,7 @@ Presentyourlove 官方應用程式下載中心。我們致力於開發提升生�
     - 💬 **即時聊天** - 內建聊天室，溝通更順暢
     - ⭐ **信譽評價** - 安全可靠的拼團環境
 
-## � 程式碼品質 (Code Quality)
+## 🛡️ 程式碼品質 (Code Quality)
 
 我們堅持最高的代碼品質標準：
 
@@ -64,10 +64,10 @@ npm start
 # 訪問 http://localhost:8080
 ```
 
-## � 支援平台 (Supported Platforms)
+## 📱 支援平台 (Supported Platforms)
 
 | 瀏覽器 | 最低版本 | PWA 支援 | 備註 |
-|--------|----------|----------|------|
+| :--- | :--- | :--- | :--- |
 | Chrome | 90+ | ✅ | 完整功能支援 |
 | Edge | 90+ | ✅ | 完整功能支援 |
 | Safari | 15+ | ⚠️ | 需手動「加入主畫面」 |
@@ -111,7 +111,7 @@ apps_download_web/
 └── playwright.config.ts    # 測試框架配置
 ```
 
-## � 開發指南 (Development Guide)
+## 📖 開發指南 (Development Guide)
 
 ### 推薦環境
 
@@ -160,7 +160,7 @@ npm run docker:run
 
 1. 在 Repository 根目錄新增 `CNAME` 檔案，內容為您的網域名稱：
 
-   ```
+   ```text
    www.example.com
    ```
 
@@ -180,56 +180,43 @@ npm run docker:run
 
 ---
 
-## 🔮 已完成優化 (Completed Optimizations)
+## 後續建議優化 (Future Roadmap)
 
-本專案已完成以下優化：
-
-| 類別 | 項目 | 狀態 |
-|------|------|------|
-| **效能** | 圖片壓縮 (WebP) | ✅ 節省 94% |
-| **效能** | Critical CSS 產生腳本 | ✅ `npm run generate:critical` |
-| **CI/CD** | Lighthouse CI | ✅ 效能監控 |
-| **CI/CD** | CodeQL 安全掃描 | ✅ 每週掃描 |
-| **CI/CD** | Dependabot | ✅ 自動更新 |
-| **功能** | 系統主題偵測 | ✅ Light/Dark/System |
-| **功能** | 版本資訊 API | ✅ `/api/versions.json` |
-| **功能** | 多語系支援 (i18n) | ✅ 中/英 |
-
----
-
-## 🔭 後續建議優化 (Future Roadmap)
-
-以下為建議的未來擴展方向：
+以下為建議的未來擴展方向，旨在進一步提升使用者體驗、效能與安全性：
 
 ### 1. 進階功能 (Advanced Features)
 
 | 項目 | 說明 | 預估工時 |
-|------|------|----------|
-| **深色模式排程** | 支援定時自動切換 (如晚上 6 點後自動開啟深色模式) | 2hr |
-| **App 更新檢查** | 自動比對本地版本與 `/api/versions.json`，提示更新 | 2hr |
+| :--- | :--- | :--- |
+| **深色模式排程** | 支援定時自動切換 (如晚上 6 點後自動開啟深色模式)。 | 2hr |
+| **App 更新檢查** | 自動比對本地版本與 `/api/versions.json`，提示更新。 | 2hr |
+| **PWA 捷徑 (Shortcuts)** | 使用 Web App Manifest 的 `shortcuts` 成員，讓使用者能從圖示長按選單直接進入特定功能（如「直接下載 FinanceApp」）。 | 1hr |
+| **PWA 徽章 (Badging)** | 使用 Badging API 在應用程式圖示上顯示未讀通知或狀態（如「新版本可用」）。 | 1.5hr |
 
 ### 2. 效能優化 (Performance)
 
 | 項目 | 說明 | 預估工時 |
-|------|------|----------|
-| **Critical CSS 內嵌** | 將產生的 Critical CSS 自動內嵌至 HTML | 2hr |
-| **圖片懶載入** | 使用 Intersection Observer 延遲載入非首屏圖片 | 1hr |
-| **資源預載入** | 使用 `<link rel="preload">` 預載入關鍵資源 | 1hr |
+| :--- | :--- | :--- |
+| **Critical CSS 內嵌** | 將產生的 Critical CSS 自動內嵌至 HTML，減少首次渲染阻塞。 | 2hr |
+| **圖片懶載入 (Lazy Loading)** | 使用 Intersection Observer API 或原生的 `loading="lazy"` 屬性延遲載入非首屏圖片。 | 1hr |
+| **進階快取策略** | 調整 Service Worker 策略，針對 API 請求 (`/api/versions.json`) 採用 **Stale-while-revalidate** 策略，確保使用者總是先看到快取內容，背景再行更新。 | 2hr |
+| **資源預載入 (Preloading)** | 使用 `<link rel="preload">` 預載入關鍵資源（如主要字型、Logo），提升 LCP 指標。 | 1hr |
 
 ### 3. 資安強化 (Security)
 
 | 項目 | 說明 | 預估工時 |
-|------|------|----------|
-| **CSP 報告端點** | 建立後端 API 接收 CSP 違規報告 | 3hr |
-| **HTTPS 強制跳轉** | 確保所有 HTTP 請求自動跳轉至 HTTPS | 0.5hr |
-| **安全標頭強化** | 新增 Permissions-Policy、X-Content-Type-Options 等標頭 | 1hr |
+| :--- | :--- | :--- |
+| **CSP 報告端點** | 建立後端 API (Node.js/Go) 接收瀏覽器回報的 CSP 違規報告，即時監控潛在攻擊。 | 3hr |
+| **自動化資安掃描** | 在 CI/CD 流程中整合 **OWASP ZAP** 進行自動化滲透測試，掃描常見漏洞（如 XSS, SQL Injection 等）。 | 4hr |
+| **HTTPS 強制跳轉 (HSTS)** | 確保所有 HTTP 請求自動跳轉至 HTTPS，並在標頭中加入 HSTS 設定。 | 0.5hr |
+| **安全標頭強化** | 新增 `Permissions-Policy`, `X-Content-Type-Options`, `Referrer-Policy` 等安全標頭。 | 1hr |
 
 ### 4. 開發體驗 (Developer Experience)
 
 | 項目 | 說明 | 預估工時 |
-|------|------|----------|
-| **Hot Reload** | 整合 Browser-Sync 實現即時預覽 | 1hr |
-| **Storybook 元件文件** | 建立 UI 元件展示與文件 | 4hr |
+| :--- | :--- | :--- |
+| **Hot Reload** | 整合 Browser-Sync 實現即時預覽，提升開發效率。 | 1hr |
+| **Storybook 元件文件** | 為 UI 元件（按鈕、卡片、Header）建立 Storybook 文件，方便設計檢視與測試。 | 4hr |
 
 ---
 

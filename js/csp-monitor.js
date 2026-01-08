@@ -1,6 +1,6 @@
 /**
- * CSP (Content Security Policy) Violation Monitor
- * 收集 CSP 違規報告並上報至指定端點
+ * CSP (Content Security Policy) 違規監控
+ * 收集 CSP 違規報告並上報至指定端點。
  * 
  * 用法:
  * 1. 在 HTML <head> 中設定 CSP meta tag 的 report-uri
@@ -89,7 +89,7 @@ const CSPMonitor = (function () {
             });
         } catch (error) {
             // 靜默失敗，避免影響使用者體驗
-            console.debug('CSP report failed:', error);
+            console.debug('CSP 報告發送失敗:', error);
         }
     }
 
@@ -113,7 +113,7 @@ const CSPMonitor = (function () {
         return reportedViolations.size;
     }
 
-    // Public API
+    // 公開 API
     return {
         init,
         getViolationCount
