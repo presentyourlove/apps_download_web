@@ -14,7 +14,8 @@
     "minify:js": "terser js/script.js --output js/script.min.js",
     "docker:build": "docker build -t apps-download-web .",
     "docker:run": "docker run -p 8080:80 apps-download-web",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "convert:images": "node scripts/convert-images.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
@@ -28,6 +29,7 @@
     "lighthouse": "^11.4.0",
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
+    "sharp": "^0.34.5",
     "terser": "^5.26.0"
   },
   "engines": {

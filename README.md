@@ -176,8 +176,6 @@ npm run docker:run
 
 | 項目 | 說明 | 優先級 |
 |------|------|--------|
-| **圖片壓縮** | 將 PNG 轉換為 WebP 格式，可減少 50-80% 檔案大小 | 高 |
-| **APK 外部託管** | 使用 GitHub Releases 或 CDN 託管大型檔案 | 高 |
 | **Brotli 壓縮** | 啟用 Brotli 壓縮靜態資源 | 中 |
 | **Critical CSS** | 內嵌首屏關鍵 CSS，延遲載入非關鍵樣式 | 中 |
 
@@ -185,7 +183,6 @@ npm run docker:run
 
 | 項目 | 說明 | 優先級 |
 |------|------|--------|
-| **自動部署** | 新增 GitHub Actions workflow 自動部署至 GitHub Pages | 高 |
 | **Lighthouse CI** | 整合 Lighthouse CI 監控效能分數 | 中 |
 | **安全掃描** | 整合 CodeQL 或 Snyk 進行依賴套件安全掃描 | 中 |
 
