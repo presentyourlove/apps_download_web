@@ -16,6 +16,7 @@ Presentyourlove 官方應用程式下載中心。我們致力於開發提升生�
 - **企業級規範**：嚴格遵循 `GEMINI.md` 開發規範，實作 Content Security Policy (CSP) 與 Docker 容器化。
 - **極致效能**：LCP 優化、資源快取策略 (Caching Strategy)、支援 PWA 離線瀏覽。
 - **全站多語系 (Deep i18n)**：全站內容支援繁體中文與英文即時切換。
+- **Web Push 推播通知**：整合 Push API 與 Service Worker，支援新版本發布或重要公告的瀏覽器推播通知。
 - **自動化維運**：整合 GitHub Actions 實現 CI/CD，每次推送自動執行 ESLint 靜態檢查與 Playwright 端對端測試。
 
 ## 🚀 功能特色 (Features)
@@ -112,7 +113,8 @@ apps_download_web/
 │   ├── theme-init.js               # 深色模式初始化 (防止閃爍)
 │   ├── i18n.js                     # 多語系切換模組 (ES Module)
 │   ├── utils.js                    # 通用工具函式庫 (版本比較, 排程判斷)
-│   └── csp-monitor.js              # CSP 違規回報邏輯
+│   ├── csp-monitor.js              # CSP 違規回報邏輯
+│   └── push-client.js              # Web Push 客戶端訂閱邏輯
 ├── locales/                        # Internationalization (i18n) 翻譯檔
 │   └── translations.json           # 包含 中/英/日 介面字串
 ├── node_modules/                   # npm 套件安裝目錄 (不納入版本控制)
@@ -120,7 +122,8 @@ apps_download_web/
 │   ├── convert-images.js           # 圖片轉檔工具 (PNG -> WebP)
 │   └── generate-critical.mjs       # Critical CSS 自動提取工具
 ├── server/                         # 輕量級後端服務
-│   └── csp-server.js               # 接收並記錄 CSP 違規報告的 Node.js 服務
+│   ├── csp-server.js               # 接收並記錄 CSP 違規報告的 Node.js 服務
+│   └── push-server.mjs             # Web Push 通知伺服器 (VAPID, 訂閱管理)
 ├── stories/                        # Storybook 元件展示文件
 │   ├── Header.stories.ts           # Header 元件的狀態展示
 │   └── Footer.stories.ts           # Footer 元件的狀態展示
@@ -211,8 +214,8 @@ npm run docker:run
 
 | 項目 | 說明 | 預估工時 |
 | :--- | :--- | :--- |
-| **推播通知 (Web Push)** | 利用 Push API 與 Service Worker，實現新版本發布或重要公告的瀏覽器推播通知。 | 5hr |
 | **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
+| **GraphQL API** | 實作 GraphQL API 以取代 RESTful 端點，提升資料查詢彈性。 | 15hr |
 
 ---
 
