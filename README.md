@@ -179,14 +179,7 @@ npm run docker:run
 | **Brotli 壓縮** | 啟用 Brotli 壓縮靜態資源 | 中 |
 | **Critical CSS** | 內嵌首屏關鍵 CSS，延遲載入非關鍵樣式 | 中 |
 
-### 2. CI/CD 強化 (DevOps)
-
-| 項目 | 說明 | 優先級 |
-|------|------|--------|
-| **Lighthouse CI** | 整合 Lighthouse CI 監控效能分數 | 中 |
-| **安全掃描** | 整合 CodeQL 或 Snyk 進行依賴套件安全掃描 | 中 |
-
-### 3. 功能擴展 (Features)
+### 2. 功能擴展 (Features)
 
 | 項目 | 說明 | 優先級 |
 |------|------|--------|
@@ -194,12 +187,10 @@ npm run docker:run
 | **系統主題偵測** | 自動跟隨作業系統深淺色模式 (`prefers-color-scheme`) | 低 |
 | **App 版本資訊 API** | 建立 JSON API 提供最新版本號與更新日誌 | 低 |
 
-### 4. 資安強化 (Security)
+### 3. 資安強化 (Security)
 
 | 項目 | 說明 | 優先級 |
 |------|------|--------|
-| **SRI (Subresource Integrity)** | 為外部資源加入完整性驗證 | 中 |
-| **定期更新依賴** | 使用 Dependabot 自動更新 npm 套件 | 中 |
 | **CSP 監控** | 配置 `report-uri` 收集 CSP 違規報告 | 低 |
 
 ---
