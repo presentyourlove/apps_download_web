@@ -262,7 +262,7 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
+        rel="stylesheet">
 
     <!-- iOS PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -317,13 +317,12 @@
     <link rel="apple-touch-icon" href="assets/presentyourlove-logo-192.png">
     <link rel="manifest" href="manifest.json">
 
-    <link rel="preload" href="components/header.html" as="fetch" crossorigin="">
-    <link rel="preload" href="components/footer.html" as="fetch" crossorigin="">
+    <!-- Preloads removed to prevent warnings -->
 
     <!-- Stylesheets -->
     <!-- Theme initialization (同步載入以避免 FOUC) -->
     <script src="js/theme-init.js"></script>
-    <link rel="stylesheet" href="css/style.5d3a597f.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/style.5d3a597f.css">
 
     <script type="module" src="js/script.js" defer=""></script>
 </head>
