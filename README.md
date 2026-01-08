@@ -80,7 +80,7 @@ npm start
 - **核心技術**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
 - **PWA 技術**: Service Worker, Web App Manifest
 - **開發運維 (DevOps)**: Docker, Nginx, GitHub Actions
-- **品質保證 (QA)**: Playwright (E2E Testing), ESLint
+- **品質保證 (QA)**: Vitest (Unit Testing), Playwright (E2E Testing), ESLint
 
 ## 📂 專案結構 (Project Structure)
 
@@ -109,7 +109,8 @@ apps_download_web/
 ├── js/                             # 前端 JavaScript 原始碼
 │   ├── script.js                   # 核心邏輯 (PWA, UI 互動, 更新檢查)
 │   ├── theme-init.js               # 深色模式初始化 (防止閃爍)
-│   ├── i18n.js                     # 多語系切換模組
+│   ├── i18n.js                     # 多語系切換模組 (ES Module)
+│   ├── utils.js                    # 通用工具函式庫 (版本比較, 排程判斷)
 │   └── csp-monitor.js              # CSP 違規回報邏輯
 ├── locales/                        # Internationalization (i18n) 翻譯檔
 │   └── translations.json           # 包含 中/英/日 介面字串
@@ -123,6 +124,9 @@ apps_download_web/
 │   ├── Header.stories.ts           # Header 元件的狀態展示
 │   └── Footer.stories.ts           # Footer 元件的狀態展示
 ├── tests/                          # 自動化測試腳本
+│   ├── unit/                       # 單元測試目錄 (Vitest)
+│   │   ├── i18n.test.ts            # i18n 模組測試
+│   │   └── utils.test.ts           # 工具函式測試
 │   └── e2e.spec.ts                 # Playwright 端對端測試 (首頁, 下載, 404)
 ├── .eslintrc.json                  # ESLint 程式碼檢查規則配置
 ├── .gitignore                      # Git 忽略檔案清單 (如 node_modules)
@@ -145,6 +149,8 @@ apps_download_web/
 ├── sub-buddy-content.html          # Sub-Buddy 詳細介紹頁面
 ├── subtrack-content.html           # SubTrack 詳細介紹頁面
 ├── sw.js                           # Service Worker (負責快取與離線存取)
+├── vitest.config.ts                # Vitest 單元測試設定檔
+├── vitest.shims.d.ts               # Vitest 全域類型宣告
 └── tsconfig.json                   # TypeScript 設定檔 (供 VSCode 智慧提示用)
 ```
 
@@ -171,9 +177,12 @@ npm run test
 
 # 啟動 UI 模式進行除錯
 npm run test:ui
+
+# 執行單元測試
+npm run test:unit
 ```
 
-測試範圍涵蓋：首頁載入、App 下載功能、主題切換、以及 404 錯誤頁面處理。
+測試範圍涵蓋：首頁載入、App 下載功能、主題切換、404 錯誤頁面處理，以及核心商業邏輯 (`utils.js`, `i18n.js`) 的單元測試。
 
 ## 📦 打包發布 (Build & Deploy)
 
@@ -202,7 +211,6 @@ npm run docker:run
 | 項目 | 說明 | 預估工時 |
 | :--- | :--- | :--- |
 | **全面多語系整合 (Deep i18n)** | 目前僅 js 支援多語系，建議將 `index.html` 等頁面內容全面套用 `data-i18n`，實現即時語言切換 (中/英/日)。 | 4hr |
-| **單元測試 (Unit Testing)** | 引入 Jest 或 Vitest，針對 `script.js` 中的核心邏輯 (如 version check, theme logic) 建立單元測試。 | 3hr |
 | **推播通知 (Web Push)** | 利用 Push API 與 Service Worker，實現新版本發布或重要公告的瀏覽器推播通知。 | 5hr |
 | **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
 
