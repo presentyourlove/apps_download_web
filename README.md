@@ -168,28 +168,21 @@ npm run docker:run
 
 ---
 
-## 🔮 後續優化建議 (Future Roadmap)
+## 🔮 已完成優化 (Completed Optimizations)
 
-以下是建議的後續優化方向，可依需求逐步實施：
+本專案已完成以下優化：
 
-### 1. 效能優化 (Performance)
-
-| 項目 | 說明 | 優先級 |
-|------|------|--------|
-| **Brotli 壓縮** | 啟用 Brotli 壓縮靜態資源 | 中 |
-| **Critical CSS** | 內嵌首屏關鍵 CSS，延遲載入非關鍵樣式 | 中 |
-
-### 2. 功能擴展 (Features)
-
-| 項目 | 說明 | 優先級 |
-|------|------|--------|
-| **多語系支援 (i18n)** | 支援英文/日文等多國語言 | 中 |
-
-### 3. 資安強化 (Security)
-
-| 項目 | 說明 | 優先級 |
-|------|------|--------|
-| **CSP 監控** | 配置 `report-uri` 收集 CSP 違規報告 | 低 |
+| 類別 | 項目 | 狀態 |
+|------|------|------|
+| **效能** | 圖片壓縮 (WebP) | ✅ 節省 94% |
+| **效能** | Critical CSS 產生腳本 | ✅ `npm run generate:critical` |
+| **CI/CD** | Lighthouse CI | ✅ 效能監控 |
+| **CI/CD** | CodeQL 安全掃描 | ✅ 每週掃描 |
+| **CI/CD** | Dependabot | ✅ 自動更新 |
+| **功能** | 系統主題偵測 | ✅ Light/Dark/System |
+| **功能** | 版本資訊 API | ✅ `/api/versions.json` |
+| **功能** | 多語系支援 (i18n) | ✅ 中/英/日 |
+| **資安** | CSP 監控 | ✅ 違規報告收集 |
 
 ---
 

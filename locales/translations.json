@@ -1,0 +1,182 @@
+{
+    "zh-TW": {
+        "common": {
+            "home": "首頁",
+            "apps": "應用程式",
+            "links": "連結",
+            "download": "下載",
+            "share": "分享",
+            "install": "安裝",
+            "close": "關閉",
+            "back": "返回",
+            "loading": "載入中...",
+            "error": "發生錯誤",
+            "retry": "重試"
+        },
+        "home": {
+            "title": "歡迎使用我們的應用程式",
+            "subtitle": "請選擇您想要下載的應用程式"
+        },
+        "apps": {
+            "financeapp": {
+                "name": "FinanceApp",
+                "tagline": "智慧理財助手",
+                "description": "輕鬆記錄收支、管理預算、分析財務狀況"
+            },
+            "subtrack": {
+                "name": "SubTrack",
+                "tagline": "訂閱管理助手",
+                "description": "追蹤所有訂閱服務，避免重複扣款"
+            },
+            "subbuddy": {
+                "name": "Sub-Buddy",
+                "tagline": "拼團小幫手",
+                "description": "輕鬆找到合購夥伴，分攤訂閱費用"
+            }
+        },
+        "download": {
+            "android": "下載 Android APK",
+            "ios": "前往 App Store",
+            "webapp": "開啟 Web App"
+        },
+        "theme": {
+            "dark": "深色模式",
+            "light": "淺色模式",
+            "system": "跟隨系統"
+        },
+        "footer": {
+            "copyright": "© 2026 Presentyourlove. 保留所有權利。",
+            "privacy": "隱私權政策",
+            "terms": "使用條款"
+        },
+        "offline": {
+            "title": "您目前處於離線狀態",
+            "message": "請檢查您的網路連線後重試。",
+            "retry": "重新連線"
+        },
+        "cookie": {
+            "message": "我們使用 Cookie 來改善您的瀏覽體驗。",
+            "accept": "接受"
+        }
+    },
+    "en": {
+        "common": {
+            "home": "Home",
+            "apps": "Apps",
+            "links": "Links",
+            "download": "Download",
+            "share": "Share",
+            "install": "Install",
+            "close": "Close",
+            "back": "Back",
+            "loading": "Loading...",
+            "error": "An error occurred",
+            "retry": "Retry"
+        },
+        "home": {
+            "title": "Welcome to Our Apps",
+            "subtitle": "Choose the app you want to download"
+        },
+        "apps": {
+            "financeapp": {
+                "name": "FinanceApp",
+                "tagline": "Smart Finance Assistant",
+                "description": "Easily track expenses, manage budgets, analyze finances"
+            },
+            "subtrack": {
+                "name": "SubTrack",
+                "tagline": "Subscription Manager",
+                "description": "Track all subscriptions, avoid duplicate charges"
+            },
+            "subbuddy": {
+                "name": "Sub-Buddy",
+                "tagline": "Group Buy Helper",
+                "description": "Find subscription partners, split costs easily"
+            }
+        },
+        "download": {
+            "android": "Download Android APK",
+            "ios": "Get on App Store",
+            "webapp": "Open Web App"
+        },
+        "theme": {
+            "dark": "Dark Mode",
+            "light": "Light Mode",
+            "system": "Follow System"
+        },
+        "footer": {
+            "copyright": "© 2026 Presentyourlove. All rights reserved.",
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service"
+        },
+        "offline": {
+            "title": "You are currently offline",
+            "message": "Please check your connection and try again.",
+            "retry": "Reconnect"
+        },
+        "cookie": {
+            "message": "We use cookies to improve your experience.",
+            "accept": "Accept"
+        }
+    },
+    "ja": {
+        "common": {
+            "home": "ホーム",
+            "apps": "アプリ",
+            "links": "リンク",
+            "download": "ダウンロード",
+            "share": "共有",
+            "install": "インストール",
+            "close": "閉じる",
+            "back": "戻る",
+            "loading": "読み込み中...",
+            "error": "エラーが発生しました",
+            "retry": "再試行"
+        },
+        "home": {
+            "title": "アプリへようこそ",
+            "subtitle": "ダウンロードするアプリを選択してください"
+        },
+        "apps": {
+            "financeapp": {
+                "name": "FinanceApp",
+                "tagline": "スマート家計簿",
+                "description": "収支を簡単に記録、予算管理、財務分析"
+            },
+            "subtrack": {
+                "name": "SubTrack",
+                "tagline": "サブスク管理",
+                "description": "すべてのサブスクを追跡、重複課金を防止"
+            },
+            "subbuddy": {
+                "name": "Sub-Buddy",
+                "tagline": "グループ購入ヘルパー",
+                "description": "サブスクパートナーを見つけ、費用を分担"
+            }
+        },
+        "download": {
+            "android": "Android APK をダウンロード",
+            "ios": "App Store で入手",
+            "webapp": "Web App を開く"
+        },
+        "theme": {
+            "dark": "ダークモード",
+            "light": "ライトモード",
+            "system": "システムに従う"
+        },
+        "footer": {
+            "copyright": "© 2026 Presentyourlove. All rights reserved.",
+            "privacy": "プライバシーポリシー",
+            "terms": "利用規約"
+        },
+        "offline": {
+            "title": "現在オフラインです",
+            "message": "接続を確認してもう一度お試しください。",
+            "retry": "再接続"
+        },
+        "cookie": {
+            "message": "このサイトでは Cookie を使用しています。",
+            "accept": "同意する"
+        }
+    }
+}

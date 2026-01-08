@@ -15,11 +15,13 @@
     "docker:build": "docker build -t apps-download-web .",
     "docker:run": "docker run -p 8080:80 apps-download-web",
     "prepare": "husky install",
-    "convert:images": "node scripts/convert-images.js"
+    "convert:images": "node scripts/convert-images.js",
+    "generate:critical": "node scripts/generate-critical.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/node": "^20.0.0",
+    "critical": "^7.2.1",
     "csso-cli": "^4.0.2",
     "eslint": "^8.56.0",
     "http-server": "^14.1.1",
