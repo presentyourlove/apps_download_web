@@ -1,4 +1,7 @@
 /**
+ * eslint-disable no-console
+ */
+/**
  * Critical CSS Generator Script (ESM)
  * 提取首屏關鍵 CSS 並內嵌至 HTML
  * 

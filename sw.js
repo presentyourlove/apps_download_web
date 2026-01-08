@@ -102,7 +102,7 @@ self.addEventListener('fetch', (event) => {
 // Push Event
 self.addEventListener('push', event => {
     const data = event.data.json();
-    console.log('Push Recieved...');
+    // console.log('Push Recieved...');
 
     // Customize notification based on payload's notification property
     const { title, ...options } = data.notification;
@@ -112,11 +112,11 @@ self.addEventListener('push', event => {
 
 // Notification Click Event
 self.addEventListener('notificationclick', function (event) {
-    console.log('[Service Worker] Notification click Received.');
+    // console.log('[Service Worker] Notification click Received.');
 
     event.notification.close();
 
     event.waitUntil(
-        clients.openWindow('https://presentyourlove.github.io/apps_download_web/')
+        self.clients.openWindow('https://presentyourlove.github.io/apps_download_web/')
     );
 });
