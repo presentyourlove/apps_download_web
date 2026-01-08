@@ -84,42 +84,68 @@ npm start
 
 ## 📂 專案結構 (Project Structure)
 
+本專案目錄結構詳解：
+
 ```plaintext
 apps_download_web/
-├── .github/                # GitHub Actions 自動化流程 (CI, Security, Lighthouse)
-├── .storybook/             # Storybook 設定檔
-├── api/                    # 版本資訊 API
-├── assets/                 # 圖片與多媒體資源
-├── components/             # HTML 共用元件 (Header/Footer)
-├── css/                    # 全域樣式表 (CSS Variables)
-├── js/                     # 核心 JavaScript 邏輯
-├── locales/                # i18n 多語系翻譯檔
-├── scripts/                # Node.js 建置與工具腳本
-├── server/                 # CSP 違規報告接收伺服器
-├── stories/                # Storybook 元件文件 (文件化 UI)
-├── tests/                  # Playwright E2E 測試腳本
-├── .eslintrc.json          # ESLint 程式碼檢查設定
-├── .gitignore              # Git 版本控制忽略清單
-├── 404.html                # 404 錯誤頁面
-├── Dockerfile              # Docker 容器建置設定
-├── financeapp-content.html # FinanceApp 介紹頁
-├── index.html              # 首頁 (PWA 入口)
-├── lighthouse-budget.json  # Lighthouse 效能預算設定
-├── lighthouserc.json       # Lighthouse CI 設定
-├── links.html              # 相關連結頁面
-├── manifest.json           # PWA 設定檔 (Web App Manifest)
-├── nginx.conf              # Nginx 伺服器配置 (Security Headers)
-├── offline.html            # PWA 離線替代頁面
-├── package.json            # 專案依賴與腳本設定
-├── package-lock.json       # 依賴版本鎖定檔
-├── playwright.config.ts    # E2E 測試全域設定
-├── README.md               # 專案說明文件
-├── robots.txt              # 搜尋引擎爬蟲設定
-├── sitemap.xml             # 網站地圖 (SEO)
-├── sub-buddy-content.html  # Sub-Buddy 介紹頁
-├── subtrack-content.html   # SubTrack 介紹頁
-├── sw.js                   # Service Worker (快取與離線邏輯)
-└── tsconfig.json           # TypeScript 編譯設定 (型別檢查用)
+├── .github/                        # GitHub 設定
+│   └── workflows/                  # CI/CD 自動化流程 (Security, Lighthouse 等)
+├── .husky/                         # Git Hooks 工具
+│   └── _/                          # Husky 內部腳本 (git commit 前自動執行 lint)
+├── .storybook/                     # Storybook 專案設定
+│   ├── main.ts                     # 各種 Addon 與路徑設定
+│   └── preview.ts                  # 全域 CSS 與 Decorator 設定
+├── api/                            # 模擬後端 API 資料
+│   └── versions.json               # App 版本資訊 (供 script.js 檢查更新用)
+├── assets/                         # 靜態資源目錄
+│   ├── icon-*.png                  # PWA 應用程式圖示
+│   ├── presentyourlove-logo.png    # 網站 Logo
+│   └── source/                     # 原始設計檔案
+├── components/                     # 可重用的 HTML 片段
+│   ├── header.html                 # 網站頁首 (導航列)
+│   └── footer.html                 # 網站頁尾 (版權資訊)
+├── css/                            # 樣式表目錄
+│   └── style.css                   # 主樣式表 (CSS Variables, RWD 設定)
+├── js/                             # 前端 JavaScript 原始碼
+│   ├── script.js                   # 核心邏輯 (PWA, UI 互動, 更新檢查)
+│   ├── theme-init.js               # 深色模式初始化 (防止閃爍)
+│   ├── i18n.js                     # 多語系切換模組
+│   └── csp-monitor.js              # CSP 違規回報邏輯
+├── locales/                        # Internationalization (i18n) 翻譯檔
+│   └── translations.json           # 包含 中/英/日 介面字串
+├── node_modules/                   # npm 套件安裝目錄 (不納入版本控制)
+├── scripts/                        # 開發與建置輔助腳本
+│   ├── convert-images.js           # 圖片轉檔工具 (PNG -> WebP)
+│   └── generate-critical.mjs       # Critical CSS 自動提取工具
+├── server/                         # 輕量級後端服務
+│   └── csp-server.js               # 接收並記錄 CSP 違規報告的 Node.js 服務
+├── stories/                        # Storybook 元件展示文件
+│   ├── Header.stories.ts           # Header 元件的狀態展示
+│   └── Footer.stories.ts           # Footer 元件的狀態展示
+├── tests/                          # 自動化測試腳本
+│   └── e2e.spec.ts                 # Playwright 端對端測試 (首頁, 下載, 404)
+├── .eslintrc.json                  # ESLint 程式碼檢查規則配置
+├── .gitignore                      # Git 忽略檔案清單 (如 node_modules)
+├── 404.html                        # 自訂 404 找不到網頁錯誤頁
+├── Dockerfile                      # 用於建置 Docker 映像檔的描述檔
+├── financeapp-content.html         # FinanceApp 詳細介紹頁面
+├── index.html                      # 網站入口首頁 (PWA Entry Point)
+├── lighthouse-budget.json          # Google Lighthouse 效能預算指標
+├── lighthouserc.json               # Lighthouse CI 自動化設定
+├── links.html                      # 相關連結與關於我們頁面
+├── manifest.json                   # PWA 安裝設定檔 (名稱, 圖示, 啟動模式)
+├── nginx.conf                      # Nginx 伺服器配置 (設定 HSTS, 壓縮, 安全標頭)
+├── offline.html                    # 網路斷線時顯示的替代畫面
+├── package.json                    # 專案資訊與 npm scripts 定義
+├── package-lock.json               # npm 依賴套件版本鎖定檔
+├── playwright.config.ts            # Playwright 測試框架全域設定
+├── README.md                       # 本說明文件
+├── robots.txt                      # 網路爬蟲索引規則設定
+├── sitemap.xml                     # 網站地圖 (SEO 優化)
+├── sub-buddy-content.html          # Sub-Buddy 詳細介紹頁面
+├── subtrack-content.html           # SubTrack 詳細介紹頁面
+├── sw.js                           # Service Worker (負責快取與離線存取)
+└── tsconfig.json                   # TypeScript 設定檔 (供 VSCode 智慧提示用)
 ```
 
 ## 📖 開發指南 (Development Guide)
