@@ -13,7 +13,9 @@
         "forceConsistentCasingInFileNames": true,
         "types": [
             "node"
-        ]
+        ],
+        "allowJs": true,
+        "noEmit": true
     },
     "include": [
         "**/*.ts",
