@@ -2,7 +2,8 @@
  * 應用程式設定 (Application Configuration)
  * 集中管理應用程式的所有設定參數。
  */
-'use strict';
+import { i18n } from './i18n.js';
+import { getThemeFromSchedule } from './utils.js';
 
 const CONFIG = {
   PATHS: {
@@ -239,9 +240,7 @@ function initThemeToggle() {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         effectiveTheme = prefersDark ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
       } else if (newTheme === CONFIG.THEME.SCHEDULE) {
-        const hour = new Date().getHours();
-        const isNight = hour >= 18 || hour < 6;
-        effectiveTheme = isNight ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
+        effectiveTheme = getThemeFromSchedule(new Date()) === 'dark' ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
       }
 
       html.setAttribute('data-theme', effectiveTheme);
@@ -264,13 +263,11 @@ function initThemeToggle() {
       showToast(`已切換至${modeLabels[newTheme]}`);
     });
 
-    // 定期檢查主題狀態 (解決跨時段未刷新問題)
+    // 定期檢查主題狀態
     setInterval(() => {
       const savedTheme = safeStorage.getItem(CONFIG.THEME.KEY);
       if (savedTheme === CONFIG.THEME.SCHEDULE) {
-        const hour = new Date().getHours();
-        const isNight = hour >= 18 || hour < 6;
-        const effectiveTheme = isNight ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
+        const effectiveTheme = getThemeFromSchedule(new Date()) === 'dark' ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
 
         if (document.documentElement.getAttribute('data-theme') !== effectiveTheme) {
           document.documentElement.setAttribute('data-theme', effectiveTheme);
@@ -343,7 +340,7 @@ function initSmartHeader() {
  * 初始化分享按鈕 (Web Share API)
  */
 function initShareButton() {
-  // 尋找所有帶有 'share-btn' class 的按鈕（雖然目前 HTML 中可能沒有，但保留擴充性）
+  // 尋找所有帶有 'share-btn' class 的按鈕
   const shareBtns = document.querySelectorAll('.share-btn');
 
   if (navigator.share) {
@@ -417,23 +414,18 @@ function initInstallPrompt() {
   };
 
   // 1. 初始狀態設定
-  // 如果是 iOS，總是顯示安裝按鈕（因為無法攔截事件）
   if (isIOS) {
     installBtns.forEach(btn => btn.hidden = false);
   }
 
   // 2. 事件監聽
-  // 監聽 'beforeinstallprompt' (Android/Desktop)
   window.addEventListener('beforeinstallprompt', (e) => {
     // 防止 Chrome 67+ 自動顯示提示
     e.preventDefault();
-    // 儲存事件以便稍後觸發
     deferredPrompt = e;
-    // 顯示安裝按鈕
     installBtns.forEach(btn => btn.hidden = false);
   });
 
-  // 監聽 'appinstalled'：安裝完成後隱藏按鈕
   window.addEventListener('appinstalled', () => {
     installBtns.forEach(btn => btn.hidden = true);
     deferredPrompt = null;
@@ -448,7 +440,6 @@ function initInstallPrompt() {
 
 /**
  * 初始化離線頁面邏輯
- * 處理重試按鈕與線上/離線狀態監聽。
  */
 function initOfflinePage() {
   const retryBtn = document.getElementById('retry-btn');
@@ -494,12 +485,9 @@ function initMobileSidebar() {
 // 註冊 Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').then(reg => {
-
-    // 檢查是否有等待中的更新
     if (reg.waiting) {
       showUpdateToast();
     }
-
     reg.addEventListener('updatefound', () => {
       const newWorker = reg.installing;
       newWorker.addEventListener('statechange', () => {
@@ -508,7 +496,6 @@ if ('serviceWorker' in navigator) {
         }
       });
     });
-
   }).catch(error => console.error('SW 註冊失敗:', error));
 }
 
@@ -522,31 +509,15 @@ function showUpdateToast() {
 
 /**
  * 綁定所有事件處理器
- * 確保在各個元件載入後執行初始化。
  */
 function attachEventHandlers() {
-  // 初始化回到頂部
   initScrollToTop();
-
-  // 初始化連結預載
   prefetchLinks();
-
-  // 初始化智慧 Header
   initSmartHeader();
-
-  // 初始化分享按鈕
   initShareButton();
-
-  // 初始化安裝提示
   initInstallPrompt();
-
-  // 初始化離線頁面
   initOfflinePage();
-
-  // 初始化行動版側邊欄
   initMobileSidebar();
-
-  // 初始化主題切換 (需等待 Header 載入)
   initThemeToggle();
 }
 
@@ -554,24 +525,22 @@ function attachEventHandlers() {
  * 主程式進入點 (Main Entry Point)
  */
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. 同步載入必要元件
   await Promise.all([
     loadComponent(CONFIG.PATHS.HEADER, 'header-placeholder'),
     loadComponent(CONFIG.PATHS.FOOTER, 'footer-placeholder'),
     loadComponent(CONFIG.PATHS.COOKIE, 'cookie-placeholder')
   ]);
 
-  // 2. 綁定事件與初始化功能
-  attachEventHandlers();
+  // 初始化 i18n
+  await i18n.init();
 
-  // 3. 檢查更新
+  attachEventHandlers();
   checkForAppUpdates();
 });
 
 // 處理瀏覽器上一頁/下一頁按鈕 (BFcache)
 window.addEventListener('pageshow', (event) => {
   if (event.persisted) {
-    // 若是從快取恢復，關閉側邊欄
     const mobileSidebar = document.getElementById('mobile-sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
     if (mobileSidebar) mobileSidebar.classList.remove('active');
