@@ -519,6 +519,17 @@ function attachEventHandlers() {
   initOfflinePage();
   initMobileSidebar();
   initThemeToggle();
+  loadNonCriticalStyles();
+}
+
+/**
+ * 載入非關鍵 CSS (避免 CSP inline script 違規)
+ */
+function loadNonCriticalStyles() {
+  const links = document.querySelectorAll('link[rel="stylesheet"][media="print"]');
+  links.forEach(link => {
+    link.media = 'all';
+  });
 }
 
 /**

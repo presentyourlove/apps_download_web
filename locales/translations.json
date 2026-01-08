@@ -11,7 +11,8 @@
             "back": "返回",
             "loading": "載入中...",
             "error": "發生錯誤",
-            "retry": "重試"
+            "retry": "重試",
+            "skip_link": "跳轉至主要內容"
         },
         "home": {
             "title": "歡迎使用我們的應用程式",
@@ -71,7 +72,8 @@
             "back": "Back",
             "loading": "Loading...",
             "error": "An error occurred",
-            "retry": "Retry"
+            "retry": "Retry",
+            "skip_link": "Skip to main content"
         },
         "home": {
             "title": "Welcome to Our Apps",

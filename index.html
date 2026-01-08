@@ -299,7 +299,7 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
+    rel="stylesheet" media="print">
 
   <!-- iOS PWA -->
   <link rel="apple-touch-icon" href="assets/presentyourlove-logo-192.png">
@@ -350,7 +350,7 @@
   <!-- Stylesheets -->
   <!-- Theme initialization (同步載入以避免 FOUC) -->
   <script src="js/theme-init.js"></script>
-  <link rel="stylesheet" href="css/style.0c01ae66.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/style.0c01ae66.css" media="print">
 
 
   <!-- Structured Data (JSON-LD) -->
@@ -389,7 +389,7 @@
 </head>
 
 <body>
-  <a href="#main-content" class="skip-link">跳轉至主要內容</a>
+  <a href="#main-content" class="skip-link" data-i18n="common.skip_link">跳轉至主要內容</a>
 
   <div id="header-placeholder"></div>
 
@@ -398,8 +398,8 @@
     <section class="welcome-section">
       <div class="container welcome-container">
         <div class="welcome-content">
-          <h1 class="welcome-title text-gradient-animated">歡迎使用我們的應用程式</h1>
-          <p class="welcome-desc">請選擇您想要下載的應用程式</p>
+          <h1 class="welcome-title text-gradient-animated" data-i18n="home.title">歡迎使用我們的應用程式</h1>
+          <p class="welcome-desc" data-i18n="home.subtitle">請選擇您想要下載的應用程式</p>
           <div class="app-grid">
             <a href="financeapp-content.html" class="app-card">
               <div class="app-icon-wrapper">
@@ -409,8 +409,8 @@
                     height="64" decoding="async" loading="eager">
                 </picture>
               </div>
-              <h2>FinanceApp</h2>
-              <p>智慧理財助手</p>
+              <h2 data-i18n="apps.financeapp.name">FinanceApp</h2>
+              <p data-i18n="apps.financeapp.tagline">智慧理財助手</p>
               <span class="app-card-arrow">→</span>
             </a>
             <a href="subtrack-content.html" class="app-card">
@@ -421,8 +421,8 @@
                     decoding="async" loading="lazy">
                 </picture>
               </div>
-              <h2>SubTrack</h2>
-              <p>訂閱管理助手</p>
+              <h2 data-i18n="apps.subtrack.name">SubTrack</h2>
+              <p data-i18n="apps.subtrack.tagline">訂閱管理助手</p>
               <span class="app-card-arrow">→</span>
             </a>
             <a href="sub-buddy-content.html" class="app-card">
@@ -433,8 +433,8 @@
                     decoding="async" loading="lazy">
                 </picture>
               </div>
-              <h2>Sub-Buddy</h2>
-              <p>拼團小幫手</p>
+              <h2 data-i18n="apps.subbuddy.name">Sub-Buddy</h2>
+              <p data-i18n="apps.subbuddy.tagline">拼團小幫手</p>
               <span class="app-card-arrow">→</span>
             </a>
           </div>
