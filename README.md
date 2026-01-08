@@ -86,7 +86,7 @@ npm start
 
 ```plaintext
 apps_download_web/
-├── .github/                # GitHub Actions 自動化流程
+├── .github/                # GitHub Actions 自動化流程 (CI, Security, Lighthouse)
 ├── .storybook/             # Storybook 設定檔
 ├── api/                    # 版本資訊 API
 ├── assets/                 # 圖片與多媒體資源
@@ -96,7 +96,7 @@ apps_download_web/
 ├── locales/                # i18n 多語系翻譯檔
 ├── scripts/                # Node.js 建置與工具腳本
 ├── server/                 # CSP 違規報告接收伺服器
-├── stories/                # Storybook 元件文件 (.stories.ts)
+├── stories/                # Storybook 元件文件 (文件化 UI)
 ├── tests/                  # Playwright E2E 測試腳本
 ├── .eslintrc.json          # ESLint 程式碼檢查設定
 ├── .gitignore              # Git 版本控制忽略清單
@@ -119,9 +119,7 @@ apps_download_web/
 ├── sub-buddy-content.html  # Sub-Buddy 介紹頁
 ├── subtrack-content.html   # SubTrack 介紹頁
 ├── sw.js                   # Service Worker (快取與離線邏輯)
-├── tsconfig.json           # TypeScript 編譯設定
-├── vitest.config.ts        # Vitest 單元測試設定
-└── vitest.shims.d.ts       # Vitest 型別定義檔
+└── tsconfig.json           # TypeScript 編譯設定 (型別檢查用)
 ```
 
 ## 📖 開發指南 (Development Guide)
