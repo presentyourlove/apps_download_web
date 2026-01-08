@@ -142,7 +142,7 @@ async function init() {
     await loadTranslations();
     applyTranslations();
 
-    console.log(`i18n: 已初始化，目前語言: ${currentLanguage}`);
+    // console.log(`i18n: 已初始化，目前語言: ${currentLanguage}`);
 }
 
 // Export Public API
