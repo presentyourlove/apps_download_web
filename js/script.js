@@ -4,6 +4,7 @@
  */
 import { i18n } from './i18n.js';
 import { getThemeFromSchedule } from './utils.js';
+import { requestPermission, subscribeToPush, checkPermission } from './push-client.js';
 
 const CONFIG = {
   PATHS: {
@@ -520,6 +521,44 @@ function attachEventHandlers() {
   initMobileSidebar();
   initThemeToggle();
   loadNonCriticalStyles();
+  initPushNotification();
+}
+
+/**
+ * 初始化 Web Push 通知
+ */
+function initPushNotification() {
+  const btn = document.getElementById('push-subscribe');
+  if (!btn) return;
+
+  // 檢查是否已訂閱或不支援
+  if (checkPermission() === 'denied') {
+    btn.textContent = '通知已封鎖';
+    btn.disabled = true;
+    return;
+  }
+
+  btn.addEventListener('click', async () => {
+    btn.disabled = true;
+    btn.textContent = '訂閱中...';
+    try {
+      await requestPermission();
+      const success = await subscribeToPush();
+      if (success) {
+        showToast('訂閱成功！您將收到最新應用程式更新通知。');
+        btn.textContent = '已訂閱通知';
+      } else {
+        showToast('訂閱失敗，請稍後再試。', 'error');
+        btn.textContent = '訂閱通知';
+        btn.disabled = false;
+      }
+    } catch (error) {
+      console.warn('使用者拒絕或發生錯誤', error);
+      showToast('訂閱失敗: ' + error.message, 'error');
+      btn.textContent = '訂閱通知';
+      btn.disabled = false;
+    }
+  });
 }
 
 /**
