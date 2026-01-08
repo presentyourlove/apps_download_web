@@ -210,7 +210,7 @@ npm run docker:run
 
 | 項目 | 說明 | 預估工時 |
 | :--- | :--- | :--- |
-| **全面多語系整合 (Deep i18n)** | 目前僅 js 支援多語系，建議將 `index.html` 等頁面內容全面套用 `data-i18n`，實現即時語言切換 (中/英/日)。 | 4hr |
+| **全面多語系整合 (Deep i18n)** | 目前僅 js 支援多語系，建議將 `index.html` 等頁面內容全面套用 `data-i18n`，實現即時語言切換 (中/英)。 | 4hr |
 | **推播通知 (Web Push)** | 利用 Push API 與 Service Worker，實現新版本發布或重要公告的瀏覽器推播通知。 | 5hr |
 | **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
 
