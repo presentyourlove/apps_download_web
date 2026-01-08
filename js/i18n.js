@@ -17,7 +17,7 @@
 const i18n = (function () {
     const STORAGE_KEY = 'pyl-language';
     const DEFAULT_LANGUAGE = 'zh-TW';
-    const SUPPORTED_LANGUAGES = ['zh-TW', 'en', 'ja'];
+    const SUPPORTED_LANGUAGES = ['zh-TW', 'en'];
 
     let translations = null;
     let currentLanguage = DEFAULT_LANGUAGE;
@@ -99,8 +99,6 @@ const i18n = (function () {
 
         if (browserLang.startsWith('zh')) {
             return 'zh-TW';
-        } else if (browserLang.startsWith('ja')) {
-            return 'ja';
         } else if (browserLang.startsWith('en')) {
             return 'en';
         }

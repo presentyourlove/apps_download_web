@@ -193,8 +193,7 @@ npm run docker:run
 | **CI/CD** | Dependabot | ✅ 自動更新 |
 | **功能** | 系統主題偵測 | ✅ Light/Dark/System |
 | **功能** | 版本資訊 API | ✅ `/api/versions.json` |
-| **功能** | 多語系支援 (i18n) | ✅ 中/英/日 |
-| **資安** | CSP 監控 | ✅ 違規報告收集 |
+| **功能** | 多語系支援 (i18n) | ✅ 中/英 |
 
 ---
 
@@ -206,10 +205,8 @@ npm run docker:run
 
 | 項目 | 說明 | 預估工時 |
 |------|------|----------|
-| **PWA 推播通知** | 使用 Firebase Cloud Messaging 實作版本更新推播 | 4hr |
 | **深色模式排程** | 支援定時自動切換 (如晚上 6 點後自動開啟深色模式) | 2hr |
 | **App 更新檢查** | 自動比對本地版本與 `/api/versions.json`，提示更新 | 2hr |
-| **更多語言支援** | 新增韓文、西班牙文等語系 | 1hr/語言 |
 
 ### 2. 效能優化 (Performance)
 
@@ -232,7 +229,6 @@ npm run docker:run
 | 項目 | 說明 | 預估工時 |
 |------|------|----------|
 | **Hot Reload** | 整合 Browser-Sync 實現即時預覽 | 1hr |
-| **TypeScript 遷移** | 逐步將 JS 檔案遷移至 TypeScript | 8hr |
 | **Storybook 元件文件** | 建立 UI 元件展示與文件 | 4hr |
 
 ---
