@@ -15,6 +15,7 @@ Presentyourlove 官方應用程式下載中心。我們致力於開發提升生�
 
 - **企業級規範**：嚴格遵循 `GEMINI.md` 開發規範，實作 Content Security Policy (CSP) 與 Docker 容器化。
 - **極致效能**：LCP 優化、資源快取策略 (Caching Strategy)、支援 PWA 離線瀏覽。
+- **全站多語系 (Deep i18n)**：全站內容支援繁體中文與英文即時切換。
 - **自動化維運**：整合 GitHub Actions 實現 CI/CD，每次推送自動執行 ESLint 靜態檢查與 Playwright 端對端測試。
 
 ## 🚀 功能特色 (Features)
@@ -210,7 +211,6 @@ npm run docker:run
 
 | 項目 | 說明 | 預估工時 |
 | :--- | :--- | :--- |
-| **全面多語系整合 (Deep i18n)** | 目前僅 js 支援多語系，建議將 `index.html` 等頁面內容全面套用 `data-i18n`，實現即時語言切換 (中/英)。 | 4hr |
 | **推播通知 (Web Push)** | 利用 Push API 與 Service Worker，實現新版本發布或重要公告的瀏覽器推播通知。 | 5hr |
 | **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
 
