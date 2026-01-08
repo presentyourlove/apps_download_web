@@ -14,6 +14,7 @@ const CONFIG = {
     KEY: 'pyl-theme',
     LIGHT: 'light',
     DARK: 'dark',
+    SYSTEM: 'system',
     COLOR_LIGHT: '#f8fafc',
     COLOR_DARK: '#0f172a'
   },
@@ -106,23 +107,50 @@ function initTheme() {
 }
 
 // Theme toggle handler (will be attached after components load)
+// WHY: 三段循環：dark -> light -> system -> dark
+// 這讓使用者可以選擇強制 dark、強制 light 或跟隨系統設定
 function initThemeToggle() {
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const currentTheme = html.getAttribute('data-theme');
-      const newTheme = currentTheme === CONFIG.THEME.DARK ? CONFIG.THEME.LIGHT : CONFIG.THEME.DARK;
-      html.setAttribute('data-theme', newTheme);
+      const savedTheme = safeStorage.getItem(CONFIG.THEME.KEY) || CONFIG.THEME.DARK;
+
+      // 三段循環：dark -> light -> system -> dark
+      let newTheme;
+      if (savedTheme === CONFIG.THEME.DARK) {
+        newTheme = CONFIG.THEME.LIGHT;
+      } else if (savedTheme === CONFIG.THEME.LIGHT) {
+        newTheme = CONFIG.THEME.SYSTEM;
+      } else {
+        newTheme = CONFIG.THEME.DARK;
+      }
+
+      // 計算實際顯示的主題
+      let effectiveTheme = newTheme;
+      if (newTheme === CONFIG.THEME.SYSTEM) {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        effectiveTheme = prefersDark ? CONFIG.THEME.DARK : CONFIG.THEME.LIGHT;
+      }
+
+      html.setAttribute('data-theme', effectiveTheme);
 
       // Update theme color for mobile browsers
       const metaThemeColor = document.querySelector('meta[name="theme-color"]');
       if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', newTheme === CONFIG.THEME.DARK ? CONFIG.THEME.COLOR_DARK : CONFIG.THEME.COLOR_LIGHT);
+        metaThemeColor.setAttribute('content', effectiveTheme === CONFIG.THEME.DARK ? CONFIG.THEME.COLOR_DARK : CONFIG.THEME.COLOR_LIGHT);
       }
 
       safeStorage.setItem(CONFIG.THEME.KEY, newTheme);
+
+      // 顯示 Toast 提示目前模式
+      const modeLabels = {
+        [CONFIG.THEME.DARK]: '深色模式',
+        [CONFIG.THEME.LIGHT]: '淺色模式',
+        [CONFIG.THEME.SYSTEM]: '跟隨系統'
+      };
+      showToast(`已切換至${modeLabels[newTheme]}`);
     });
   }
 }
