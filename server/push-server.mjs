@@ -70,7 +70,7 @@ app.post('/send-notification', (req, res) => {
 
     Promise.all(promises)
         .then(() => res.status(200).json({ message: 'Notification sent successfully.' }))
-        .catch(err => {
+        .catch(() => {
             // console.error('Error sending notification, reason: ', err);
             res.sendStatus(500);
         });

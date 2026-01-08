@@ -73,7 +73,7 @@ async function setAppBadge(count) {
       } else {
         await navigator.clearAppBadge();
       }
-    } catch (error) {
+    } catch {
       // console.debug('無法設定徽章:', error);
     }
   }
@@ -114,7 +114,7 @@ async function checkForAppUpdates() {
     }
 
     safeStorage.setItem('last-update-check', now.toString());
-  } catch (error) {
+  } catch {
     // console.debug('更新檢查失敗:', error);
     // 雖然檢查失敗，但為了避免卡在舊狀態，嘗試清除徽章
     setAppBadge(0);
@@ -354,7 +354,7 @@ function initShareButton() {
             url: window.location.href
           });
           showToast('分享成功！');
-        } catch (err) {
+        } catch {
           // console.debug('分享已取消或失敗', err);
         }
       });
@@ -406,7 +406,7 @@ function initInstallPrompt() {
         // 顯示原生提示
         deferredPrompt.prompt();
         // 等待使用者回應
-        const { outcome } = await deferredPrompt.userChoice;
+        await deferredPrompt.userChoice;
         // console.log(`使用者安裝選擇: ${outcome}`);
         // 重置
         deferredPrompt = null;
