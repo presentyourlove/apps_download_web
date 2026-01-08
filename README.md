@@ -87,13 +87,25 @@ npm start
 ```plaintext
 apps_download_web/
 ├── .github/                # GitHub Actions 自動化流程
-├── tests/                  # Playwright 測試腳本
-├── assets/                 # 圖片與安裝檔資源
+│   ├── workflows/          # CI/CD 工作流程 (ESLint, Playwright, Lighthouse, CodeQL)
+│   └── dependabot.yml      # 依賴自動更新設定
+├── api/                    # 版本資訊 API
+│   └── versions.json       # App 版本與更新日誌
+├── assets/                 # 圖片資源 (PNG, WebP)
+│   └── source/             # 原始設計檔案 (供編輯用)
 ├── components/             # HTML 共用元件 (Header/Footer)
 ├── css/                    # 樣式表 (Single Source of Truth)
 ├── js/
 │   ├── script.js           # 核心邏輯
-│   └── theme-init.js       # 主題初始化 (Anti-FOUC)
+│   ├── theme-init.js       # 主題初始化 (Anti-FOUC)
+│   ├── i18n.js             # 多語系支援模組
+│   └── csp-monitor.js      # CSP 違規監控
+├── locales/                # 多語系翻譯檔
+│   └── translations.json   # 中/英/日 翻譯
+├── scripts/                # Node.js 工具腳本
+│   ├── convert-images.js   # PNG → WebP 批次轉換
+│   └── generate-critical.js # Critical CSS 產生器
+├── tests/                  # Playwright E2E 測試腳本
 ├── Dockerfile              # Docker 建置檔
 ├── nginx.conf              # Nginx 伺服器配置
 └── playwright.config.ts    # 測試框架配置
@@ -183,6 +195,45 @@ npm run docker:run
 | **功能** | 版本資訊 API | ✅ `/api/versions.json` |
 | **功能** | 多語系支援 (i18n) | ✅ 中/英/日 |
 | **資安** | CSP 監控 | ✅ 違規報告收集 |
+
+---
+
+## 🔭 後續建議優化 (Future Roadmap)
+
+以下為建議的未來擴展方向：
+
+### 1. 進階功能 (Advanced Features)
+
+| 項目 | 說明 | 預估工時 |
+|------|------|----------|
+| **PWA 推播通知** | 使用 Firebase Cloud Messaging 實作版本更新推播 | 4hr |
+| **深色模式排程** | 支援定時自動切換 (如晚上 6 點後自動開啟深色模式) | 2hr |
+| **App 更新檢查** | 自動比對本地版本與 `/api/versions.json`，提示更新 | 2hr |
+| **更多語言支援** | 新增韓文、西班牙文等語系 | 1hr/語言 |
+
+### 2. 效能優化 (Performance)
+
+| 項目 | 說明 | 預估工時 |
+|------|------|----------|
+| **Critical CSS 內嵌** | 將產生的 Critical CSS 自動內嵌至 HTML | 2hr |
+| **圖片懶載入** | 使用 Intersection Observer 延遲載入非首屏圖片 | 1hr |
+| **資源預載入** | 使用 `<link rel="preload">` 預載入關鍵資源 | 1hr |
+
+### 3. 資安強化 (Security)
+
+| 項目 | 說明 | 預估工時 |
+|------|------|----------|
+| **CSP 報告端點** | 建立後端 API 接收 CSP 違規報告 | 3hr |
+| **HTTPS 強制跳轉** | 確保所有 HTTP 請求自動跳轉至 HTTPS | 0.5hr |
+| **安全標頭強化** | 新增 Permissions-Policy、X-Content-Type-Options 等標頭 | 1hr |
+
+### 4. 開發體驗 (Developer Experience)
+
+| 項目 | 說明 | 預估工時 |
+|------|------|----------|
+| **Hot Reload** | 整合 Browser-Sync 實現即時預覽 | 1hr |
+| **TypeScript 遷移** | 逐步將 JS 檔案遷移至 TypeScript | 8hr |
+| **Storybook 元件文件** | 建立 UI 元件展示與文件 | 4hr |
 
 ---
 
