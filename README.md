@@ -140,7 +140,72 @@ npm run docker:run
 
 ### GitHub Pages (靜態託管)
 
-只需將代碼推送至 `main` 分支，並在 Repository Settings 中啟用 GitHub Pages 即可自動部署。
+本專案已部署至 GitHub Pages：
+
+🌐 **線上網址**: [https://presentyourlove.github.io/apps_download_web/](https://presentyourlove.github.io/apps_download_web/)
+
+#### 自訂網域設定 (Optional)
+
+1. 在 Repository 根目錄新增 `CNAME` 檔案，內容為您的網域名稱：
+
+   ```
+   www.example.com
+   ```
+
+2. 在 DNS 供應商處新增以下記錄：
+   - **CNAME**: `www` → `presentyourlove.github.io`
+   - **A Records** (apex domain):
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+
+3. 在 GitHub Pages Settings 中勾選 **Enforce HTTPS**
+
+#### 注意事項
+
+> ⚠️ **APK 檔案大小限制**：GitHub 單檔上限為 100MB。建議將 APK 上傳至 [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) ，並在頁面中提供下載連結。
+
+---
+
+## 🔮 後續優化建議 (Future Roadmap)
+
+以下是建議的後續優化方向，可依需求逐步實施：
+
+### 1. 效能優化 (Performance)
+
+| 項目 | 說明 | 優先級 |
+|------|------|--------|
+| **圖片壓縮** | 將 PNG 轉換為 WebP 格式，可減少 50-80% 檔案大小 | 高 |
+| **APK 外部託管** | 使用 GitHub Releases 或 CDN 託管大型檔案 | 高 |
+| **Brotli 壓縮** | 啟用 Brotli 壓縮靜態資源 | 中 |
+| **Critical CSS** | 內嵌首屏關鍵 CSS，延遲載入非關鍵樣式 | 中 |
+
+### 2. CI/CD 強化 (DevOps)
+
+| 項目 | 說明 | 優先級 |
+|------|------|--------|
+| **自動部署** | 新增 GitHub Actions workflow 自動部署至 GitHub Pages | 高 |
+| **Lighthouse CI** | 整合 Lighthouse CI 監控效能分數 | 中 |
+| **安全掃描** | 整合 CodeQL 或 Snyk 進行依賴套件安全掃描 | 中 |
+
+### 3. 功能擴展 (Features)
+
+| 項目 | 說明 | 優先級 |
+|------|------|--------|
+| **多語系支援 (i18n)** | 支援英文/日文等多國語言 | 中 |
+| **系統主題偵測** | 自動跟隨作業系統深淺色模式 (`prefers-color-scheme`) | 低 |
+| **App 版本資訊 API** | 建立 JSON API 提供最新版本號與更新日誌 | 低 |
+
+### 4. 資安強化 (Security)
+
+| 項目 | 說明 | 優先級 |
+|------|------|--------|
+| **SRI (Subresource Integrity)** | 為外部資源加入完整性驗證 | 中 |
+| **定期更新依賴** | 使用 Dependabot 自動更新 npm 套件 | 中 |
+| **CSP 監控** | 配置 `report-uri` 收集 CSP 違規報告 | 低 |
+
+---
 
 ## 🤝 貢獻 (Contribution)
 

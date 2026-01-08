@@ -4,6 +4,7 @@
   "private": true,
   "description": "Presentyourlove Apps Download Center",
   "scripts": {
+    "start": "http-server -p 8080 -c-1",
     "test": "playwright test",
     "test:e2e": "playwright test",
     "test:ui": "playwright test --ui",
