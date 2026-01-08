@@ -92,7 +92,6 @@ apps_download_web/
 ├── api/                    # 版本資訊 API
 │   └── versions.json       # App 版本與更新日誌
 ├── assets/                 # 圖片資源 (PNG, WebP)
-│   └── source/             # 原始設計檔案 (供編輯用)
 ├── components/             # HTML 共用元件 (Header/Footer)
 ├── css/                    # 樣式表 (Single Source of Truth)
 ├── js/
@@ -156,51 +155,20 @@ npm run docker:run
 
 🌐 **線上網址**: [https://presentyourlove.github.io/apps_download_web/](https://presentyourlove.github.io/apps_download_web/)
 
-#### 自訂網域設定 (Optional)
-
-1. 在 Repository 根目錄新增 `CNAME` 檔案，內容為您的網域名稱：
-
-   ```text
-   www.example.com
-   ```
-
-2. 在 DNS 供應商處新增以下記錄：
-   - **CNAME**: `www` → `presentyourlove.github.io`
-   - **A Records** (apex domain):
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
-
-3. 在 GitHub Pages Settings 中勾選 **Enforce HTTPS**
-
-#### 注意事項
-
-> ⚠️ **APK 檔案大小限制**：GitHub 單檔上限為 100MB。建議將 APK 上傳至 [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) ，並在頁面中提供下載連結。
-
 ---
 
-## 🤝 貢獻 (Contribution)
+## 🚀 未來優化建議 (Future Roadmap)
 
-歡迎任何形式的貢獻！
+以下為根據目前專案狀態，建議的下一階段優化方向：
 
-1. Fork 本專案
-2. 建立您的 Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. 提交變更 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 開啟 Pull Request
+| 項目 | 說明 | 預估工時 |
+| :--- | :--- | :--- |
+| **全面多語系整合 (Deep i18n)** | 目前僅 js 支援多語系，建議將 `index.html` 等頁面內容全面套用 `data-i18n`，實現即時語言切換 (中/英/日)。 | 4hr |
+| **單元測試 (Unit Testing)** | 引入 Jest 或 Vitest，針對 `script.js` 中的核心邏輯 (如 version check, theme logic) 建立單元測試。 | 3hr |
+| **推播通知 (Web Push)** | 利用 Push API 與 Service Worker，實現新版本發布或重要公告的瀏覽器推播通知。 | 5hr |
+| **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
 
-## 📚 文件 (Documentation)
-
-更多詳細文件請參閱以下資源：
-
-- [專案任務追蹤 (Task)](./task.md)
-- [實作計畫 (Implementation Plan)](./implementation_plan.md)
-- [優化歷程 (Walkthrough)](./walkthrough.md)
-
-## 📄 授權 (License)
-
-本專案採用 **MIT License** 授權。詳細內容請參閱 [LICENSE](./LICENSE) 文件。
+---
 
 ## ✍️ 作者 (Author)
 
