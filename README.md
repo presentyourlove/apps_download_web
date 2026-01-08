@@ -87,27 +87,41 @@ npm start
 ```plaintext
 apps_download_web/
 ├── .github/                # GitHub Actions 自動化流程
-│   ├── workflows/          # CI/CD 工作流程 (ESLint, Playwright, Lighthouse, CodeQL)
-│   └── dependabot.yml      # 依賴自動更新設定
+├── .storybook/             # Storybook 設定檔
 ├── api/                    # 版本資訊 API
-│   └── versions.json       # App 版本與更新日誌
-├── assets/                 # 圖片資源 (PNG, WebP)
+├── assets/                 # 圖片與多媒體資源
 ├── components/             # HTML 共用元件 (Header/Footer)
-├── css/                    # 樣式表 (Single Source of Truth)
-├── js/
-│   ├── script.js           # 核心邏輯
-│   ├── theme-init.js       # 主題初始化 (Anti-FOUC)
-│   ├── i18n.js             # 多語系支援模組
-│   └── csp-monitor.js      # CSP 違規監控
-├── locales/                # 多語系翻譯檔
-│   └── translations.json   # 中/英/日 翻譯
-├── scripts/                # Node.js 工具腳本
-│   ├── convert-images.js   # PNG → WebP 批次轉換
-│   └── generate-critical.js # Critical CSS 產生器
+├── css/                    # 全域樣式表 (CSS Variables)
+├── js/                     # 核心 JavaScript 邏輯
+├── locales/                # i18n 多語系翻譯檔
+├── scripts/                # Node.js 建置與工具腳本
+├── server/                 # CSP 違規報告接收伺服器
+├── stories/                # Storybook 元件文件 (.stories.ts)
 ├── tests/                  # Playwright E2E 測試腳本
-├── Dockerfile              # Docker 建置檔
-├── nginx.conf              # Nginx 伺服器配置
-└── playwright.config.ts    # 測試框架配置
+├── .eslintrc.json          # ESLint 程式碼檢查設定
+├── .gitignore              # Git 版本控制忽略清單
+├── 404.html                # 404 錯誤頁面
+├── Dockerfile              # Docker 容器建置設定
+├── financeapp-content.html # FinanceApp 介紹頁
+├── index.html              # 首頁 (PWA 入口)
+├── lighthouse-budget.json  # Lighthouse 效能預算設定
+├── lighthouserc.json       # Lighthouse CI 設定
+├── links.html              # 相關連結頁面
+├── manifest.json           # PWA 設定檔 (Web App Manifest)
+├── nginx.conf              # Nginx 伺服器配置 (Security Headers)
+├── offline.html            # PWA 離線替代頁面
+├── package.json            # 專案依賴與腳本設定
+├── package-lock.json       # 依賴版本鎖定檔
+├── playwright.config.ts    # E2E 測試全域設定
+├── README.md               # 專案說明文件
+├── robots.txt              # 搜尋引擎爬蟲設定
+├── sitemap.xml             # 網站地圖 (SEO)
+├── sub-buddy-content.html  # Sub-Buddy 介紹頁
+├── subtrack-content.html   # SubTrack 介紹頁
+├── sw.js                   # Service Worker (快取與離線邏輯)
+├── tsconfig.json           # TypeScript 編譯設定
+├── vitest.config.ts        # Vitest 單元測試設定
+└── vitest.shims.d.ts       # Vitest 型別定義檔
 ```
 
 ## 📖 開發指南 (Development Guide)
