@@ -41,8 +41,10 @@ async function generateCriticalCSS(htmlFile) {
         const shouldInline = process.argv.includes('--inline');
 
         const result = await generate({
+            // 基礎路徑 (解決 'file not found' 錯誤)
+            base: BASE_DIR,
             // 來源 HTML
-            src: htmlPath,
+            src: htmlFile, // 使用相對路徑，配合 base
             // CSS 檔案
             css: [CSS_FILE],
             // 視窗大小 (首屏範圍)
@@ -54,11 +56,18 @@ async function generateCriticalCSS(htmlFile) {
             // 僅提取 Critical CSS，不修改 HTML (除非開啟 inline)
             extract: true,
             // 輸出為字串
-            inline: shouldInline
+            inline: shouldInline,
+            // Puppeteer Launch Options (Fix for CI/Docker/Windows)
+            penthouse: {
+                puppeteer: {
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+                }
+            }
         });
 
         // 若開啟 inline 模式，直接覆寫 HTML
         if (shouldInline) {
+            // critical 會回傳處理過的 HTML 字串 (內嵌CSS)
             await fs.writeFile(htmlPath, result.html);
             console.log(`✅ Critical CSS 已內嵌至: ${htmlFile}`);
             return { file: htmlFile, size: result.css.length, inlined: true };
@@ -78,7 +87,7 @@ async function generateCriticalCSS(htmlFile) {
         } else {
             console.error(`❌ 錯誤: ${htmlFile}: ${error.message}`);
         }
-        return null;
+        return null; // Return null on error so we can continue
     }
 }
 

@@ -180,46 +180,6 @@ npm run docker:run
 
 ---
 
-## 後續建議優化 (Future Roadmap)
-
-以下為建議的未來擴展方向，旨在進一步提升使用者體驗、效能與安全性：
-
-### 1. 進階功能 (Advanced Features)
-
-| 項目 | 說明 | 預估工時 |
-| :--- | :--- | :--- |
-| **深色模式排程** | 支援定時自動切換 (如晚上 6 點後自動開啟深色模式)。 | 2hr |
-| **App 更新檢查** | 自動比對本地版本與 `/api/versions.json`，提示更新。 | 2hr |
-| **PWA 捷徑 (Shortcuts)** | 使用 Web App Manifest 的 `shortcuts` 成員，讓使用者能從圖示長按選單直接進入特定功能（如「直接下載 FinanceApp」）。 | 1hr |
-| **PWA 徽章 (Badging)** | 使用 Badging API 在應用程式圖示上顯示未讀通知或狀態（如「新版本可用」）。 | 1.5hr |
-
-### 2. 效能優化 (Performance)
-
-| 項目 | 說明 | 預估工時 |
-| :--- | :--- | :--- |
-| **Critical CSS 內嵌** | 將產生的 Critical CSS 自動內嵌至 HTML，減少首次渲染阻塞。 | 2hr |
-| **圖片懶載入 (Lazy Loading)** | 使用 Intersection Observer API 或原生的 `loading="lazy"` 屬性延遲載入非首屏圖片。 | 1hr |
-| **進階快取策略** | 調整 Service Worker 策略，針對 API 請求 (`/api/versions.json`) 採用 **Stale-while-revalidate** 策略，確保使用者總是先看到快取內容，背景再行更新。 | 2hr |
-| **資源預載入 (Preloading)** | 使用 `<link rel="preload">` 預載入關鍵資源（如主要字型、Logo），提升 LCP 指標。 | 1hr |
-
-### 3. 資安強化 (Security)
-
-| 項目 | 說明 | 預估工時 |
-| :--- | :--- | :--- |
-| **CSP 報告端點** | 建立後端 API (Node.js/Go) 接收瀏覽器回報的 CSP 違規報告，即時監控潛在攻擊。 | 3hr |
-| **自動化資安掃描** | 在 CI/CD 流程中整合 **OWASP ZAP** 進行自動化滲透測試，掃描常見漏洞（如 XSS, SQL Injection 等）。 | 4hr |
-| **HTTPS 強制跳轉 (HSTS)** | 確保所有 HTTP 請求自動跳轉至 HTTPS，並在標頭中加入 HSTS 設定。 | 0.5hr |
-| **安全標頭強化** | 新增 `Permissions-Policy`, `X-Content-Type-Options`, `Referrer-Policy` 等安全標頭。 | 1hr |
-
-### 4. 開發體驗 (Developer Experience)
-
-| 項目 | 說明 | 預估工時 |
-| :--- | :--- | :--- |
-| **Hot Reload** | 整合 Browser-Sync 實現即時預覽，提升開發效率。 | 1hr |
-| **Storybook 元件文件** | 為 UI 元件（按鈕、卡片、Header）建立 Storybook 文件，方便設計檢視與測試。 | 4hr |
-
----
-
 ## 🤝 貢獻 (Contribution)
 
 歡迎任何形式的貢獻！
