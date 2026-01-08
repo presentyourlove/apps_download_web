@@ -44,7 +44,7 @@ export async function subscribeToPush() {
             applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
         });
 
-        console.log('User is subscribed:', subscription);
+        // console.log('User is subscribed:', subscription);
 
         // 3. Send Subscription to Server
         await fetch(`${API_BASE_URL}/subscribe`, {

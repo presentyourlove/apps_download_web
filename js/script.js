@@ -74,7 +74,7 @@ async function setAppBadge(count) {
         await navigator.clearAppBadge();
       }
     } catch (error) {
-      console.debug('無法設定徽章:', error);
+      // console.debug('無法設定徽章:', error);
     }
   }
 }
@@ -115,7 +115,7 @@ async function checkForAppUpdates() {
 
     safeStorage.setItem('last-update-check', now.toString());
   } catch (error) {
-    console.debug('更新檢查失敗:', error);
+    // console.debug('更新檢查失敗:', error);
     // 雖然檢查失敗，但為了避免卡在舊狀態，嘗試清除徽章
     setAppBadge(0);
   }
@@ -355,7 +355,7 @@ function initShareButton() {
           });
           showToast('分享成功！');
         } catch (err) {
-          console.debug('分享已取消或失敗', err);
+          // console.debug('分享已取消或失敗', err);
         }
       });
     });
@@ -407,7 +407,7 @@ function initInstallPrompt() {
         deferredPrompt.prompt();
         // 等待使用者回應
         const { outcome } = await deferredPrompt.userChoice;
-        console.log(`使用者安裝選擇: ${outcome}`);
+        // console.log(`使用者安裝選擇: ${outcome}`);
         // 重置
         deferredPrompt = null;
       }
@@ -430,7 +430,7 @@ function initInstallPrompt() {
   window.addEventListener('appinstalled', () => {
     installBtns.forEach(btn => btn.hidden = true);
     deferredPrompt = null;
-    console.log('PWA 已安裝');
+    // console.log('PWA 已安裝');
   });
 
   // 3. 綁定點擊事件
@@ -553,7 +553,7 @@ function initPushNotification() {
         btn.disabled = false;
       }
     } catch (error) {
-      console.warn('使用者拒絕或發生錯誤', error);
+      // console.warn('使用者拒絕或發生錯誤', error);
       showToast('訂閱失敗: ' + error.message, 'error');
       btn.textContent = '訂閱通知';
       btn.disabled = false;

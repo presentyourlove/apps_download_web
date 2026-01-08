@@ -1,7 +1,7 @@
-const express = require('express');
-const webpush = require('web-push');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from 'express';
+import webpush from 'web-push';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
@@ -17,8 +17,8 @@ const vapidKeys = webpush.generateVAPIDKeys();
 const publicVapidKey = vapidKeys.publicKey;
 const privateVapidKey = vapidKeys.privateKey;
 
-console.log('Public VAPID Key:', publicVapidKey);
-console.log('Private VAPID Key:', privateVapidKey);
+// console.log('Public VAPID Key:', publicVapidKey);
+// console.log('Private VAPID Key:', privateVapidKey);
 
 webpush.setVapidDetails(
     'mailto:example@yourdomain.org',
@@ -27,7 +27,7 @@ webpush.setVapidDetails(
 );
 
 // Store subscriptions in memory (Note: will be lost on server restart)
-let subscriptions = [];
+const subscriptions = [];
 
 // Endpoint to get Public VAPID Key
 app.get('/vapid-key', (req, res) => {
@@ -38,7 +38,7 @@ app.get('/vapid-key', (req, res) => {
 app.post('/subscribe', (req, res) => {
     const subscription = req.body;
     subscriptions.push(subscription);
-    console.log('New Subscription:', subscription);
+    // console.log('New Subscription:', subscription);
     res.status(201).json({});
 });
 
@@ -71,11 +71,11 @@ app.post('/send-notification', (req, res) => {
     Promise.all(promises)
         .then(() => res.status(200).json({ message: 'Notification sent successfully.' }))
         .catch(err => {
-            console.error('Error sending notification, reason: ', err);
+            // console.error('Error sending notification, reason: ', err);
             res.sendStatus(500);
         });
 });
 
 app.listen(port, () => {
-    console.log(`Push Server started on port ${port}`);
+    // console.log(`Push Server started on port ${port}`);
 });
