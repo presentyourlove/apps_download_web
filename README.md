@@ -259,7 +259,7 @@ npm run docker:run
 | 項目 | 說明 | 預估工時 |
 | :--- | :--- | :--- |
 | **伺服器端渲染 (SSR)** | 考慮長期遷移至 Next.js 或 Astro，進一步提升 SEO 與動態內容管理能力。 | 20hr |
-| **GraphQL API** | 實作 GraphQL API 以取代 RESTful 端點，提升資料查詢彈性。 | 15hr |
+| **GraphQL API** | ✅ **已完成** - 已實作 GraphQL API,提供更靈活的資料查詢方式,保留 RESTful API 作為 Fallback。詳見 [GraphQL API 文件](docs/GRAPHQL_API.md)。 | 15hr (已完成) |
 
 ---
 
