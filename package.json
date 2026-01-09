@@ -22,6 +22,7 @@
     "generate:critical": "node scripts/generate-critical.mjs",
     "generate:critical:inline": "node scripts/generate-critical.mjs --inline",
     "serve:csp": "node server/csp-server.js",
+    "serve:graphql": "node server/graphql-server.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -64,5 +65,10 @@
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^5.2.0",
+    "graphql": "^16.12.0",
+    "graphql-request": "^7.4.0"
+  }
 }

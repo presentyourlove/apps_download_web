@@ -5,6 +5,7 @@
 import { i18n } from './i18n.js';
 import { getThemeFromSchedule } from './utils.js';
 import { requestPermission, subscribeToPush, checkPermission } from './push-client.js';
+import { queryLastUpdated } from './graphql-client.js';
 
 const CONFIG = {
   PATHS: {
@@ -82,6 +83,7 @@ async function setAppBadge(count) {
 /**
  * 檢查應用程式更新 (Check for App Updates)
  * 自動比對本地版本與伺服器版本。
+ * 優先使用 GraphQL API,失敗時自動切換至 RESTful API (Fallback 機制)
  */
 async function checkForAppUpdates() {
   const lastCheck = safeStorage.getItem('last-update-check');
@@ -92,12 +94,36 @@ async function checkForAppUpdates() {
     return;
   }
 
-  try {
-    const response = await fetch('./api/versions.json');
-    if (!response.ok) return;
+  let lastUpdated;
 
-    const data = await response.json();
-    const serverDate = new Date(data.lastUpdated).getTime();
+  try {
+    // 優先嘗試 GraphQL API
+    lastUpdated = await queryLastUpdated();
+    console.log('✅ 使用 GraphQL API 查詢成功');
+  } catch (graphqlError) {
+    console.warn('⚠️ GraphQL API 查詢失敗,切換至 RESTful API:', graphqlError.message);
+
+    try {
+      // Fallback: 使用原有的 RESTful API
+      const response = await fetch('./api/versions.json');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      lastUpdated = data.lastUpdated;
+      console.log('✅ 使用 RESTful API 查詢成功 (Fallback)');
+    } catch (restError) {
+      console.error('❌ RESTful API 也查詢失敗:', restError);
+      // 兩種方式都失敗,清除徽章並記錄檢查時間
+      setAppBadge(0);
+      safeStorage.setItem('last-update-check', now.toString());
+      return;
+    }
+  }
+
+  // 比對版本
+  try {
+    const serverDate = new Date(lastUpdated).getTime();
     const localDateStr = safeStorage.getItem('app-last-updated');
     const localDate = localDateStr ? new Date(localDateStr).getTime() : 0;
 
@@ -107,16 +133,15 @@ async function checkForAppUpdates() {
       // 設定徽章提示更新
       setAppBadge(1);
       // 更新本地記錄
-      safeStorage.setItem('app-last-updated', data.lastUpdated);
+      safeStorage.setItem('app-last-updated', lastUpdated);
     } else {
-      // 若已是最新，清除徽章
+      // 若已是最新,清除徽章
       setAppBadge(0);
     }
 
     safeStorage.setItem('last-update-check', now.toString());
-  } catch {
-    // console.debug('更新檢查失敗:', error);
-    // 雖然檢查失敗，但為了避免卡在舊狀態，嘗試清除徽章
+  } catch (error) {
+    console.error('版本比對失敗:', error);
     setAppBadge(0);
   }
 }

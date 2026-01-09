@@ -80,6 +80,7 @@ npm start
 ## 🛠️ 技術堆疊 (Tech Stack)
 
 - **核心技術**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
+- **後端 API**: GraphQL (Apollo Server), RESTful JSON (向後相容)
 - **PWA 技術**: Service Worker, Web App Manifest
 - **開發運維 (DevOps)**: Docker, Nginx, GitHub Actions
 - **品質保證 (QA)**: Vitest (Unit Testing), Playwright (E2E Testing), ESLint
@@ -108,11 +109,14 @@ apps_download_web/
 │   └── footer.html                 # 網站頁尾 (版權資訊)
 ├── css/                            # 樣式表目錄
 │   └── style.css                   # 主樣式表 (CSS Variables, RWD 設定)
+├── docs/                           # 專案文件目錄
+│   └── GRAPHQL_API.md              # GraphQL API 使用文件
 ├── js/                             # 前端 JavaScript 原始碼
-│   ├── script.js                   # 核心邏輯 (PWA, UI 互動, 更新檢查)
+│   ├── script.js                   # 核心邏輯 (PWA, UI 互動, 更新檢查, GraphQL 整合)
 │   ├── theme-init.js               # 深色模式初始化 (防止閃爍)
 │   ├── i18n.js                     # 多語系切換模組 (ES Module)
 │   ├── utils.js                    # 通用工具函式庫 (版本比較, 排程判斷)
+│   ├── graphql-client.js           # GraphQL 客戶端模組 (查詢, 快取, Fallback)
 │   ├── csp-monitor.js              # CSP 違規回報邏輯
 │   └── push-client.js              # Web Push 客戶端訂閱邏輯
 ├── locales/                        # Internationalization (i18n) 翻譯檔
@@ -123,7 +127,8 @@ apps_download_web/
 │   └── generate-critical.mjs       # Critical CSS 自動提取工具
 ├── server/                         # 輕量級後端服務
 │   ├── csp-server.js               # 接收並記錄 CSP 違規報告的 Node.js 服務
-│   └── push-server.mjs             # Web Push 通知伺服器 (VAPID, 訂閱管理)
+│   ├── push-server.mjs             # Web Push 通知伺服器 (VAPID, 訂閱管理)
+│   └── graphql-server.mjs          # GraphQL API 伺服器 (Apollo Server)
 ├── stories/                        # Storybook 元件展示文件
 │   ├── Header.stories.ts           # Header 元件的狀態展示
 │   └── Footer.stories.ts           # Footer 元件的狀態展示
@@ -167,9 +172,48 @@ apps_download_web/
 
 ### 開發流程
 
-1. **修改代碼**：編輯 HTML/CSS/JS 檔案。
-2. **本地測試**：使用 `npm start` 預覽變更。
-3. **執行檢查**：提交前執行 `npm run lint` 確保無語法錯誤。
+1. **修改代碼**:編輯 HTML/CSS/JS 檔案。
+2. **本地測試**:使用 `npm start` 預覽變更。
+3. **執行檢查**:提交前執行 `npm run lint` 確保無語法錯誤。
+
+### GraphQL API 使用
+
+本專案提供 GraphQL API 供前端查詢應用程式版本資訊。
+
+#### 啟動 GraphQL Server
+
+```powershell
+npm run serve:graphql
+```
+
+Server 將運行於 `http://localhost:4000/`,可透過 Apollo Sandbox 介面進行互動式查詢。
+
+#### Query 範例
+
+```graphql
+# 查詢所有應用程式
+query {
+  apps {
+    id
+    name
+    version
+  }
+}
+
+# 查詢特定應用程式
+query {
+  app(id: "financeapp") {
+    name
+    displayName
+    platforms {
+      type
+      downloadUrl
+    }
+  }
+}
+```
+
+完整 API 文件請參閱 [GRAPHQL_API.md](docs/GRAPHQL_API.md)。
 
 ## 🧪 測試 (Testing)
 
