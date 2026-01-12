@@ -1,0 +1,241 @@
+---
+import { getAppsData } from '../lib/data';
+
+// 取得應用程式列表 (Build Time)
+const { apps } = await getAppsData();
+---
+
+<header class="header" id="main-header">
+  <div class="container header-container">
+    <!-- Logo -->
+    <a href={`${import.meta.env.BASE_URL}/`} class="logo-area">
+      <img src={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`} alt="Logo" class="logo-img" width="40" height="40">
+      <span class="app-name">Presentyourlove</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <div class="nav-tabs">
+        <a href={`${import.meta.env.BASE_URL}/`} class="nav-tab">首頁</a>
+        
+        <!-- 應用程式下拉選單 -->
+        <div class="nav-dropdown">
+          <span class="nav-tab dropdown-trigger">
+            應用程式
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+          <div class="dropdown-menu">
+            {apps.map(app => (
+              <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="dropdown-item">
+                {app.displayName}
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <a href={`${import.meta.env.BASE_URL}/about/`} class="nav-tab">關於我們</a>
+      </div>
+    </nav>
+
+    <!-- Theme Toggle & Mobile Menu Button -->
+    <div class="header-actions">
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-btn" aria-label="切換主題">
+        <!-- Sun Icon (for Dark Mode) -->
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (for Light Mode) -->
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開啟選單">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Sidebar -->
+<div class="mobile-sidebar" id="mobile-sidebar">
+  <div class="sidebar-header">
+    <h2>導覽</h2>
+    <button id="sidebar-close-btn" class="sidebar-close-btn" aria-label="關閉選單">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="sidebar-nav">
+    <ul class="sidebar-tabs">
+      <li><a href={`${import.meta.env.BASE_URL}/`} class="sidebar-tab">首頁</a></li>
+      
+      <!-- 應用程式列表 -->
+      <li class="sidebar-section-title">應用程式</li>
+      {apps.map(app => (
+        <li>
+          <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="sidebar-tab sidebar-app-item">
+            {app.displayName}
+          </a>
+        </li>
+      ))}
+      
+      <li><a href={`${import.meta.env.BASE_URL}/about/`} class="sidebar-tab">關於我們</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- Overlay -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+<script>
+  // Mobile Menu Logic
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('sidebar-close-btn');
+  const sidebar = document.getElementById('mobile-sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const sidebarLinks = document.querySelectorAll('.sidebar-tab');
+
+  function openSidebar() {
+    sidebar?.classList.add('active');
+    overlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    sidebar?.classList.remove('active');
+    overlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  menuBtn?.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', closeSidebar);
+  });
+
+  // Theme Toggle Logic
+  const themeBtn = document.getElementById('theme-toggle');
+  
+  themeBtn?.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+</script>
+
+<style>
+  /* Header Actions */
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Dropdown Menu */
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .dropdown-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 200;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+    color: var(--accent-color);
+  }
+
+  /* Sidebar App Items */
+  .sidebar-section-title {
+    padding: 16px 20px 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar-app-item {
+    padding-left: 32px !important;
+    font-size: 0.95rem;
+  }
+
+  /* RWD */
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
+    
+    .mobile-menu-btn {
+      display: block;
+    }
+  }
+</style>

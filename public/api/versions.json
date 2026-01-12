@@ -1,0 +1,94 @@
+{
+    "apps": [
+        {
+            "id": "financeapp",
+            "name": "FinanceApp",
+            "displayName": "智慧理財助手",
+            "version": "1.0.0",
+            "releaseDate": "2026-01-08",
+            "platforms": {
+                "android": {
+                    "version": "1.0.0",
+                    "minSdk": 21,
+                    "downloadUrl": "https://github.com/presentyourlove/apps_download_web/releases/download/v1.0.0/financeapp_android.apk",
+                    "size": "98MB"
+                },
+                "web": {
+                    "version": "1.0.0",
+                    "url": "https://aifinanceapp-2ce60.web.app/"
+                },
+                "ios": {
+                    "version": "1.0.0",
+                    "status": "coming_soon",
+                    "expectedDate": "2026-03-01",
+                    "minOS": "14.0"
+                }
+            },
+            "changelog": [
+                {
+                    "version": "1.0.0",
+                    "date": "2026-01-08",
+                    "changes": [
+                        "首次公開版本",
+                        "收支追蹤功能",
+                        "預算管理功能",
+                        "數據分析圖表"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "subtrack",
+            "name": "SubTrack",
+            "displayName": "訂閱管理助手",
+            "version": "1.0.0",
+            "releaseDate": "2026-01-08",
+            "platforms": {
+                "ios": {
+                    "version": "1.0.0",
+                    "minOS": "14.0",
+                    "status": "coming_soon",
+                    "expectedDate": "2026-03-01"
+                }
+            },
+            "changelog": [
+                {
+                    "version": "1.0.0",
+                    "date": "2026-01-08",
+                    "changes": [
+                        "首次公開版本",
+                        "訂閱週期追蹤",
+                        "付款提醒通知",
+                        "支出統計報表"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sub-buddy",
+            "name": "Sub-Buddy",
+            "displayName": "拼團小幫手",
+            "version": "1.0.0",
+            "releaseDate": "2026-01-08",
+            "platforms": {
+                "web": {
+                    "version": "1.0.0",
+                    "url": "https://sub-buddy-2025.web.app"
+                }
+            },
+            "changelog": [
+                {
+                    "version": "1.0.0",
+                    "date": "2026-01-08",
+                    "changes": [
+                        "首次公開版本",
+                        "合購媒合功能",
+                        "即時聊天室",
+                        "信譽評價系統"
+                    ]
+                }
+            ]
+        }
+    ],
+    "lastUpdated": "2026-01-12T00:00:00+08:00"
+}

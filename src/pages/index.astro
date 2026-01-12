@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AppCard from '../components/AppCard.astro';
+import { getAppsData } from '../lib/data';
+
+// Build Time 獲取資料
+const { apps } = await getAppsData();
+---
+
+<BaseLayout title="Presentyourlove - 應用程式下載中心">
+  <section class="welcome-section">
+    <div class="container welcome-container">
+      <div class="welcome-content">
+        <h1 class="welcome-title text-gradient-animated">
+          歡迎使用我們的應用程式
+        </h1>
+        <p class="welcome-desc">
+          請選擇您想要下載的應用程式
+        </p>
+        
+        <div class="app-grid">
+          {apps.map(app => (
+            <AppCard
+              id={app.id}
+              name={app.name}
+              displayName={app.displayName}
+              iconPath={`${import.meta.env.BASE_URL}/assets/${app.id}-icon-192.webp`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

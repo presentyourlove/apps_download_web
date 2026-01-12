@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - 找不到頁面 | Presentyourlove">
+  <section class="error-section">
+    <div class="container error-container">
+      <div class="error-content">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">找不到頁面</h2>
+        <p class="error-desc">
+          抱歉,您訪問的頁面不存在或已被移除。
+        </p>
+        <a href={import.meta.env.BASE_URL} class="btn btn-primary">
+          返回首頁
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-section {
+    padding: 160px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .error-container {
+    text-align: center;
+  }
+  
+  .error-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .error-code {
+    font-size: 8rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .error-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  
+  .error-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .error-code {
+      font-size: 5rem;
+    }
+    
+    .error-title {
+      font-size: 1.5rem;
+    }
+    
+    .error-desc {
+      font-size: 1rem;
+    }
+  }
+</style>

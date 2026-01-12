@@ -1,0 +1,101 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description = 'Presentyourlove 應用程式下載中心',
+  ogImage = '/assets/presentyourlove-logo-512.webp'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="author" content="Presentyourlove">
+  <meta name="robots" content="index, follow">
+  
+  <!-- SEO -->
+  <link rel="canonical" href={canonicalURL}>
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImageURL}>
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="Presentyourlove">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImageURL}>
+  
+  <!-- PWA -->
+  <link rel="manifest" href={`${import.meta.env.BASE_URL}/manifest.json`}>
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Icons -->
+  <link rel="icon" href={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`} type="image/webp">
+  <link rel="icon" href={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.png`} type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-192.png`}>
+  
+  <!-- Fonts (Preload for Performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Presentyourlove",
+    "url": Astro.site?.toString() || "https://presentyourlove.github.io/apps_download_web_v3/",
+    "description": description,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Presentyourlove",
+      "logo": {
+        "@type": "ImageObject",
+        "url": ogImageURL.toString()
+      }
+    }
+  })} />
+</head>
+<body>
+  <Header />
+  
+  <main id="main-content" style="padding-top: 80px; min-height: 100vh; display: flex; flex-direction: column;">
+    <div style="flex: 1;">
+      <slot />
+    </div>
+  </main>
+  
+  <Footer />
+  
+  <script>
+    // Theme initialization (runs immediately to prevent flash)
+    const theme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+</body>
+</html>
