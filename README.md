@@ -1,8 +1,8 @@
-# Apps Download Web V3
+# Apps Download Web
 
 Presentyourlove 應用程式下載中心 - 使用 Astro SSG 建置的靜態網站。
 
-🌐 **線上網站**: <https://presentyourlove.github.io/apps_download_web_v3/>
+🌐 **線上網站**: <https://presentyourlove.github.io/apps_download_web/>
 
 ---
 
@@ -36,19 +36,20 @@ Presentyourlove 應用程式下載中心 - 使用 Astro SSG 建置的靜態網�
 ## 📦 專案結構
 
 ```
-apps_download_web_v3/
+apps_download_web/
 ├── .github/workflows/deploy.yml    # 自動部署設定
 ├── public/
 │   ├── api/versions.json           # 應用程式資料
 │   ├── assets/                     # 圖片、Icon
 │   └── manifest.json               # PWA manifest
 ├── src/
-│   ├── components/AppCard.astro    # 應用程式卡片
+│   ├── components/                 # UI 元件
 │   ├── layouts/BaseLayout.astro    # 基礎版面
 │   ├── lib/data.ts                 # 資料存取層
 │   ├── pages/
 │   │   ├── [appId].astro           # 動態詳細頁
 │   │   ├── 404.astro               # 404 頁面
+│   │   ├── about.astro             # 關於我們
 │   │   └── index.astro             # 首頁
 │   └── styles/global.css           # 全域樣式
 ├── astro.config.mjs
@@ -63,8 +64,8 @@ apps_download_web_v3/
 
 ```bash
 # Clone
-git clone https://github.com/presentyourlove/apps_download_web_v3.git
-cd apps_download_web_v3
+git clone https://github.com/presentyourlove/apps_download_web.git
+cd apps_download_web
 
 # 安裝依賴
 npm install
@@ -73,7 +74,7 @@ npm install
 npm run dev
 ```
 
-開啟: `http://localhost:4321/apps_download_web_v3/`
+開啟: `http://localhost:4321/apps_download_web/`
 
 ---
 
@@ -93,13 +94,6 @@ npm run dev
 - **Accessibility**: 100/100
 - **Best Practices**: 96/100
 - **SEO**: 100/100
-
----
-
-## 📝 更多文件
-
-- [部署說明](./DEPLOYMENT.md)
-- [維護指南](./MAINTENANCE.md)
 
 ---
 
