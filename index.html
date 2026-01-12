@@ -1,7 +1,458 @@
-<!DOCTYPE html><html lang="zh-TW" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Presentyourlove - 應用程式下載中心</title><meta name="description" content="Presentyourlove 應用程式下載中心"><!-- SEO --><link rel="canonical" href="https://presentyourlove.github.io/apps_download_web_v3"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:url" content="https://presentyourlove.github.io/apps_download_web_v3"><meta property="og:title" content="Presentyourlove - 應用程式下載中心"><meta property="og:description" content="Presentyourlove 應用程式下載中心"><meta property="og:image" content="https://presentyourlove.github.io/assets/presentyourlove-logo-512.png"><!-- PWA --><link rel="manifest" href="/apps_download_web_v3manifest.json"><meta name="theme-color" content="#0f172a"><!-- Icons --><link rel="icon" href="/apps_download_web_v3assets/presentyourlove-logo-32.png" sizes="32x32"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/apps_download_web_v3/_astro/_appId_.B6VrgB36.css">
-<style>.app-card[data-astro-cid-ivu64uwn]{background:var(--card-bg);border:var(--glass-border);backdrop-filter:blur(12px);padding:40px 32px;border-radius:24px;text-align:center;text-decoration:none;color:var(--text-primary);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:16px}.app-card[data-astro-cid-ivu64uwn]:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.05));opacity:0;transition:opacity .3s ease}.app-card[data-astro-cid-ivu64uwn]:hover{transform:translateY(-4px);box-shadow:0 20px 60px -10px #2563eb4d}.app-card[data-astro-cid-ivu64uwn]:hover:before{opacity:1}.app-card-icon[data-astro-cid-ivu64uwn]{width:80px;height:80px;border-radius:20px;overflow:hidden;transition:transform .3s ease}.app-card[data-astro-cid-ivu64uwn]:hover .app-card-icon[data-astro-cid-ivu64uwn]{transform:scale(1.1)}.app-card-icon[data-astro-cid-ivu64uwn] img[data-astro-cid-ivu64uwn]{width:100%;height:100%;object-fit:cover}.app-card[data-astro-cid-ivu64uwn] h2[data-astro-cid-ivu64uwn]{font-size:1.5rem;font-weight:600;margin:0;color:var(--text-primary)}.app-card[data-astro-cid-ivu64uwn] p[data-astro-cid-ivu64uwn]{font-size:.9rem;color:var(--text-secondary);margin:0}.app-card-arrow[data-astro-cid-ivu64uwn]{font-size:1.5rem;color:var(--accent-primary);opacity:0;transform:translate(-10px);transition:all .3s ease}.app-card[data-astro-cid-ivu64uwn]:hover .app-card-arrow[data-astro-cid-ivu64uwn]{opacity:1;transform:translate(0)}@media(max-width:768px){.app-card[data-astro-cid-ivu64uwn]{padding:32px 24px}.app-card[data-astro-cid-ivu64uwn] h2[data-astro-cid-ivu64uwn]{font-size:1.25rem}}
-</style></head> <body> <div id="header-placeholder"></div> <main id="main-content">  <section class="welcome-section"> <div class="container welcome-container"> <div class="welcome-content"> <h1 class="welcome-title text-gradient-animated">
-歡迎使用我們的應用程式
-</h1> <p class="welcome-desc">
-請選擇您想要下載的應用程式
-</p> <div class="app-grid"> <a href="/apps_download_web_v3financeapp/" class="app-card" data-astro-cid-ivu64uwn> <div class="app-card-icon" data-astro-cid-ivu64uwn> <img src="/apps_download_web_v3assets/financeapp-icon-192.png" alt="FinanceApp Logo" width="80" height="80" loading="lazy" data-astro-cid-ivu64uwn> </div> <h2 data-astro-cid-ivu64uwn>FinanceApp</h2> <p data-astro-cid-ivu64uwn>智慧理財助手</p> <span class="app-card-arrow" data-astro-cid-ivu64uwn>→</span> </a> <a href="/apps_download_web_v3subtrack/" class="app-card" data-astro-cid-ivu64uwn> <div class="app-card-icon" data-astro-cid-ivu64uwn> <img src="/apps_download_web_v3assets/subtrack-icon-192.png" alt="SubTrack Logo" width="80" height="80" loading="lazy" data-astro-cid-ivu64uwn> </div> <h2 data-astro-cid-ivu64uwn>SubTrack</h2> <p data-astro-cid-ivu64uwn>訂閱管理助手</p> <span class="app-card-arrow" data-astro-cid-ivu64uwn>→</span> </a> <a href="/apps_download_web_v3sub-buddy/" class="app-card" data-astro-cid-ivu64uwn> <div class="app-card-icon" data-astro-cid-ivu64uwn> <img src="/apps_download_web_v3assets/sub-buddy-icon-192.png" alt="Sub-Buddy Logo" width="80" height="80" loading="lazy" data-astro-cid-ivu64uwn> </div> <h2 data-astro-cid-ivu64uwn>Sub-Buddy</h2> <p data-astro-cid-ivu64uwn>拼團小幫手</p> <span class="app-card-arrow" data-astro-cid-ivu64uwn>→</span> </a>  </div> </div> </div> </section>  </main> <div id="footer-placeholder"></div> <script type="module">const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e);</script> </body> </html>
+﻿<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="author" href="humans.txt">
+
+  <!-- Primary Meta Tags -->
+  <title>Presentyourlove - 應用程式下載中心</title>
+  <meta name="title" content="Presentyourlove - 應用程式下載中心">
+  <meta name="description"
+    content="Presentyourlove 提供多款實用應用程式下載,包含理財記帳 FinanceApp、訂閱管理 SubTrack 與拼團小幫手 Sub-Buddy。支援 Android APK, iOS IPA 與 Web App,輕鬆管理您的數位生活。">
+  <meta name="keywords"
+    content="Presentyourlove, 應用程式下載, App下載, Android APK, iOS IPA, 記帳app, 理財app, SubTrack, 訂閱管理, 訂閱追蹤, Sub-Buddy, 拼團, 合購, 分母">
+  <meta name="author" content="Presentyourlove">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="zh-TW">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://presentyourlove.github.io; connect-src 'self' http://localhost:4000;">
+  <style>
+    :root {
+      --font-primary: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+      --bg-color: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --btn-text-color: #ffffff;
+      --hero-glow: rgba(var(--accent-rgb), 0.15);
+      --accent-rgb: 99, 102, 241;
+      --bg-rgb: 15, 23, 42;
+      --white-rgb: 255, 255, 255;
+      --black-rgb: 0, 0, 0;
+      --gradient-primary: linear-gradient(-45deg, #6366f1, #e11d48, #22d3ee, #6366f1)
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: 0 0
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(var(--accent-rgb), .5);
+      border-radius: 5px;
+      border: 2px solid transparent;
+      background-clip: content-box
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(var(--accent-rgb), .8)
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 4px;
+      border-radius: 4px
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 10px;
+      background: var(--accent-color);
+      color: #fff;
+      padding: 8px 16px;
+      z-index: 2000;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      opacity: 0
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .welcome-section {
+      padding: 160px 0 80px;
+      min-height: 80vh;
+      display: flex;
+      align-items: center
+    }
+
+    .welcome-container {
+      text-align: center
+    }
+
+    .welcome-content {
+      max-width: 800px;
+      margin: 0 auto
+    }
+
+    .welcome-title {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-primary) 0, var(--accent-color) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .welcome-desc {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 60px
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: var(--glass-border);
+      backdrop-filter: blur(12px);
+      padding: 40px 32px;
+      border-radius: 24px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-color) 0 10px 30px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-color) 0, transparent 100%);
+      opacity: 0
+    }
+
+    .app-card-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1
+    }
+
+    .app-card-icon img {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      object-fit: cover
+    }
+
+    .app-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1
+    }
+
+    .app-card p {
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      font-size: .95rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .app-card-arrow {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      display: inline-block;
+      position: relative;
+      z-index: 1
+    }
+
+    @media (max-width:768px) {
+      .welcome-title {
+        font-size: 2.5rem
+      }
+
+      .welcome-desc {
+        font-size: 1.2rem
+      }
+
+      .app-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .fade-in {
+      animation: .6s ease-out forwards fadeIn
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0 50%
+      }
+    }
+
+    .text-gradient-animated {
+      background: var(--gradient-primary);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: 6s infinite gradientFlow
+    }
+
+    #header-placeholder {
+      min-height: 80px
+    }
+
+    .welcome-title,
+    h1,
+    h2 {
+      text-wrap: balance
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .fade-in {
+        animation: none;
+        opacity: 1
+      }
+
+      .text-gradient-animated {
+        animation: none
+      }
+
+      *,
+      ::after,
+      ::before {
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important
+      }
+    }
+  </style>
+  <script src="js/csp-monitor.js" async=""></script>
+
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"
+    rel="stylesheet">
+
+  <!-- iOS PWA -->
+  <link rel="apple-touch-icon" href="assets/presentyourlove-logo-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PYL Apps">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://presentyourlove.github.io/apps_download_web/">
+  <meta property="og:title" content="Presentyourlove - 應用程式下載中心">
+  <meta property="og:description"
+    content="Presentyourlove 提供多款實用應用程式下載,包含理財記帳 FinanceApp 與訂閱管理 SubTrack。支援 Android APK 和 iOS IPA 下載。">
+  <!-- Optimized: OG Image using 512px version -->
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:image"
+    content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Presentyourlove Logo">
+  <meta property="og:site_name" content="Presentyourlove">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://presentyourlove.github.io/apps_download_web/">
+  <meta property="twitter:title" content="Presentyourlove - 應用程式下載中心">
+  <meta property="twitter:description"
+    content="Presentyourlove 提供多款實用應用程式下載,包含理財記帳 FinanceApp 與訂閱管理 SubTrack。支援 Android APK 和 iOS IPA 下載。">
+  <meta property="twitter:image"
+    content="https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-512.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://presentyourlove.github.io/apps_download_web/">
+
+  <!-- PWA & Favicon -->
+  <link rel="icon" href="assets/presentyourlove-logo-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="assets/presentyourlove-logo-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/presentyourlove-logo-192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Preloads: Removed unused fetch preloads to avoid warnings -->
+  <link rel="preload" href="assets/presentyourlove-logo-192.png" as="image">
+
+  <!-- Stylesheets -->
+  <!-- Theme initialization (同步載入以避免 FOUC) -->
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/style.0c01ae66.css">
+
+
+  <!-- Structured Data (JSON-LD) -->
+
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Presentyourlove",
+      "url": "https://presentyourlove.github.io/apps_download_web/",
+      "description": "Presentyourlove 提供多款實用應用程式下載,包含理財記帳 FinanceApp、訂閱管理 SubTrack 與拼團小幫手 Sub-Buddy。支援 Android APK, iOS IPA 與 Web App,輕鬆管理您的數位生活。",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Presentyourlove",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-512.png"
+        }
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Presentyourlove",
+      "url": "https://presentyourlove.github.io/apps_download_web/",
+      "logo": "https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-512.png",
+      "sameAs": [
+        "https://facebook.com/presentyourlove",
+        "https://instagram.com/presentyourlove",
+        "https://youtube.com/presentyourlove"
+      ]
+    }
+  ]
+  </script>
+  <script type="module" src="js/script.js" defer=""></script>
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link" data-i18n="common.skip_link">跳轉至主要內容</a>
+
+  <div id="header-placeholder"></div>
+
+  <main id="main-content" class="fade-in">
+    <!-- Home Content -->
+    <section class="welcome-section">
+      <div class="container welcome-container">
+        <div class="welcome-content">
+          <h1 class="welcome-title text-gradient-animated" data-i18n="home.title">歡迎使用我們的應用程式</h1>
+          <p class="welcome-desc" data-i18n="home.subtitle">請選擇您想要下載的應用程式</p>
+          <div class="app-grid">
+            <a href="financeapp-content.html" class="app-card">
+              <div class="app-icon-wrapper">
+                <picture>
+                  <source srcset="assets/financeapp-icon-192.webp" type="image/webp">
+                  <img src="assets/financeapp-icon-192.png" alt="FinanceApp Logo" class="app-icon" width="64"
+                    height="64" decoding="async" loading="eager">
+                </picture>
+              </div>
+              <h2 data-i18n="apps.financeapp.name">FinanceApp</h2>
+              <p data-i18n="apps.financeapp.tagline">智慧理財助手</p>
+              <span class="app-card-arrow">→</span>
+            </a>
+            <a href="subtrack-content.html" class="app-card">
+              <div class="app-card-icon">
+                <picture>
+                  <source srcset="assets/subtrack-icon-192.webp" type="image/webp">
+                  <img src="assets/subtrack-icon-192.png" alt="SubTrack 訂閱管理 App Icon" width="80" height="80"
+                    decoding="async" loading="lazy">
+                </picture>
+              </div>
+              <h2 data-i18n="apps.subtrack.name">SubTrack</h2>
+              <p data-i18n="apps.subtrack.tagline">訂閱管理助手</p>
+              <span class="app-card-arrow">→</span>
+            </a>
+            <a href="sub-buddy-content.html" class="app-card">
+              <div class="app-card-icon">
+                <picture>
+                  <source srcset="assets/sub-buddy-icon-192.webp" type="image/webp">
+                  <img src="assets/sub-buddy-icon-192.png" alt="Sub-Buddy 拼團小幫手 App Icon" width="80" height="80"
+                    decoding="async" loading="lazy">
+                </picture>
+              </div>
+              <h2 data-i18n="apps.subbuddy.name">Sub-Buddy</h2>
+              <p data-i18n="apps.subbuddy.tagline">拼團小幫手</p>
+              <span class="app-card-arrow">→</span>
+            </a>
+          </div>
+        </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <div id="cookie-placeholder"></div>
+
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"
+      rel="stylesheet">
+  </noscript>
+  <noscript>
+    <link rel="stylesheet" href="css/style.0c01ae66.css">
+  </noscript>
+</body>
+
+</html>

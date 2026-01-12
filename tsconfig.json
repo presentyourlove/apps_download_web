@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": [
+            "node"
+        ],
+        "allowJs": true,
+        "noEmit": true
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.js"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

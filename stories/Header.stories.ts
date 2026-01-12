@@ -1,0 +1,66 @@
+import type { StoryObj, Meta } from '@storybook/html-vite';
+
+const meta: Meta = {
+    title: 'Components/Header',
+    parameters: {
+        layout: 'fullscreen',
+    },
+};
+
+export default meta;
+type Story = StoryObj;
+
+export const Default: Story = {
+    render: () => {
+        // Return the HTML content of the header
+        // Using the content we viewed earlier from components/header.html
+        return `
+<header class="header">
+    <div class="container header-container">
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="開啟選單" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <a href="index.html" class="logo-area">
+            <img src="assets/presentyourlove-logo-192.png" alt="Presentyourlove Logo" class="logo-img" width="40"
+                height="40" decoding="async">
+            <span class="app-name">Presentyourlove</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-tab active">首頁</a></li>
+                <li><a href="financeapp-content.html" class="nav-tab">FinanceApp</a></li>
+                <li><a href="subtrack-content.html" class="nav-tab">SubTrack</a></li>
+                <li><a href="sub-buddy-content.html" class="nav-tab">Sub-Buddy</a></li>
+                <li><a href="links.html" class="nav-tab">關於我們</a></li>
+                <li><button class="nav-tab install-trigger nav-cta" hidden>安裝 App</button></li>
+            </ul>
+        </nav>
+
+        <button id="theme-toggle" class="theme-btn" aria-label="切換深色/淺色模式">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+    </div>
+</header>
+    `;
+    },
+};
