@@ -33,7 +33,8 @@
 |------|------|
 | 🏠 首頁 | 展示所有應用程式,支援動態下拉選單 |
 | 📱 應用詳情 | 顯示版本、支援平台、下載連結 |
-| 📋 AltStore 指南 | iOS 側載安裝說明 |
+| � 部落格 | 分享開發心得與技術文章 (V3 新功能) |
+| �📋 AltStore 指南 | iOS 側載安裝說明 |
 | 👤 關於我們 | 社交連結與聯絡資訊 |
 | 🌓 主題切換 | 深色/淺色模式 |
 | 📊 PWA 支援 | 可安裝為桌面應用程式 |
@@ -125,6 +126,9 @@ apps_download_web/
 │   ├── lib/
 │   │   └── data.ts              # 資料存取層
 │   ├── pages/
+│   │   ├── blog/
+│   │   │   ├── index.astro      # 部落格首頁
+│   │   │   └── [...slug].astro  # 文章詳情頁
 │   │   ├── index.astro          # 首頁
 │   │   ├── [appId].astro        # 動態詳情頁
 │   │   ├── about.astro          # 關於我們
@@ -256,5 +260,13 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 ---
 
 ## 📄 授權
+
+---
+
+## 📜 版本歷史
+
+- **v3.0.0 (2026-01-20)**: 正式加入部落格功能，採用 Astro Content Collections 管理。
+- **v2.0.0 (2026-01-20)**: 優化 UI/UX，實現玻璃擬態設計與動態詳情頁。
+- **v1.0.0**: 初始版本發布。
 
 Copyright © 2026 Presentyourlove. All rights reserved.
