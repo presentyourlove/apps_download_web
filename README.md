@@ -1,18 +1,14 @@
 # Apps Download Web
 
-<div align="center">
-
 ![Logo](https://presentyourlove.github.io/apps_download_web/assets/presentyourlove-logo-192.webp)
 
-**Presentyourlove 應用程式下載中心**
+### Presentyourlove 應用程式下載中心
 
 使用 Astro SSG 建置的現代化靜態網站
 
 🌐 **線上網站**: <https://presentyourlove.github.io/apps_download_web/>
 
 [![Deploy to GitHub Pages](https://github.com/presentyourlove/apps_download_web/actions/workflows/deploy.yml/badge.svg)](https://github.com/presentyourlove/apps_download_web/actions/workflows/deploy.yml)
-
-</div>
 
 ---
 
@@ -30,11 +26,11 @@
 ## ✨ 功能特色
 
 | 功能 | 說明 |
-|------|------|
+| :--- | :--- |
 | 🏠 首頁 | 展示所有應用程式,支援動態下拉選單 |
 | 📱 應用詳情 | 顯示版本、支援平台、下載連結 |
-| � 部落格 | 分享開發心得與技術文章 (V3 新功能) |
-| �📋 AltStore 指南 | iOS 側載安裝說明 |
+| 📝 部落格 | 分享開發心得與技術文章 (V3 新功能) |
+| 📋 AltStore 指南 | iOS 側載安裝說明 |
 | 👤 關於我們 | 社交連結與聯絡資訊 |
 | 🌓 主題切換 | 深色/淺色模式 |
 | 📊 PWA 支援 | 可安裝為桌面應用程式 |
@@ -44,13 +40,13 @@
 ## 🏆 程式碼品質
 
 | 指標 | 分數 |
-|------|------|
+| :--- | :--- |
 | 🚀 Performance | 96/100 |
 | ♿ Accessibility | 100/100 |
 | ✅ Best Practices | 96/100 |
-| � SEO | 100/100 |
+| 🔍 SEO | 100/100 |
 
-**使用的最佳實踐**:
+### 使用的最佳實踐
 
 - TypeScript 嚴格模式
 - 元件化架構 (Astro Components)
@@ -82,7 +78,7 @@ npm run dev
 ## 📱 支援平台
 
 | 應用程式 | Android | iOS | Web |
-|----------|---------|-----|-----|
+| :--- | :--- | :--- | :--- |
 | 智慧理財助手 | ✅ APK | 🔜 3月 | ✅ |
 | 訂閱管理助手 | - | 🔜 3月 | - |
 | 拼團小幫手 | - | - | ✅ |
@@ -94,7 +90,7 @@ npm run dev
 ## 🛠 技術堆疊
 
 | 類別 | 技術 |
-|------|------|
+| :--- | :--- |
 | **框架** | Astro 5.x (SSG) |
 | **語言** | TypeScript (Strict) |
 | **樣式** | CSS Variables + Glassmorphism |
@@ -107,7 +103,7 @@ npm run dev
 
 ## 📦 專案結構
 
-```
+```text
 apps_download_web/
 ├── .github/
 │   └── workflows/deploy.yml     # CI/CD 自動部署
@@ -240,7 +236,7 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ## � 作者
 
-**Presentyourlove**
+### Presentyourlove
 
 - 🌐 網站: [presentyourlove.github.io/apps_download_web](https://presentyourlove.github.io/apps_download_web/)
 - 📘 Facebook: [@presentyourlove](https://facebook.com/presentyourlove)
