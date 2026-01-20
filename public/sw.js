@@ -24,3 +24,10 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
+
+// 監聽來自頁面的指令
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
+});
