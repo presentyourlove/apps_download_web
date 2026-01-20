@@ -96,6 +96,40 @@ const ogImageURL = new URL(ogImage, Astro.site);
     // Theme initialization (runs immediately to prevent flash)
     const theme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', theme);
+
+    // PWA Service Worker Registration & Auto-Update Logic
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swUrl = `${import.meta.env.BASE_URL}/sw.js`;
+        
+        navigator.serviceWorker.register(swUrl).then(registration => {
+          console.log('SW registered');
+
+          // 監測是否有新版本在等待
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker?.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // 發現新版且已安裝，通知用戶或自動刷新
+                console.log('New content available, refreshing...');
+                window.location.reload();
+              }
+            });
+          });
+        }).catch(error => {
+          console.error('SW registration failed:', error);
+        });
+      });
+
+      // 當新的 Service Worker 接管時觸發
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
   </script>
 </body>
 </html>
