@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
+import { getLangFromUrl } from '../i18n/utils';
 
 // Self-hosted Fonts
 import '@fontsource/inter/400.css';
@@ -25,12 +26,13 @@ const {
   ogImage = '/assets/presentyourlove-logo-512.webp',
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang="zh-TW" data-theme="dark">
+<html lang={lang} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

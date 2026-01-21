@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAppsData, getAppById, getPlatformsArray } from '../lib/data';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 // Build Time 生成所有頁面
 export async function getStaticPaths() {
@@ -14,6 +15,8 @@ export async function getStaticPaths() {
 
 const { app } = Astro.props;
 const platforms = getPlatformsArray(app);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // 檢查是否有 iOS 版本 (用於顯示 AltStore 說明)
 const hasIOS = app.platforms?.ios !== undefined;
@@ -39,13 +42,13 @@ const showAltStoreGuide = hasIOS;
         />
         <div class="app-info">
           <h1>{app.displayName}</h1>
-          <p class="version">版本 {app.version}</p>
-          <p class="release-date">發布日期: {app.releaseDate}</p>
+          <p class="version">{t('app.version')} {app.version}</p>
+          <p class="release-date">{t('app.releaseDate')}: {app.releaseDate}</p>
         </div>
       </header>
 
       <section class="platforms-section">
-        <h2>支援平台</h2>
+        <h2>{t('app.platforms')}</h2>
         <div class="platform-grid">
           {
             platforms.map((platform) => (
@@ -85,7 +88,7 @@ const showAltStoreGuide = hasIOS;
                 {/* 下載按鈕 */}
                 {platform.downloadUrl && (
                   <a href={platform.downloadUrl} class="btn btn-primary" download>
-                    下載 APK
+                    {t('app.download')}
                   </a>
                 )}
 
@@ -96,7 +99,7 @@ const showAltStoreGuide = hasIOS;
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    前往 App Store
+                    {t('app.goStore')}
                   </a>
                 )}
 
@@ -107,7 +110,7 @@ const showAltStoreGuide = hasIOS;
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    開啟 Web 版
+                    {t('app.openWeb')}
                   </a>
                 )}
               </div>
@@ -120,12 +123,12 @@ const showAltStoreGuide = hasIOS;
       {
         showAltStoreGuide && (
           <section class="guide-section">
-            <h2>如何安裝 iOS 版本? (AltStore)</h2>
+            <h2>{t('guide.title')}</h2>
             <div class="guide-steps">
               <div class="step-card">
                 <div class="step-number">1</div>
-                <h3>安裝 AltStore</h3>
-                <p>請先由電腦端安裝 AltServer,並將 AltStore 安裝至您的 iPhone。</p>
+                <h3>{t('guide.step1.title')}</h3>
+                <p>{t('guide.step1.desc')}</p>
                 <a
                   href="https://altstore.io/"
                   target="_blank"
@@ -137,13 +140,13 @@ const showAltStoreGuide = hasIOS;
               </div>
               <div class="step-card">
                 <div class="step-number">2</div>
-                <h3>下載 IPA 檔案</h3>
-                <p>使用 iPhone 下載本頁面的 IPA 檔案,並儲存至「檔案」App。</p>
+                <h3>{t('guide.step2.title')}</h3>
+                <p>{t('guide.step2.desc')}</p>
               </div>
               <div class="step-card">
                 <div class="step-number">3</div>
-                <h3>透過 AltStore 安裝</h3>
-                <p>開啟 AltStore → My Apps → 點擊左上角「+」→ 選擇下載的 IPA 檔案即可。</p>
+                <h3>{t('guide.step3.title')}</h3>
+                <p>{t('guide.step3.desc')}</p>
               </div>
             </div>
           </section>
@@ -151,7 +154,7 @@ const showAltStoreGuide = hasIOS;
       }
 
       <section class="changelog-section">
-        <h2>更新記錄</h2>
+        <h2>{t('app.changelog')}</h2>
         {
           app.changelog.map((entry) => (
             <div class="changelog-entry">

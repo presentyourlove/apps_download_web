@@ -1,15 +1,29 @@
 ---
 /* Search.astro */
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="search-container">
-  <button id="search-trigger" class="search-btn" aria-label="開啟搜尋" title="搜尋 (Ctrl+K)">
+  <button id="search-trigger" class="search-btn" aria-label={t('search.trigger')} title={`${t('search.trigger')} (Ctrl+K)`}>
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    <span class="search-text">搜尋...</span>
+    <span class="search-text">{t('search.trigger')}</span>
     <kbd class="search-shortcut">⌘K</kbd>
   </button>
 
-  <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-labelledby="search-title">
+  <div 
+    id="search-modal" 
+    class="search-modal" 
+    aria-hidden="true" 
+    role="dialog" 
+    aria-labelledby="search-title"
+    data-empty={t('search.placeholder')}
+    data-loading="Searching..."
+    data-no-results="No results found"
+    data-dev-info="Search only works after build"
+  >
     <div class="search-modal-overlay"></div>
     <div class="search-modal-content">
       <div class="search-header">
@@ -18,7 +32,7 @@
           <input 
             type="text" 
             id="search-input" 
-            placeholder="搜尋應用程式、內容、指南..." 
+            placeholder={t('search.placeholder')} 
             autocomplete="off"
             spellcheck="false"
           />
@@ -27,11 +41,11 @@
       </div>
       
       <div id="search-results" class="search-results">
-        <div class="search-empty">輸入關鍵字開始搜尋</div>
+        <div class="search-empty">{t('search.placeholder')}</div>
       </div>
 
       <div class="search-footer">
-        <p>由 <strong>Pagefind</strong> 提供技術支援</p>
+        <p>Powered by <strong>Pagefind</strong></p>
       </div>
     </div>
   </div>
@@ -324,25 +338,25 @@
       
       clearTimeout(debounceTimer);
       if (!query) {
-        results.innerHTML = '<div class="search-empty">輸入關鍵字開始搜尋</div>';
+        results.innerHTML = `<div class="search-empty">${modal.dataset.empty}</div>`;
         return;
       }
 
       if (!pagefind) {
         const pf = await loadPagefind();
         if (!pf) {
-          results.innerHTML = '<div class="search-empty">搜尋功能僅在 Build 後可用</div>';
+          results.innerHTML = `<div class="search-empty">${modal.dataset.devInfo}</div>`;
           return;
         }
       }
 
       debounceTimer = window.setTimeout(async () => {
-        results.innerHTML = '<div class="search-empty">搜尋中...</div>';
+        results.innerHTML = `<div class="search-empty">${modal.dataset.loading}</div>`;
         
         try {
           const search = await pagefind.search(query);
           if (search.results.length === 0) {
-            results.innerHTML = '<div class="search-empty">找不到相關結果</div>';
+            results.innerHTML = `<div class="search-empty">${modal.dataset.noResults}</div>`;
             return;
           }
 

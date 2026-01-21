@@ -1,5 +1,10 @@
 ---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+
 const currentYear = new Date().getFullYear();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <footer class="footer">
@@ -81,14 +86,14 @@ const currentYear = new Date().getFullYear();
 
     <!-- 導覽連結 -->
     <div class="footer-nav">
-      <a href={`${import.meta.env.BASE_URL}/`} class="footer-link">首頁</a>
+      <a href={translatePath('/')} class="footer-link">{t('nav.home')}</a>
       <span class="separator">•</span>
-      <a href={`${import.meta.env.BASE_URL}/about/`} class="footer-link">關於我們</a>
+      <a href={translatePath('/about/')} class="footer-link">{t('nav.about')}</a>
     </div>
 
     <!-- 版權資訊 -->
     <div class="footer-copyright">
-      &copy; {currentYear} Presentyourlove. All rights reserved.
+      &copy; {currentYear} Presentyourlove. {t('footer.rights')}.
     </div>
   </div>
 </footer>

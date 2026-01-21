@@ -9,6 +9,14 @@ export default defineConfig({
   base: '/apps_download_web',
   output: 'static',
 
+  i18n: {
+    defaultLocale: 'zh-TW',
+    locales: ['zh-TW', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   integrations: [
     sitemap(),
     AstroPWA({

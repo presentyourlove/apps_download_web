@@ -1,15 +1,21 @@
 ---
 import { getAppsData } from '../lib/data';
 import Search from './Search.astro';
+import LanguagePicker from './LanguagePicker.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 
 // 取得應用程式列表 (Build Time)
 const { apps } = await getAppsData();
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <header class="header" id="main-header">
   <div class="container header-container">
     <!-- Logo -->
-    <a href={`${import.meta.env.BASE_URL}/`} class="logo-area">
+    <a href={translatePath('/')} class="logo-area">
       <img
         src={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`}
         alt="Logo"
@@ -23,13 +29,13 @@ const { apps } = await getAppsData();
     <!-- Desktop Navigation -->
     <nav class="desktop-nav">
       <div class="nav-tabs">
-        <a href={`${import.meta.env.BASE_URL}/`} class="nav-tab">首頁</a>
-        <a href={`${import.meta.env.BASE_URL}/blog/`} class="nav-tab">部落格</a>
+        <a href={translatePath('/')} class="nav-tab">{t('nav.home')}</a>
+        <a href={translatePath('/blog/')} class="nav-tab">{t('nav.blog')}</a>
 
         <!-- 應用程式下拉選單 -->
         <div class="nav-dropdown">
           <span class="nav-tab dropdown-trigger">
-            應用程式
+            {t('nav.apps')}
             <svg
               class="dropdown-arrow"
               width="12"
@@ -45,7 +51,7 @@ const { apps } = await getAppsData();
           <div class="dropdown-menu">
             {
               apps.map((app) => (
-                <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="dropdown-item">
+                <a href={translatePath(`/${app.id}/`)} class="dropdown-item">
                   {app.displayName}
                 </a>
               ))
@@ -53,13 +59,14 @@ const { apps } = await getAppsData();
           </div>
         </div>
 
-        <a href={`${import.meta.env.BASE_URL}/about/`} class="nav-tab">關於我們</a>
+        <a href={translatePath('/about/')} class="nav-tab">{t('nav.about')}</a>
       </div>
     </nav>
 
     <!-- Theme Toggle & Mobile Menu Button -->
     <div class="header-actions">
       <Search />
+      <LanguagePicker />
       <!-- Theme Toggle -->
       <button id="theme-toggle" class="theme-btn" aria-label="切換主題">
         <!-- Sun Icon (for Dark Mode) -->
@@ -144,22 +151,22 @@ const { apps } = await getAppsData();
 
   <nav class="sidebar-nav">
     <ul class="sidebar-tabs">
-      <li><a href={`${import.meta.env.BASE_URL}/`} class="sidebar-tab">首頁</a></li>
-      <li><a href={`${import.meta.env.BASE_URL}/blog/`} class="sidebar-tab">部落格</a></li>
+      <li><a href={translatePath('/')} class="sidebar-tab">{t('nav.home')}</a></li>
+      <li><a href={translatePath('/blog/')} class="sidebar-tab">{t('nav.blog')}</a></li>
 
       <!-- 應用程式列表 -->
-      <li class="sidebar-section-title">應用程式</li>
+      <li class="sidebar-section-title">{t('nav.apps')}</li>
       {
         apps.map((app) => (
           <li>
-            <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="sidebar-tab sidebar-app-item">
+            <a href={translatePath(`/${app.id}/`)} class="sidebar-tab sidebar-app-item">
               {app.displayName}
             </a>
           </li>
         ))
       }
 
-      <li><a href={`${import.meta.env.BASE_URL}/about/`} class="sidebar-tab">關於我們</a></li>
+      <li><a href={translatePath('/about/')} class="sidebar-tab">{t('nav.about')}</a></li>
     </ul>
   </nav>
 </div>
