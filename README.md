@@ -315,11 +315,14 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - 導入 `ESLint` 與 `Prettier` 並整合至 git hook (Husky)。
    - 強制統一程式碼風格，減少團隊協作衝突。
 
-2. **網站安全強化**
+2. **網站安全強化** ✅ (已完成)
    - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
    - 限制外部資源載入來源，防範 XSS 攻擊。
 
 ### 📝 最近更新 (Latest Updates)
+
+- [2026-01-21] **網站安全強化**
+  - `[MODIFY]` src/layouts/BaseLayout.astro - 實作 Strict CSP (Script/Style 'self' + 'unsafe-inline')
 
 - [2026-01-21] **程式碼規範自動化**
   - `[ADD]` eslint.config.mjs, .prettierrc.mjs - 建立代碼規範設定
