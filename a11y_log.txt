@@ -1,0 +1,69 @@
+
+Running 8 tests using 4 workers
+
+[1A[2K[1/8] [chromium] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible
+[1A[2K[2/8] [chromium] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues
+[1A[2K[3/8] [firefox] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible
+[1A[2K[4/8] [firefox] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues
+[1A[2K  1) [firefox] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible ─────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\firefox-1497\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K  2) [firefox] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\firefox-1497\firefox\firefox.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K[5/8] [webkit] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues
+[1A[2K[6/8] [webkit] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible
+[1A[2K  3) [webkit] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2227\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K  4) [webkit] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible ──────
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\USER\AppData\Local\ms-playwright\webkit-2227\Playwright.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K[7/8] [Mobile Chrome] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues
+[1A[2K[8/8] [Mobile Chrome] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible
+[1A[2K  4 failed
+    [firefox] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues 
+    [firefox] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible ──────
+    [webkit] › e2e\a11y.spec.ts:5:5 › Accessibility Checks › Home Page should not have any automatically detectable accessibility issues 
+    [webkit] › e2e\a11y.spec.ts:19:5 › Accessibility Checks › Blog Page should be accessible ───────
+  4 passed (41.8s)
