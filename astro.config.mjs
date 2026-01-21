@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import AstroPWA from '@vite-pwa/astro';
 
@@ -10,6 +10,13 @@ export default defineConfig({
   output: 'static',
 
   prefetch: true,
+
+  env: {
+    schema: {
+      PUBLIC_ANALYTICS_ID: envField.string({ context: 'client', access: 'public', optional: true }),
+      PUBLIC_ANALYTICS_SCRIPT_URL: envField.string({ context: 'client', access: 'public', optional: true, url: true }),
+    },
+  },
 
   i18n: {
     defaultLocale: 'zh-TW',

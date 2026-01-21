@@ -1,6 +1,8 @@
 ---
-const analyticsId = import.meta.env.PUBLIC_ANALYTICS_ID;
-const analyticsUrl = import.meta.env.PUBLIC_ANALYTICS_SCRIPT_URL; // e.g. "https://analytics.example.com/script.js"
+import { PUBLIC_ANALYTICS_ID, PUBLIC_ANALYTICS_SCRIPT_URL } from 'astro:env/client';
+
+const analyticsId = PUBLIC_ANALYTICS_ID;
+const analyticsUrl = PUBLIC_ANALYTICS_SCRIPT_URL;
 
 const shouldRender = !!(analyticsId && analyticsUrl);
 ---

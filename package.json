@@ -16,7 +16,9 @@
     "format:check": "prettier --check .",
     "type-check": "astro check",
     "lint": "eslint .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",

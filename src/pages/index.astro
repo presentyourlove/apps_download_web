@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import AppCard from '../components/AppCard.astro';
-import { getAppsData } from '../lib/data';
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AppCard from '@/components/AppCard.astro';
+import { getAppsData } from '@/lib/data';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 // Build Time 獲取資料
 const { apps } = await getAppsData();
