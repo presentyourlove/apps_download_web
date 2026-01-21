@@ -13,6 +13,8 @@
     "astro": "^5.16.11"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.6.1"
+    "@astrojs/sitemap": "^3.6.1",
+    "@vite-pwa/astro": "^1.2.0",
+    "vite-plugin-pwa": "^1.2.0"
   }
 }

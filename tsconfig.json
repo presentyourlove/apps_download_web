@@ -6,5 +6,10 @@
   ],
   "exclude": [
     "dist"
-  ]
+  ],
+  "compilerOptions": {
+    "types": [
+      "vite-plugin-pwa/client"
+    ]
+  }
 }

@@ -265,17 +265,17 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ### 🚀 核心優化策略
 
-1. **流暢轉場 (View Transitions)**
+1. **流暢轉場 (View Transitions)** ✅ (已完成)
    - 採用 Astro `ClientRouter` 技術，實現類似原生 App 的無縫換頁體驗。
    - 解決傳統網頁切換時的閃爍問題，保持視覺連貫性。
 
-2. **PWA 架構現代化**
-   - 將 Service Worker 邏輯模組化，提升程式碼可維護性。
-   - 優化自動更新機制，確保使用者總是讀取到最新的應用程式內容。
+2. **PWA 架構現代化** ✅ (已完成)
+   - 遷移至 `@vite-pwa/astro`，自動產生 Service Worker 與 Workbox 快取策略。
+   - 預快取所有靜態資源，優化離線體驗與載入速度。
 
-3. **相依性與效能升級**
-   - 保持 Astro 核心版本與相依套件同步更新。
-   - 移除未使用的 CSS 與 JS 資源，極大化載入速度。
+3. **相依性與效能升級** ✅ (已完成)
+   - 使用 Astro 5.x 最新版本。
+   - 移除手動 SW 實作，改用自動化生成。
 
 ### 🔧 進階功能擴充
 
@@ -320,6 +320,14 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
     - 限制外部資源載入來源，防範 XSS 攻擊。
 
 ### 📝 最近更新 (Latest Updates)
+
+- [2026-01-21] **核心優化策略實作**
+  - `[ADD]` @vite-pwa/astro - 遷移 PWA 架構至自動化 Workbox 生成
+  - `[DELETE]` public/sw.js - 移除手動 Service Worker
+  - `[DELETE]` public/manifest.json - 改由 @vite-pwa/astro 自動產生
+  - `[MODIFY]` astro.config.mjs - 加入 AstroPWA 整合配置
+  - `[MODIFY]` src/lib/pwa.ts - 使用 virtual:pwa-register 模組
+  - `[MODIFY]` tsconfig.json - 加入 vite-plugin-pwa/client 型別
 
 - [2026-01-21] **圖片載入最佳化**
   - `[MODIFY]` src/components/AppCard.astro - 改用 Astro Image 搭配 import.meta.glob
