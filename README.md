@@ -261,6 +261,7 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ## 📜 版本歷史
 
+- **v3.0.1 (2026-01-21)**: 新增部落格文章「工作管理員『處理程序』分頁消失？5 個步驟快速修復系統錯誤」。
 - **v3.0.0 (2026-01-20)**: 正式加入部落格功能，採用 Astro Content Collections 管理。
 - **v2.0.0 (2026-01-20)**: 優化 UI/UX，實現玻璃擬態設計與動態詳情頁。
 - **v1.0.0**: 初始版本發布。
