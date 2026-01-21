@@ -31,3 +31,62 @@ const { apps } = await getAppsData();
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Welcome Section */
+  .welcome-section {
+    padding: 160px 0 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .welcome-container {
+    text-align: center;
+  }
+
+  .welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .welcome-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .welcome-desc {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+  }
+
+  /* App Grid */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 2.5rem;
+    }
+
+    .welcome-desc {
+      font-size: 1.2rem;
+    }
+
+    .app-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

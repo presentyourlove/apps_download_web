@@ -287,9 +287,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - 實作 RSS Feed (`rss.xml.js`)，讓使用者能訂閱部落格更新。
    - 擴大內容觸及率與讀者黏著度。
 
-3. **CSS 架構重構**
-   - 將龐大的 `global.css` 拆解為模組化 CSS。
-   - 利用 Astro Scoped Styles 特性，減少全域樣式汙染並縮減 Bundle Size。
+3. **CSS 架構重構** ✅ (已完成)
+   - 將龐大的 `global.css` (1475 行) 重構為模組化 CSS (~380 行)。
+   - 利用 Astro Scoped Styles 特性，將 Header、Footer、頁面專屬樣式遷移至各元件。
 
 4. **404 頁面引導增強**
    - 優化 404 錯誤頁面，加入熱門文章推薦或網站導覽地圖。
@@ -328,6 +328,12 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
   - `[MODIFY]` astro.config.mjs - 加入 AstroPWA 整合配置
   - `[MODIFY]` src/lib/pwa.ts - 使用 virtual:pwa-register 模組
   - `[MODIFY]` tsconfig.json - 加入 vite-plugin-pwa/client 型別
+
+- [2026-01-21] **CSS 架構重構**
+  - `[MODIFY]` src/styles/global.css - 從 1475 行精簡為 ~380 行
+  - `[MODIFY]` src/components/Header.astro - 加入完整 Header/Nav/Sidebar 樣式
+  - `[MODIFY]` src/components/Footer.astro - 加入完整 Footer 樣式
+  - `[MODIFY]` src/pages/index.astro - 加入首頁專屬樣式
 
 - [2026-01-21] **圖片載入最佳化**
   - `[MODIFY]` src/components/AppCard.astro - 改用 Astro Image 搭配 import.meta.glob
