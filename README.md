@@ -259,11 +259,64 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ---
 
-## 📜 版本歷史
+## 🔮 效能優化與常見問題 (Performance & Troubleshooting)
 
-- **v3.0.1 (2026-01-21)**: 新增部落格文章「工作管理員『處理程序』分頁消失？5 個步驟快速修復系統錯誤」。
-- **v3.0.0 (2026-01-20)**: 正式加入部落格功能，採用 Astro Content Collections 管理。
-- **v2.0.0 (2026-01-20)**: 優化 UI/UX，實現玻璃擬態設計與動態詳情頁。
-- **v1.0.0**: 初始版本發布。
+為了提供最佳的使用者體驗，本專案持續針對以下方向進行優化：
+
+### 🚀 核心優化策略
+
+1. **流暢轉場 (View Transitions)**
+   - 採用 Astro `ClientRouter` 技術，實現類似原生 App 的無縫換頁體驗。
+   - 解決傳統網頁切換時的閃爍問題，保持視覺連貫性。
+
+2. **PWA 架構現代化**
+   - 將 Service Worker 邏輯模組化，提升程式碼可維護性。
+   - 優化自動更新機制，確保使用者總是讀取到最新的應用程式內容。
+
+3. **相依性與效能升級**
+   - 保持 Astro 核心版本與相依套件同步更新。
+   - 移除未使用的 CSS 與 JS 資源，極大化載入速度。
+
+### 🔧 進階功能擴充
+
+1. **圖片載入最佳化**
+   - 重構 `AppCard` 元件，改用 Astro 內建 `<Image />` 元件搭配 `import.meta.glob`。
+   - 自動產生多種解析度 srcsets，提升各種裝置的載入效能。
+
+2. **內容訂閱服務 (RSS)**
+   - 實作 RSS Feed (`rss.xml.js`)，讓使用者能訂閱部落格更新。
+   - 擴大內容觸及率與讀者黏著度。
+
+3. **CSS 架構重構**
+   - 將龐大的 `global.css` 拆解為模組化 CSS。
+   - 利用 Astro Scoped Styles 特性，減少全域樣式汙染並縮減 Bundle Size。
+
+4. **404 頁面引導增強**
+   - 優化 404 錯誤頁面，加入熱門文章推薦或網站導覽地圖。
+   - 降低使用者跳出率，引導其回到正確路徑。
+
+### 🛡️ 品質保證與深度 SEO
+
+1. **自動化測試導入**
+    - 引入 Vitest 進行單元測試，確保資料邏輯正確。
+    - 使用 Playwright 進行 E2E 測試，自動驗證跨瀏覽器相容性。
+
+2. **深度 SEO 結構化資料**
+    - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
+    - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
+
+3. **字體本地化 (Self-hosted Fonts)**
+    - 改用 `@fontsource` 將 Google Fonts 本地化，避免第三方 CDN 請求。
+    - 提升隱私隱私性與載入穩定度。
+
+### ⚙️ 開發維運與資安 (DevOps & Security)
+
+1. **程式碼規範自動化**
+    - 導入 `ESLint` 與 `Prettier` 並整合至 git hook (Husky)。
+    - 強制統一程式碼風格，減少團隊協作衝突。
+
+2. **網站安全強化**
+    - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
+    - 限制外部資源載入來源，防範 XSS 攻擊。
 
 Copyright © 2026 Presentyourlove. All rights reserved.
