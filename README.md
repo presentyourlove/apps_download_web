@@ -108,11 +108,12 @@ apps_download_web/
 ├── .github/
 │   └── workflows/deploy.yml     # CI/CD 自動部署
 ├── public/
-│   ├── api/versions.json        # 應用程式資料源
 │   ├── assets/                  # 圖片、圖示
 │   ├── manifest.json            # PWA 設定
 │   └── robots.txt               # SEO
 ├── src/
+│   ├── content.config.ts        # Content Collections 設定
+│   ├── content/                 # 資料來源 (Apps, Blog)
 │   ├── components/
 │   │   ├── AppCard.astro        # 應用卡片
 │   │   ├── Header.astro         # 導覽列
@@ -142,9 +143,10 @@ apps_download_web/
 
 ### 新增應用程式
 
-1. 編輯 `public/api/versions.json`,新增應用程式資料
-2. 在 `public/assets/` 加入應用圖示 (命名: `{appId}-icon-192.webp`)
-3. 建置並測試: `npm run build && npm run preview`
+1. 在 `src/content/apps/` 目錄下新增 `{appId}.json` 檔案
+2. 依照 Schema 填入版本與下載資訊
+3. 在 `public/assets/` 加入應用圖示 (命名: `{appId}-icon-192.webp`)
+4. 建置並測試: `npm run build && npm run preview`
 
 ### 修改樣式
 
@@ -205,23 +207,23 @@ npm run build
 
 ## � API 文件與測試
 
-### 資料格式 (versions.json)
+### 資料格式 (Content Collections)
+
+資料位置: `src/content/apps/*.json`
 
 ```json
 {
-  "apps": [
-    {
-      "id": "financeapp",
-      "name": "FinanceApp",
-      "displayName": "智慧理財助手",
-      "version": "1.0.0",
-      "platforms": {
-        "android": { "downloadUrl": "..." },
-        "ios": { "status": "coming_soon" },
-        "web": { "url": "..." }
-      }
-    }
-  ]
+  "id": "financeapp",
+  "name": "FinanceApp",
+  "displayName": "智慧理財助手",
+  "version": "1.0.0",
+  "releaseDate": "2026-03-01",
+  "platforms": {
+    "android": { "version": "1.0.0", "downloadUrl": "..." },
+    "ios": { "version": "1.0.0", "status": "coming_soon" },
+    "web": { "version": "1.0.0", "url": "..." }
+  },
+  "changelog": []
 }
 ```
 
@@ -252,6 +254,26 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 - [GitHub Pages](https://pages.github.com/) - 免費靜態網站託管
 - [Google Fonts](https://fonts.google.com/) - Inter & Noto Sans TC 字體
 - [Feather Icons](https://feathericons.com/) - 精美的開源圖示
+
+---
+
+## 🚀 未來優化方向 (Phase 8: Optimization & Automation)
+
+目前專案已完成核心功能開發與基礎優化，下一階段將著重於自動化流程與極致效能：
+
+1. **DevOps 與自動化**
+   - [ ] **嚴格品質閘門 (Quality Gates)**: 在 CI 部署流程前強制執行 Lint, Type Check 與單元測試。
+   - [ ] **自動化依賴更新**: 整合 Renovate 或 Dependabot 定期更新 npm 套件。
+   - [ ] **無障礙自動化測試 (a11y)**: 整合 `axe-core` 至測試流程，確保符合 WCAG 標準。
+
+2. **開發體驗 (DX)**
+   - [ ] **路徑別名 (Import Aliases)**: 設定 `@/` 路徑別名以簡化深層引用。
+   - [ ] **元件文件 (Storybook)**: 建立 UI 元件庫文件，獨立測試元件狀態。
+   - [ ] **型別安全環境變數 (`astro:env`)**: 升級至 Astro 5 的 `astro:env` 模組，確保環境變數的型別安全與驗證。
+
+3. **極致效能**
+   - [ ] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
+   - [ ] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
 
 ---
 
