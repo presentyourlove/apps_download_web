@@ -262,14 +262,14 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 目前專案已完成核心功能開發與基礎優化，下一階段將著重於自動化流程與極致效能：
 
 1. **DevOps 與自動化**
-   - [ ] **嚴格品質閘門 (Quality Gates)**: 在 CI 部署流程前強制執行 Lint, Type Check 與單元測試。
-   - [ ] **自動化依賴更新**: 整合 Renovate 或 Dependabot 定期更新 npm 套件。
-   - [ ] **無障礙自動化測試 (a11y)**: 整合 `axe-core` 至測試流程，確保符合 WCAG 標準。
+   - [x] **嚴格品質閘門 (Quality Gates)**: 在 CI 部署流程前強制執行 Lint, Type Check 與單元測試。
+   - [x] **自動化依賴更新**: 整合 Renovate 或 Dependabot 定期更新 npm 套件。
+   - [x] **無障礙自動化測試 (a11y)**: 整合 `axe-core` 至測試流程，確保符合 WCAG 標準。
 
 2. **開發體驗 (DX)**
-   - [ ] **路徑別名 (Import Aliases)**: 設定 `@/` 路徑別名以簡化深層引用。
-   - [ ] **元件文件 (Storybook)**: 建立 UI 元件庫文件，獨立測試元件狀態。
-   - [ ] **型別安全環境變數 (`astro:env`)**: 升級至 Astro 5 的 `astro:env` 模組，確保環境變數的型別安全與驗證。
+   - [x] **路徑別名 (Import Aliases)**: 設定 `@/` 路徑別名以簡化深層引用。
+   - [x] **元件文件 (Storybook)**: 建立 UI 元件庫文件，獨立測試元件狀態。
+   - [x] **型別安全環境變數 (`astro:env`)**: 升級至 Astro 5 的 `astro:env` 模組，確保環境變數的型別安全與驗證。
 
 3. **極致效能**
    - [ ] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
