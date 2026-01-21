@@ -42,6 +42,33 @@ const showAltStoreGuide = hasIOS;
   description={`下載 ${app.displayName} v${app.version},支援多平台安裝`}
   ogImage={`${import.meta.env.BASE_URL}/open-graph/${app.id}.png`}
 >
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: app.name,
+        operatingSystem: Object.keys(app.platforms)
+          .map((p) => (p === 'android' ? 'Android' : p === 'ios' ? 'iOS' : 'Web'))
+          .join(', '),
+        applicationCategory: 'FinanceApplication', // 範例類別
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        softwareVersion: app.version,
+        datePublished: app.releaseDate,
+        author: {
+          '@type': 'Organization',
+          name: 'Presentyourlove',
+          url: 'https://presentyourlove.github.io/',
+        },
+        downloadUrl: app.platforms.android?.downloadUrl || '',
+      })}
+    />
+  </Fragment>
   <article class="app-detail">
     <div class="container">
       <header class="app-header">

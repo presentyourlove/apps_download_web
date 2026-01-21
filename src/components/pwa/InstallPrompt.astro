@@ -1,0 +1,130 @@
+---
+---
+
+<div id="install-pwa-container" class="install-pwa-container hidden">
+  <div class="install-pwa-content">
+    <div class="install-icon">
+      <img src="/apps_download_web/assets/presentyourlove-logo-192.png" alt="App Icon" width="48" height="48" />
+    </div>
+    <div class="install-info">
+      <h3>安裝應用程式</h3>
+      <p>將 Presentyourlove 下載中心安裝到您的裝置，享受更佳體驗。</p>
+    </div>
+    <button id="install-trigger" class="btn btn-primary btn-sm">安裝</button>
+    <button id="install-close" class="btn-close" aria-label="關閉">✕</button>
+  </div>
+</div>
+
+<script>
+  let deferredPrompt: any;
+  const installContainer = document.getElementById('install-pwa-container');
+  const installBtn = document.getElementById('install-trigger');
+  const closeBtn = document.getElementById('install-close');
+
+  // 監聽 beforeinstallprompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installContainer?.classList.remove('hidden');
+    installContainer?.classList.add('show');
+  });
+
+  // 點擊安裝
+  installBtn?.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        installContainer?.classList.remove('show');
+        installContainer?.classList.add('hidden');
+      }
+      deferredPrompt = null;
+    }
+  });
+
+  // 點擊關閉
+  closeBtn?.addEventListener('click', () => {
+    installContainer?.classList.remove('show');
+    installContainer?.classList.add('hidden');
+  });
+</script>
+
+<style>
+  .install-pwa-container {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 2000;
+    max-width: 400px;
+    width: calc(100% - 48px);
+    transform: translateY(150%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .install-pwa-container.show {
+    transform: translateY(0);
+  }
+
+  .install-pwa-container.hidden {
+    display: none; /* 或者是 transform: translateY(150%) 保持隱藏 */
+    visibility: hidden;
+  }
+  
+  /* 為了動畫效果，我們主要使用 class toggle 'show'，hidden 用於初始隱藏 */
+  .install-pwa-container:not(.hidden) {
+    display: block;
+    visibility: visible;
+  }
+
+  .install-pwa-content {
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+
+  .install-icon img {
+    border-radius: 10px;
+    display: block;
+  }
+
+  .install-info {
+    flex: 1;
+  }
+
+  .install-info h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .install-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .btn-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .btn-close:hover {
+    color: var(--text-primary);
+  }
+</style>

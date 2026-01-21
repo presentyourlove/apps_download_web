@@ -1,0 +1,25 @@
+{
+    "id": "sub-buddy",
+    "name": "Sub-Buddy",
+    "displayName": "拼團小幫手",
+    "version": "1.0.0",
+    "releaseDate": "2026-01-08",
+    "platforms": {
+        "web": {
+            "version": "1.0.0",
+            "url": "https://sub-buddy-2025.web.app"
+        }
+    },
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-01-08",
+            "changes": [
+                "首次公開版本",
+                "合購媒合功能",
+                "即時聊天室",
+                "信譽評價系統"
+            ]
+        }
+    ]
+}

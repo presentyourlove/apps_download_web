@@ -33,15 +33,15 @@ export interface AppsData {
   apps: App[];
 }
 
+import { getCollection } from 'astro:content';
+
 // 資料獲取函式 (Build Time)
 export async function getAppsData(): Promise<AppsData> {
-  // 在 SSG build 時,使用 fs 讀取檔案
-  const fs = await import('node:fs');
-  const path = await import('node:path');
-
-  const filePath = path.join(process.cwd(), 'public', 'api', 'versions.json');
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(fileContent);
+  const apps = await getCollection('apps');
+  return {
+    lastUpdated: new Date().toISOString(),
+    apps: apps.map((app) => app.data),
+  };
 }
 
 // 輔助函式:將 platforms 物件轉為陣列
