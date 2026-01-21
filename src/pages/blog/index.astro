@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // 獲取所有部落格文章並按日期排序
@@ -23,7 +24,7 @@ const pageTitle = "部落格 - Presentyourlove";
           <article class="blog-card">
             {post.data.heroImage && (
               <div class="blog-card-image">
-                <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
+                <Image src={post.data.heroImage} alt={post.data.title} width={400} height={225} />
               </div>
             )}
             <div class="blog-card-content">
