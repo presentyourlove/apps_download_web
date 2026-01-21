@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getAppsData, getAppById, getPlatformsArray } from '../lib/data';
+import { getAppsData, getPlatformsArray } from '../lib/data';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -34,8 +34,6 @@ if (!images[imagePath]) {
 
 // 檢查是否有 iOS 版本 (用於顯示 AltStore 說明)
 const hasIOS = app.platforms?.ios !== undefined;
-const iosComingSoon = app.platforms?.ios?.status === 'coming_soon';
-const iosAltStoreComingSoon = app.platforms?.ios?.altstore?.status === 'coming_soon';
 const showAltStoreGuide = hasIOS;
 ---
 
@@ -102,10 +100,7 @@ const showAltStoreGuide = hasIOS;
 
                 {/* 開啟 Deep Link 按鈕 */}
                 {app.scheme && platform.type !== 'web' && (
-                  <a
-                    href={app.scheme}
-                    class="btn btn-primary"
-                  >
+                  <a href={app.scheme} class="btn btn-primary">
                     {t('app.openApp')}
                   </a>
                 )}

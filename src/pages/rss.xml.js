@@ -20,7 +20,7 @@ export async function GET(context) {
     app.changelog.map((entry) => ({
       title: `[App 更新] ${app.displayName} v${entry.version}`,
       pubDate: new Date(entry.date),
-      description: `<ul>${entry.changes.map(c => `<li>${c}</li>`).join('')}</ul>`,
+      description: `<ul>${entry.changes.map((c) => `<li>${c}</li>`).join('')}</ul>`,
       link: `/${app.id}/`,
       category: ['App Updates'],
     }))
