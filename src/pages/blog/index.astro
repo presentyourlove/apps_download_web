@@ -8,7 +8,7 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const pageTitle = "部落格 - Presentyourlove";
+const pageTitle = '部落格 - Presentyourlove';
 ---
 
 <BaseLayout title={pageTitle}>
@@ -20,34 +20,37 @@ const pageTitle = "部落格 - Presentyourlove";
       </div>
 
       <div class="blog-grid">
-        {posts.map((post) => (
-          <article class="blog-card">
-            {post.data.heroImage && (
-              <div class="blog-card-image">
-                <Image src={post.data.heroImage} alt={post.data.title} width={400} height={225} />
+        {
+          posts.map((post) => (
+            <article class="blog-card">
+              {post.data.heroImage && (
+                <div class="blog-card-image">
+                  <Image src={post.data.heroImage} alt={post.data.title} width={400} height={225} />
+                </div>
+              )}
+              <div class="blog-card-content">
+                <div class="blog-card-meta">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString('zh-TW', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  {post.data.tags &&
+                    post.data.tags.map((tag) => <span class="blog-tag">{tag}</span>)}
+                </div>
+                <h2 class="blog-card-title">
+                  <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`}>{post.data.title}</a>
+                </h2>
+                <p class="blog-card-desc">{post.data.description}</p>
+                <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`} class="text-link">
+                  閱讀更多 →
+                </a>
               </div>
-            )}
-            <div class="blog-card-content">
-              <div class="blog-card-meta">
-                <time datetime={post.data.pubDate.toISOString()}>
-                  {post.data.pubDate.toLocaleDateString('zh-TW', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-                {post.data.tags && post.data.tags.map(tag => (
-                  <span class="blog-tag">{tag}</span>
-                ))}
-              </div>
-              <h2 class="blog-card-title">
-                <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`}>{post.data.title}</a>
-              </h2>
-              <p class="blog-card-desc">{post.data.description}</p>
-              <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`} class="text-link">閱讀更多 →</a>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>

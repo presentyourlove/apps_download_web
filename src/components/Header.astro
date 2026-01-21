@@ -9,7 +9,13 @@ const { apps } = await getAppsData();
   <div class="container header-container">
     <!-- Logo -->
     <a href={`${import.meta.env.BASE_URL}/`} class="logo-area">
-      <img src={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`} alt="Logo" class="logo-img" width="40" height="40">
+      <img
+        src={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`}
+        alt="Logo"
+        class="logo-img"
+        width="40"
+        height="40"
+      />
       <span class="app-name">Presentyourlove</span>
     </a>
 
@@ -18,24 +24,34 @@ const { apps } = await getAppsData();
       <div class="nav-tabs">
         <a href={`${import.meta.env.BASE_URL}/`} class="nav-tab">首頁</a>
         <a href={`${import.meta.env.BASE_URL}/blog/`} class="nav-tab">部落格</a>
-        
+
         <!-- 應用程式下拉選單 -->
         <div class="nav-dropdown">
           <span class="nav-tab dropdown-trigger">
             應用程式
-            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              class="dropdown-arrow"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </span>
           <div class="dropdown-menu">
-            {apps.map(app => (
-              <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="dropdown-item">
-                {app.displayName}
-              </a>
-            ))}
+            {
+              apps.map((app) => (
+                <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="dropdown-item">
+                  {app.displayName}
+                </a>
+              ))
+            }
           </div>
         </div>
-        
+
         <a href={`${import.meta.env.BASE_URL}/about/`} class="nav-tab">關於我們</a>
       </div>
     </nav>
@@ -45,7 +61,17 @@ const { apps } = await getAppsData();
       <!-- Theme Toggle -->
       <button id="theme-toggle" class="theme-btn" aria-label="切換主題">
         <!-- Sun Icon (for Dark Mode) -->
-        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          class="icon-sun"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
           <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -57,14 +83,33 @@ const { apps } = await getAppsData();
           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
         <!-- Moon Icon (for Light Mode) -->
-        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          class="icon-moon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
 
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="開啟選單">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -79,28 +124,39 @@ const { apps } = await getAppsData();
   <div class="sidebar-header">
     <h2>導覽</h2>
     <button id="sidebar-close-btn" class="sidebar-close-btn" aria-label="關閉選單">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   </div>
-  
+
   <nav class="sidebar-nav">
     <ul class="sidebar-tabs">
       <li><a href={`${import.meta.env.BASE_URL}/`} class="sidebar-tab">首頁</a></li>
       <li><a href={`${import.meta.env.BASE_URL}/blog/`} class="sidebar-tab">部落格</a></li>
-      
+
       <!-- 應用程式列表 -->
       <li class="sidebar-section-title">應用程式</li>
-      {apps.map(app => (
-        <li>
-          <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="sidebar-tab sidebar-app-item">
-            {app.displayName}
-          </a>
-        </li>
-      ))}
-      
+      {
+        apps.map((app) => (
+          <li>
+            <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="sidebar-tab sidebar-app-item">
+              {app.displayName}
+            </a>
+          </li>
+        ))
+      }
+
       <li><a href={`${import.meta.env.BASE_URL}/about/`} class="sidebar-tab">關於我們</a></li>
     </ul>
   </nav>
@@ -133,17 +189,17 @@ const { apps } = await getAppsData();
   closeBtn?.addEventListener('click', closeSidebar);
   overlay?.addEventListener('click', closeSidebar);
 
-  sidebarLinks.forEach(link => {
+  sidebarLinks.forEach((link) => {
     link.addEventListener('click', closeSidebar);
   });
 
   // Theme Toggle Logic
   const themeBtn = document.getElementById('theme-toggle');
-  
+
   themeBtn?.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
   });
@@ -153,7 +209,7 @@ const { apps } = await getAppsData();
   /* ========================================
      Header Component Styles
      ======================================== */
-  
+
   /* Header Base */
   .header {
     padding: 20px 0;
@@ -172,7 +228,7 @@ const { apps } = await getAppsData();
     transform: translateY(-100%);
   }
 
-  :global([data-theme="light"]) .header {
+  :global([data-theme='light']) .header {
     background: rgba(var(--bg-rgb), 0.8);
   }
 
@@ -326,19 +382,19 @@ const { apps } = await getAppsData();
     background-color: var(--bg-secondary);
   }
 
-  :global([data-theme="dark"]) .icon-sun {
+  :global([data-theme='dark']) .icon-sun {
     display: block;
   }
 
-  :global([data-theme="dark"]) .icon-moon {
+  :global([data-theme='dark']) .icon-moon {
     display: none;
   }
 
-  :global([data-theme="light"]) .icon-sun {
+  :global([data-theme='light']) .icon-sun {
     display: none;
   }
 
-  :global([data-theme="light"]) .icon-moon {
+  :global([data-theme='light']) .icon-moon {
     display: block;
   }
 
@@ -458,7 +514,9 @@ const { apps } = await getAppsData();
     z-index: 150;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
 
   .sidebar-overlay.active {

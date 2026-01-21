@@ -16,30 +16,30 @@ const { Content } = await post.render();
 
 // SEO: Generate JSON-LD Schema
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": post.data.title,
-  "description": post.data.description,
-  "datePublished": post.data.pubDate.toISOString(),
-  "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
-  "image": post.data.heroImage ? new URL(post.data.heroImage.src, Astro.site).toString() : undefined,
-  "author": {
-    "@type": "Person",
-    "name": "Presentyourlove",
-    "url": "https://github.com/presentyourlove"
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  image: post.data.heroImage ? new URL(post.data.heroImage.src, Astro.site).toString() : undefined,
+  author: {
+    '@type': 'Person',
+    name: 'Presentyourlove',
+    url: 'https://github.com/presentyourlove',
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Presentyourlove",
-    "logo": {
-      "@type": "ImageObject",
-      "url": new URL("/assets/presentyourlove-logo-512.webp", Astro.site).toString()
-    }
+  publisher: {
+    '@type': 'Organization',
+    name: 'Presentyourlove',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/assets/presentyourlove-logo-512.webp', Astro.site).toString(),
+    },
   },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": Astro.url.toString()
-  }
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': Astro.url.toString(),
+  },
 };
 ---
 
@@ -48,26 +48,28 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <article class="post-detail">
-    {post.data.heroImage && (
-      <div class="post-hero">
-        <Image src={post.data.heroImage} alt={post.data.title} />
-      </div>
-    )}
-    
+    {
+      post.data.heroImage && (
+        <div class="post-hero">
+          <Image src={post.data.heroImage} alt={post.data.title} />
+        </div>
+      )
+    }
+
     <div class="container mobile-container">
       <div class="post-header">
         <div class="post-meta">
           <time datetime={post.data.pubDate.toISOString()}>
-            {post.data.pubDate.toLocaleDateString('zh-TW', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
+            {
+              post.data.pubDate.toLocaleDateString('zh-TW', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }
           </time>
           <div class="post-tags">
-            {post.data.tags && post.data.tags.map(tag => (
-              <span class="blog-tag">{tag}</span>
-            ))}
+            {post.data.tags && post.data.tags.map((tag) => <span class="blog-tag">{tag}</span>)}
           </div>
         </div>
         <h1 class="post-title">{post.data.title}</h1>
@@ -78,9 +80,7 @@ const schema = {
       </div>
 
       <div class="post-footer">
-        <a href={`${import.meta.env.BASE_URL}/blog/`} class="back-link">
-          ← 返回部落格列表
-        </a>
+        <a href={`${import.meta.env.BASE_URL}/blog/`} class="back-link"> ← 返回部落格列表 </a>
       </div>
     </div>
   </article>
@@ -110,7 +110,8 @@ const schema = {
     margin-bottom: 20px;
   }
 
-  .post-content ul, .post-content ol {
+  .post-content ul,
+  .post-content ol {
     margin-bottom: 24px;
     padding-left: 24px;
   }
@@ -124,7 +125,7 @@ const schema = {
     border-radius: 12px;
     margin: 32px 0;
   }
-  
+
   .post-content blockquote {
     border-left: 4px solid var(--accent-color);
     padding: 16px 24px;
@@ -222,7 +223,7 @@ const schema = {
     .post-title {
       font-size: 2rem;
     }
-    
+
     .post-content {
       padding: 24px;
     }

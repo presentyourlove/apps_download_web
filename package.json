@@ -11,7 +11,10 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed"
+    "test:e2e:headed": "playwright test --headed",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
@@ -22,8 +25,18 @@
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.1",
     "@playwright/test": "^1.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@typescript-eslint/parser": "^8.53.1",
     "@vite-pwa/astro": "^1.2.0",
     "@vitest/coverage-v8": "^4.0.17",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "globals": "^17.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript-eslint": "^8.53.1",
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^4.0.17"
   }

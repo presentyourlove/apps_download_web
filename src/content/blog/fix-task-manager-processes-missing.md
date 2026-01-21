@@ -1,9 +1,9 @@
 ---
-title: "工作管理員「處理程序」分頁消失？5 個步驟快速修復系統錯誤"
-description: "當 Windows 工作管理員出現異常或分頁消失時，這通常是系統檔案損毀的徵兆。本文整理了微軟建議的 DISM 與 SFC 修復指令，助你快速排除故障。"
-pubDate: "2026-01-21"
-heroImage: "./_assets/task-manager-fix.png"
-tags: ["Troubleshooting", "Windows", "Tutorial"]
+title: '工作管理員「處理程序」分頁消失？5 個步驟快速修復系統錯誤'
+description: '當 Windows 工作管理員出現異常或分頁消失時，這通常是系統檔案損毀的徵兆。本文整理了微軟建議的 DISM 與 SFC 修復指令，助你快速排除故障。'
+pubDate: '2026-01-21'
+heroImage: './_assets/task-manager-fix.png'
+tags: ['Troubleshooting', 'Windows', 'Tutorial']
 ---
 
 ## 為什麼工作管理員會出現異常？
@@ -16,8 +16,8 @@ tags: ["Troubleshooting", "Windows", "Tutorial"]
 
 在開始執行複雜指令前，請先確認這不是一個簡單的顯示設定問題。
 
-* **症狀**：工作管理員只顯示目前執行的應用程式清單，沒有分頁標籤。
-* **解法**：點擊視窗左下角的 **「詳細資料 (More details)」** 按鈕。如果按鈕無效或分頁依然空白，請繼續閱讀下方的修復教學。
+- **症狀**：工作管理員只顯示目前執行的應用程式清單，沒有分頁標籤。
+- **解法**：點擊視窗左下角的 **「詳細資料 (More details)」** 按鈕。如果按鈕無效或分頁依然空白，請繼續閱讀下方的修復教學。
 
 ## 實戰教學：5 步驟修復系統
 
@@ -35,38 +35,38 @@ tags: ["Troubleshooting", "Windows", "Tutorial"]
 DISM (Deployment Image Servicing and Management) 工具可以檢查並修復 Windows 的系統映像檔。請依序輸入以下指令，每行輸入完畢後按下 **Enter** 鍵：
 
 1. **檢查健康度**：
-    此指令會快速標記映像檔是否已損毀。
+   此指令會快速標記映像檔是否已損毀。
 
-    ```cmd
-    Dism /Online /Cleanup-Image /CheckHealth
-    ```
+   ```cmd
+   Dism /Online /Cleanup-Image /CheckHealth
+   ```
 
 2. **掃描健康度**：
-    這會執行更深入的掃描來尋找元件存放區的損毀情形。
+   這會執行更深入的掃描來尋找元件存放區的損毀情形。
 
-    ```cmd
-    Dism /Online /Cleanup-Image /ScanHealth
-    ```
+   ```cmd
+   Dism /Online /Cleanup-Image /ScanHealth
+   ```
 
 3. **還原健康度**（**重要：需要網路連線**）：
-    此指令會連接到 Windows Update 下載損毀檔案的替換版本並進行修復。
+   此指令會連接到 Windows Update 下載損毀檔案的替換版本並進行修復。
 
-    ```cmd
-    Dism /Online /Cleanup-Image /RestoreHealth
-    ```
+   ```cmd
+   Dism /Online /Cleanup-Image /RestoreHealth
+   ```
 
-    > **注意**：步驟 3 可能需要幾分鐘的時間，進度條可能會在某些百分比（如 20% 或 40%）暫停，這是正常現象，請耐心等待。
+   > **注意**：步驟 3 可能需要幾分鐘的時間，進度條可能會在某些百分比（如 20% 或 40%）暫停，這是正常現象，請耐心等待。
 
 ### 步驟 4：執行 SFC 掃描
 
 當 DISM 確保了系統映像檔是健康的之後，我們接著使用 SFC (System File Checker) 來修復個別的系統檔案。
 
 1. **掃描並修復系統檔案**：
-    此指令會掃描所有受保護的系統檔案，並將損毀的檔案替換為快取的複本。
+   此指令會掃描所有受保護的系統檔案，並將損毀的檔案替換為快取的複本。
 
-    ```cmd
-    sfc /scannow
-    ```
+   ```cmd
+   sfc /scannow
+   ```
 
 ### 步驟 5：重新啟動電腦
 

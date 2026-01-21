@@ -25,26 +25,26 @@
 
 ## ✨ 功能特色
 
-| 功能 | 說明 |
-| :--- | :--- |
-| 🏠 首頁 | 展示所有應用程式,支援動態下拉選單 |
-| 📱 應用詳情 | 顯示版本、支援平台、下載連結 |
-| 📝 部落格 | 分享開發心得與技術文章 (V3 新功能) |
-| 📋 AltStore 指南 | iOS 側載安裝說明 |
-| 👤 關於我們 | 社交連結與聯絡資訊 |
-| 🌓 主題切換 | 深色/淺色模式 |
-| 📊 PWA 支援 | 可安裝為桌面應用程式 |
+| 功能             | 說明                               |
+| :--------------- | :--------------------------------- |
+| 🏠 首頁          | 展示所有應用程式,支援動態下拉選單  |
+| 📱 應用詳情      | 顯示版本、支援平台、下載連結       |
+| 📝 部落格        | 分享開發心得與技術文章 (V3 新功能) |
+| 📋 AltStore 指南 | iOS 側載安裝說明                   |
+| 👤 關於我們      | 社交連結與聯絡資訊                 |
+| 🌓 主題切換      | 深色/淺色模式                      |
+| 📊 PWA 支援      | 可安裝為桌面應用程式               |
 
 ---
 
 ## 🏆 程式碼品質
 
-| 指標 | 分數 |
-| :--- | :--- |
-| 🚀 Performance | 96/100 |
-| ♿ Accessibility | 100/100 |
-| ✅ Best Practices | 96/100 |
-| 🔍 SEO | 100/100 |
+| 指標              | 分數    |
+| :---------------- | :------ |
+| 🚀 Performance    | 96/100  |
+| ♿ Accessibility  | 100/100 |
+| ✅ Best Practices | 96/100  |
+| 🔍 SEO            | 100/100 |
 
 ### 使用的最佳實踐
 
@@ -77,11 +77,11 @@ npm run dev
 
 ## 📱 支援平台
 
-| 應用程式 | Android | iOS | Web |
-| :--- | :--- | :--- | :--- |
-| 智慧理財助手 | ✅ APK | 🔜 3月 | ✅ |
-| 訂閱管理助手 | - | 🔜 3月 | - |
-| 拼團小幫手 | - | - | ✅ |
+| 應用程式     | Android | iOS    | Web |
+| :----------- | :------ | :----- | :-- |
+| 智慧理財助手 | ✅ APK  | 🔜 3月 | ✅  |
+| 訂閱管理助手 | -       | 🔜 3月 | -   |
+| 拼團小幫手   | -       | -      | ✅  |
 
 > 🔜 = 預計 2026 年 3 月初上架
 
@@ -89,15 +89,15 @@ npm run dev
 
 ## 🛠 技術堆疊
 
-| 類別 | 技術 |
-| :--- | :--- |
-| **框架** | Astro 5.x (SSG) |
-| **語言** | TypeScript (Strict) |
-| **樣式** | CSS Variables + Glassmorphism |
-| **建置** | Vite |
-| **部署** | GitHub Pages |
-| **CI/CD** | GitHub Actions |
-| **SEO** | Sitemap, JSON-LD, OpenGraph |
+| 類別      | 技術                          |
+| :-------- | :---------------------------- |
+| **框架**  | Astro 5.x (SSG)               |
+| **語言**  | TypeScript (Strict)           |
+| **樣式**  | CSS Variables + Glassmorphism |
+| **建置**  | Vite                          |
+| **部署**  | GitHub Pages                  |
+| **CI/CD** | GitHub Actions                |
+| **SEO**   | Sitemap, JSON-LD, OpenGraph   |
 
 ---
 
@@ -298,28 +298,33 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 ### 🛡️ 品質保證與深度 SEO
 
 1. **自動化測試導入** ✅ (已完成)
-    - 引入 Vitest 進行單元測試 (8 個測試案例)。
-    - 使用 Playwright 進行 E2E 測試 (多瀏覽器 + 行動裝置)。
+   - 引入 Vitest 進行單元測試 (8 個測試案例)。
+   - 使用 Playwright 進行 E2E 測試 (多瀏覽器 + 行動裝置)。
 
 2. **深度 SEO 結構化資料** ✅ (已完成)
-    - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
-    - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
+   - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
+   - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
 
 3. **字體本地化 (Self-hosted Fonts)** ✅ (已完成)
-    - 改用 `@fontsource` 將 Google Fonts 本地化，避免第三方 CDN 請求。
-    - 提升隱私隱私性與載入穩定度。
+   - 改用 `@fontsource` 將 Google Fonts 本地化，避免第三方 CDN 請求。
+   - 提升隱私隱私性與載入穩定度。
 
 ### ⚙️ 開發維運與資安 (DevOps & Security)
 
-1. **程式碼規範自動化**
-    - 導入 `ESLint` 與 `Prettier` 並整合至 git hook (Husky)。
-    - 強制統一程式碼風格，減少團隊協作衝突。
+1. **程式碼規範自動化** ✅ (已完成)
+   - 導入 `ESLint` 與 `Prettier` 並整合至 git hook (Husky)。
+   - 強制統一程式碼風格，減少團隊協作衝突。
 
 2. **網站安全強化**
-    - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
-    - 限制外部資源載入來源，防範 XSS 攻擊。
+   - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
+   - 限制外部資源載入來源，防範 XSS 攻擊。
 
 ### 📝 最近更新 (Latest Updates)
+
+- [2026-01-21] **程式碼規範自動化**
+  - `[ADD]` eslint.config.mjs, .prettierrc.mjs - 建立代碼規範設定
+  - `[ADD]` .husky, .lintstagedrc - 設定 Git Commit Hook 自動檢查
+  - `[MODIFY]` package.json - 新增 lint 與 format 腳本
 
 - [2026-01-21] **字體本地化 (Self-hosted Fonts)**
   - `[ADD]` @fontsource/inter, @fontsource/noto-sans-tc - 安裝本地字體包

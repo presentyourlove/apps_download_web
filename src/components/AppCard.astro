@@ -12,20 +12,24 @@ const { id, name, displayName } = Astro.props;
 const detailUrl = `${import.meta.env.BASE_URL}/${id}/`;
 
 // 動態匯入圖示
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/icons/*.{png,jpg,jpeg,webp}');
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/icons/*.{png,jpg,jpeg,webp}'
+);
 const imagePath = `/src/assets/icons/${id}-icon-192.png`;
 
 if (!images[imagePath]) {
-  throw new Error(`"${imagePath}" does not exist in glob: "src/assets/icons/*.{png,jpg,jpeg,webp}"`);
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/icons/*.{png,jpg,jpeg,webp}"`
+  );
 }
 ---
 
 <a href={detailUrl} class="app-card">
   <div class="app-card-icon">
-    <Image 
-      src={images[imagePath]()} 
+    <Image
+      src={images[imagePath]()}
       alt={`${name} Logo`}
-      width={80} 
+      width={80}
       height={80}
       densities={[1, 1.5, 2]}
     />
@@ -53,7 +57,7 @@ if (!images[imagePath]) {
     align-items: center;
     gap: 16px;
   }
-  
+
   .app-card::before {
     content: '';
     position: absolute;
@@ -65,16 +69,16 @@ if (!images[imagePath]) {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .app-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 60px -10px rgba(37, 99, 235, 0.3);
   }
-  
+
   .app-card:hover::before {
     opacity: 1;
   }
-  
+
   .app-card-icon {
     width: 80px;
     height: 80px;
@@ -82,30 +86,30 @@ if (!images[imagePath]) {
     overflow: hidden;
     transition: transform 0.3s ease;
   }
-  
+
   .app-card:hover .app-card-icon {
     transform: scale(1.1);
   }
-  
+
   .app-card-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  
+
   .app-card h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
     color: var(--text-primary);
   }
-  
+
   .app-card p {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin: 0;
   }
-  
+
   .app-card-arrow {
     font-size: 1.5rem;
     color: var(--accent-primary);
@@ -113,17 +117,17 @@ if (!images[imagePath]) {
     transform: translateX(-10px);
     transition: all 0.3s ease;
   }
-  
+
   .app-card:hover .app-card-arrow {
     opacity: 1;
     transform: translateX(0);
   }
-  
+
   @media (max-width: 768px) {
     .app-card {
       padding: 32px 24px;
     }
-    
+
     .app-card h2 {
       font-size: 1.25rem;
     }

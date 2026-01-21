@@ -5,10 +5,10 @@ import { getAppsData, getAppById, getPlatformsArray } from '../lib/data';
 // Build Time 生成所有頁面
 export async function getStaticPaths() {
   const { apps } = await getAppsData();
-  
-  return apps.map(app => ({
+
+  return apps.map((app) => ({
     params: { appId: app.id },
-    props: { app }
+    props: { app },
   }));
 }
 
@@ -22,7 +22,7 @@ const iosAltStoreComingSoon = app.platforms?.ios?.altstore?.status === 'coming_s
 const showAltStoreGuide = hasIOS;
 ---
 
-<BaseLayout 
+<BaseLayout
   title={`${app.displayName} - 下載 | Presentyourlove`}
   description={`下載 ${app.displayName} v${app.version},支援多平台安裝`}
   ogImage={`${import.meta.env.BASE_URL}/assets/${app.id}-icon-192.webp`}
@@ -30,7 +30,7 @@ const showAltStoreGuide = hasIOS;
   <article class="app-detail">
     <div class="container">
       <header class="app-header">
-        <img 
+        <img
           src={`${import.meta.env.BASE_URL}/assets/${app.id}-icon-192.webp`}
           alt={`${app.name} Icon`}
           width="120"
@@ -43,116 +43,129 @@ const showAltStoreGuide = hasIOS;
           <p class="release-date">發布日期: {app.releaseDate}</p>
         </div>
       </header>
-      
+
       <section class="platforms-section">
         <h2>支援平台</h2>
         <div class="platform-grid">
-          {platforms.map(platform => (
-            <div class={`platform-card ${platform.status === 'coming_soon' ? 'coming-soon' : ''}`}>
-              <h3>
-                {platform.type === 'android' && 'Android'}
-                {platform.type === 'ios' && 'iOS'}
-                {platform.type === 'web' && 'Web App'}
-              </h3>
-              
-              {/* 版本資訊 */}
-              <p class="platform-version">版本: {platform.version}</p>
-              {platform.minOS && <p class="platform-req">最低需求: iOS {platform.minOS}</p>}
-              {platform.minSdk && <p class="platform-req">最低需求: Android API {platform.minSdk}</p>}
-              {platform.size && <p class="platform-size">大小: {platform.size}</p>}
-              
-              {/* iOS 即將上架提示 */}
-              {platform.status === 'coming_soon' && (
-                <div class="coming-soon-badge">
-                  <span class="badge-icon">📅</span>
-                  <span>預計 2026 年 3 月初正式上架</span>
-                </div>
-              )}
-              
-              {/* AltStore 即將上架提示 */}
-              {platform.altstore?.status === 'coming_soon' && (
-                <div class="coming-soon-badge altstore-badge">
-                  <span class="badge-icon">🔧</span>
-                  <span>AltStore 版本預計 3 月初推出</span>
-                </div>
-              )}
-              
-              {/* 下載按鈕 */}
-              {platform.downloadUrl && (
-                <a 
-                  href={platform.downloadUrl} 
-                  class="btn btn-primary"
-                  download
-                >
-                  下載 APK
-                </a>
-              )}
-              
-              {platform.storeUrl && (
-                <a 
-                  href={platform.storeUrl} 
-                  class="btn btn-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  前往 App Store
-                </a>
-              )}
-              
-              {platform.url && platform.type === 'web' && (
-                <a 
-                  href={platform.url} 
-                  class="btn btn-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  開啟 Web 版
-                </a>
-              )}
-            </div>
-          ))}
+          {
+            platforms.map((platform) => (
+              <div
+                class={`platform-card ${platform.status === 'coming_soon' ? 'coming-soon' : ''}`}
+              >
+                <h3>
+                  {platform.type === 'android' && 'Android'}
+                  {platform.type === 'ios' && 'iOS'}
+                  {platform.type === 'web' && 'Web App'}
+                </h3>
+
+                {/* 版本資訊 */}
+                <p class="platform-version">版本: {platform.version}</p>
+                {platform.minOS && <p class="platform-req">最低需求: iOS {platform.minOS}</p>}
+                {platform.minSdk && (
+                  <p class="platform-req">最低需求: Android API {platform.minSdk}</p>
+                )}
+                {platform.size && <p class="platform-size">大小: {platform.size}</p>}
+
+                {/* iOS 即將上架提示 */}
+                {platform.status === 'coming_soon' && (
+                  <div class="coming-soon-badge">
+                    <span class="badge-icon">📅</span>
+                    <span>預計 2026 年 3 月初正式上架</span>
+                  </div>
+                )}
+
+                {/* AltStore 即將上架提示 */}
+                {platform.altstore?.status === 'coming_soon' && (
+                  <div class="coming-soon-badge altstore-badge">
+                    <span class="badge-icon">🔧</span>
+                    <span>AltStore 版本預計 3 月初推出</span>
+                  </div>
+                )}
+
+                {/* 下載按鈕 */}
+                {platform.downloadUrl && (
+                  <a href={platform.downloadUrl} class="btn btn-primary" download>
+                    下載 APK
+                  </a>
+                )}
+
+                {platform.storeUrl && (
+                  <a
+                    href={platform.storeUrl}
+                    class="btn btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    前往 App Store
+                  </a>
+                )}
+
+                {platform.url && platform.type === 'web' && (
+                  <a
+                    href={platform.url}
+                    class="btn btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    開啟 Web 版
+                  </a>
+                )}
+              </div>
+            ))
+          }
         </div>
       </section>
-      
+
       {/* AltStore 安裝說明 - 只在有 iOS 版本時顯示 */}
-      {showAltStoreGuide && (
-        <section class="guide-section">
-          <h2>如何安裝 iOS 版本? (AltStore)</h2>
-          <div class="guide-steps">
-            <div class="step-card">
-              <div class="step-number">1</div>
-              <h3>安裝 AltStore</h3>
-              <p>請先由電腦端安裝 AltServer,並將 AltStore 安裝至您的 iPhone。</p>
-              <a href="https://altstore.io/" target="_blank" rel="noopener noreferrer" class="text-link">
-                前往 AltStore 官網 ↗
-              </a>
+      {
+        showAltStoreGuide && (
+          <section class="guide-section">
+            <h2>如何安裝 iOS 版本? (AltStore)</h2>
+            <div class="guide-steps">
+              <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>安裝 AltStore</h3>
+                <p>請先由電腦端安裝 AltServer,並將 AltStore 安裝至您的 iPhone。</p>
+                <a
+                  href="https://altstore.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-link"
+                >
+                  前往 AltStore 官網 ↗
+                </a>
+              </div>
+              <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>下載 IPA 檔案</h3>
+                <p>使用 iPhone 下載本頁面的 IPA 檔案,並儲存至「檔案」App。</p>
+              </div>
+              <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>透過 AltStore 安裝</h3>
+                <p>開啟 AltStore → My Apps → 點擊左上角「+」→ 選擇下載的 IPA 檔案即可。</p>
+              </div>
             </div>
-            <div class="step-card">
-              <div class="step-number">2</div>
-              <h3>下載 IPA 檔案</h3>
-              <p>使用 iPhone 下載本頁面的 IPA 檔案,並儲存至「檔案」App。</p>
-            </div>
-            <div class="step-card">
-              <div class="step-number">3</div>
-              <h3>透過 AltStore 安裝</h3>
-              <p>開啟 AltStore → My Apps → 點擊左上角「+」→ 選擇下載的 IPA 檔案即可。</p>
-            </div>
-          </div>
-        </section>
-      )}
-      
+          </section>
+        )
+      }
+
       <section class="changelog-section">
         <h2>更新記錄</h2>
-        {app.changelog.map(entry => (
-          <div class="changelog-entry">
-            <h3>v{entry.version} <span class="changelog-date">({entry.date})</span></h3>
-            <ul>
-              {entry.changes.map(change => (
-                <li>{change}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {
+          app.changelog.map((entry) => (
+            <div class="changelog-entry">
+              <h3>
+                v{entry.version} <span class="changelog-date">({entry.date})</span>
+              </h3>
+              <ul>
+                {entry.changes.map((change) => (
+                  <li>{change}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </section>
     </div>
   </article>
@@ -163,7 +176,7 @@ const showAltStoreGuide = hasIOS;
     padding: 60px 0 80px;
     min-height: 100vh;
   }
-  
+
   .app-header {
     display: flex;
     align-items: center;
@@ -172,36 +185,36 @@ const showAltStoreGuide = hasIOS;
     padding-bottom: 40px;
     border-bottom: var(--glass-border);
   }
-  
+
   .app-icon {
     border-radius: 24px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   }
-  
+
   .app-info h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 8px;
   }
-  
+
   .version {
     font-size: 1.1rem;
     color: var(--accent-color);
     font-weight: 600;
   }
-  
+
   .release-date {
     color: var(--text-secondary);
     font-size: 0.95rem;
     margin-top: 4px;
   }
-  
+
   .platforms-section,
   .changelog-section,
   .guide-section {
     margin-bottom: 60px;
   }
-  
+
   .platforms-section h2,
   .changelog-section h2,
   .guide-section h2 {
@@ -209,13 +222,13 @@ const showAltStoreGuide = hasIOS;
     font-weight: 700;
     margin-bottom: 32px;
   }
-  
+
   .platform-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
   }
-  
+
   .platform-card {
     background: var(--card-bg);
     border: var(--glass-border);
@@ -224,19 +237,19 @@ const showAltStoreGuide = hasIOS;
     border-radius: 20px;
     transition: all 0.3s ease;
   }
-  
+
   .platform-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 40px rgba(var(--accent-rgb), 0.2);
     border-color: var(--accent-color);
   }
-  
+
   .platform-card h3 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 16px;
   }
-  
+
   .platform-version,
   .platform-req,
   .platform-size {
@@ -244,13 +257,13 @@ const showAltStoreGuide = hasIOS;
     font-size: 0.9rem;
     margin-bottom: 8px;
   }
-  
+
   .platform-card .btn {
     margin-top: 16px;
     width: 100%;
     text-align: center;
   }
-  
+
   /* Coming Soon Badge */
   .coming-soon-badge {
     display: flex;
@@ -264,35 +277,35 @@ const showAltStoreGuide = hasIOS;
     font-size: 0.9rem;
     color: var(--accent-color);
   }
-  
+
   .badge-icon {
     font-size: 1.2rem;
   }
-  
+
   .altstore-badge {
     margin-top: 12px;
     background: rgba(99, 102, 241, 0.1);
     border-color: rgba(99, 102, 241, 0.3);
   }
-  
+
   /* Guide Section */
   .guide-section {
     margin-top: 20px;
   }
-  
+
   .guide-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 20px;
   }
-  
+
   @media (max-width: 900px) {
     .guide-steps {
       grid-template-columns: 1fr;
     }
   }
-  
+
   .step-card {
     background: var(--bg-secondary);
     padding: 32px 24px 28px;
@@ -302,7 +315,7 @@ const showAltStoreGuide = hasIOS;
     margin-top: 16px;
     overflow: visible;
   }
-  
+
   .step-number {
     position: absolute;
     top: -16px;
@@ -319,21 +332,21 @@ const showAltStoreGuide = hasIOS;
     font-size: 1rem;
     z-index: 1;
   }
-  
+
   .step-card h3 {
     font-size: 1.1rem;
     margin-bottom: 12px;
     margin-top: 4px;
     font-weight: 600;
   }
-  
+
   .step-card p {
     color: var(--text-secondary);
     font-size: 0.9rem;
     line-height: 1.7;
     margin: 0;
   }
-  
+
   .text-link {
     color: var(--accent-color);
     text-decoration: none;
@@ -342,12 +355,12 @@ const showAltStoreGuide = hasIOS;
     display: inline-block;
     transition: opacity 0.2s;
   }
-  
+
   .text-link:hover {
     opacity: 0.8;
     text-decoration: underline;
   }
-  
+
   /* Changelog */
   .changelog-entry {
     background: var(--card-bg);
@@ -357,32 +370,32 @@ const showAltStoreGuide = hasIOS;
     border-radius: 16px;
     margin-bottom: 24px;
   }
-  
+
   .changelog-entry h3 {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 16px;
     color: var(--accent-color);
   }
-  
+
   .changelog-date {
     color: var(--text-secondary);
     font-size: 0.9rem;
     font-weight: 400;
   }
-  
+
   .changelog-entry ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .changelog-entry li {
     padding: 8px 0;
     padding-left: 24px;
     position: relative;
     color: var(--text-secondary);
   }
-  
+
   .changelog-entry li::before {
     content: '•';
     position: absolute;
@@ -390,18 +403,18 @@ const showAltStoreGuide = hasIOS;
     color: var(--accent-color);
     font-weight: bold;
   }
-  
+
   @media (max-width: 768px) {
     .app-header {
       flex-direction: column;
       text-align: center;
       gap: 24px;
     }
-    
+
     .app-info h1 {
       font-size: 2rem;
     }
-    
+
     .platforms-section h2,
     .changelog-section h2,
     .guide-section h2 {
