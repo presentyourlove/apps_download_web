@@ -6,7 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
@@ -14,7 +19,10 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.1",
+    "@playwright/test": "^1.57.0",
     "@vite-pwa/astro": "^1.2.0",
-    "vite-plugin-pwa": "^1.2.0"
+    "@vitest/coverage-v8": "^4.0.17",
+    "vite-plugin-pwa": "^1.2.0",
+    "vitest": "^4.0.17"
   }
 }

@@ -297,11 +297,11 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ### 🛡️ 品質保證與深度 SEO
 
-1. **自動化測試導入**
-    - 引入 Vitest 進行單元測試，確保資料邏輯正確。
-    - 使用 Playwright 進行 E2E 測試，自動驗證跨瀏覽器相容性。
+1. **自動化測試導入** ✅ (已完成)
+    - 引入 Vitest 進行單元測試 (8 個測試案例)。
+    - 使用 Playwright 進行 E2E 測試 (多瀏覽器 + 行動裝置)。
 
-2. **深度 SEO 結構化資料**
+2. **深度 SEO 結構化資料** ✅ (已完成)
     - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
     - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
 
@@ -328,6 +328,16 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
   - `[MODIFY]` astro.config.mjs - 加入 AstroPWA 整合配置
   - `[MODIFY]` src/lib/pwa.ts - 使用 virtual:pwa-register 模組
   - `[MODIFY]` tsconfig.json - 加入 vite-plugin-pwa/client 型別
+
+- [2026-01-21] **深度 SEO 結構化資料**
+  - `[MODIFY]` src/pages/blog/[...slug].astro - 自動生成 JSON-LD (BlogPosting) 並注入 head
+
+- [2026-01-21] **自動化測試導入**
+  - `[ADD]` vitest.config.ts - Vitest 測試設定
+  - `[ADD]` playwright.config.ts - Playwright E2E 設定
+  - `[ADD]` src/lib/**tests**/data.test.ts - 單元測試 (8 案例)
+  - `[ADD]` e2e/home.spec.ts - 首頁/導航 E2E 測試
+  - `[ADD]` e2e/pages.spec.ts - 404/部落格/詳情頁 E2E 測試
 
 - [2026-01-21] **404 頁面引導增強**
   - `[MODIFY]` src/pages/404.astro - 新增快速導覽、應用推薦、最新文章區塊

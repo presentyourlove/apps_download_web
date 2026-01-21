@@ -13,9 +13,40 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+// SEO: Generate JSON-LD Schema
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  "image": post.data.heroImage ? new URL(post.data.heroImage.src, Astro.site).toString() : undefined,
+  "author": {
+    "@type": "Person",
+    "name": "Presentyourlove",
+    "url": "https://github.com/presentyourlove"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Presentyourlove",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/assets/presentyourlove-logo-512.webp", Astro.site).toString()
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.toString()
+  }
+};
 ---
 
 <BaseLayout title={`${post.data.title} - Blog`}>
+  <!-- SEO Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <article class="post-detail">
     {post.data.heroImage && (
       <div class="post-hero">
