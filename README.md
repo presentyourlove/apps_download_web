@@ -291,9 +291,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - 將龐大的 `global.css` (1475 行) 重構為模組化 CSS (~380 行)。
    - 利用 Astro Scoped Styles 特性，將 Header、Footer、頁面專屬樣式遷移至各元件。
 
-4. **404 頁面引導增強**
-   - 優化 404 錯誤頁面，加入熱門文章推薦或網站導覽地圖。
-   - 降低使用者跳出率，引導其回到正確路徑。
+4. **404 頁面引導增強** ✅ (已完成)
+   - 加入快速導覽連結 (首頁、部落格、關於我們)。
+   - 動態顯示應用程式推薦卡片與最新部落格文章。
 
 ### 🛡️ 品質保證與深度 SEO
 
@@ -328,6 +328,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
   - `[MODIFY]` astro.config.mjs - 加入 AstroPWA 整合配置
   - `[MODIFY]` src/lib/pwa.ts - 使用 virtual:pwa-register 模組
   - `[MODIFY]` tsconfig.json - 加入 vite-plugin-pwa/client 型別
+
+- [2026-01-21] **404 頁面引導增強**
+  - `[MODIFY]` src/pages/404.astro - 新增快速導覽、應用推薦、最新文章區塊
 
 - [2026-01-21] **CSS 架構重構**
   - `[MODIFY]` src/styles/global.css - 從 1475 行精簡為 ~380 行

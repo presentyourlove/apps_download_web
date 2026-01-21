@@ -1,40 +1,125 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAppsData } from '../lib/data';
+import { getCollection } from 'astro:content';
+
+// 取得應用程式資料
+const { apps } = await getAppsData();
+
+// 取得最新 2 篇部落格文章
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 2);
 ---
 
 <BaseLayout title="404 - 找不到頁面 | Presentyourlove">
   <section class="error-section">
     <div class="container error-container">
+      <!-- 錯誤訊息 -->
       <div class="error-content">
         <h1 class="error-code">404</h1>
         <h2 class="error-title">找不到頁面</h2>
         <p class="error-desc">
-          抱歉,您訪問的頁面不存在或已被移除。
+          抱歉，您訪問的頁面不存在或已被移除。
         </p>
         <a href={import.meta.env.BASE_URL} class="btn btn-primary">
           返回首頁
         </a>
       </div>
+
+      <!-- 快速導覽 -->
+      <div class="quick-nav">
+        <h3 class="section-subtitle">📌 快速導覽</h3>
+        <div class="nav-links">
+          <a href={`${import.meta.env.BASE_URL}/`} class="nav-link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            首頁
+          </a>
+          <a href={`${import.meta.env.BASE_URL}/blog/`} class="nav-link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            部落格
+          </a>
+          <a href={`${import.meta.env.BASE_URL}/about/`} class="nav-link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            關於我們
+          </a>
+        </div>
+      </div>
+
+      <!-- 應用程式推薦 -->
+      <div class="apps-section">
+        <h3 class="section-subtitle">📱 探索我們的應用程式</h3>
+        <div class="apps-grid">
+          {apps.map(app => (
+            <a href={`${import.meta.env.BASE_URL}/${app.id}/`} class="app-card-mini">
+              <img 
+                src={`${import.meta.env.BASE_URL}/assets/${app.id}-icon-192.webp`} 
+                alt={`${app.name} 圖示`}
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <div class="app-info">
+                <span class="app-name">{app.name}</span>
+                <span class="app-desc">{app.displayName}</span>
+              </div>
+              <svg class="app-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 最新文章 -->
+      {posts.length > 0 && (
+        <div class="posts-section">
+          <h3 class="section-subtitle">📝 最新文章</h3>
+          <div class="posts-list">
+            {posts.map(post => (
+              <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`} class="post-item">
+                <span class="post-title">{post.data.title}</span>
+                <span class="post-date">
+                  {post.data.pubDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </span>
+              </a>
+            ))}
+          </div>
+          <a href={`${import.meta.env.BASE_URL}/blog/`} class="view-all-link">
+            查看所有文章 →
+          </a>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .error-section {
-    padding: 160px 0;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 120px 0 80px;
+    min-height: 100vh;
   }
   
   .error-container {
-    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   .error-content {
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 60px;
   }
   
   .error-code {
@@ -57,10 +142,174 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .error-desc {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     line-height: 1.6;
   }
-  
+
+  /* Section Subtitle */
+  .section-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+
+  /* Quick Navigation */
+  .quick-nav {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--card-bg);
+    border: var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-link-btn:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+  }
+
+  .nav-link-btn svg {
+    color: var(--accent-color);
+  }
+
+  /* Apps Section */
+  .apps-section {
+    margin-bottom: 48px;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .app-card-mini {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border: var(--glass-border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .app-card-mini:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.15);
+  }
+
+  .app-card-mini img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .app-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .app-info .app-name {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .app-info .app-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .app-arrow {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+  }
+
+  .app-card-mini:hover .app-arrow {
+    color: var(--accent-color);
+    transform: translateX(4px);
+  }
+
+  /* Posts Section */
+  .posts-section {
+    text-align: center;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border: var(--glass-border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .post-item:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-color: var(--accent-color);
+  }
+
+  .post-title {
+    font-weight: 500;
+  }
+
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .view-all-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .view-all-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .error-code {
       font-size: 5rem;
@@ -72,6 +321,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     .error-desc {
       font-size: 1rem;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nav-link-btn {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+
+    .apps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .post-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
     }
   }
 </style>
