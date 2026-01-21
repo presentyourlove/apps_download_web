@@ -57,6 +57,19 @@ export default defineConfig({
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,json,webp}'],
         // 忽略一些不需快取的檔案
         globIgnores: ['**/node_modules/**/*', 'sw.js', 'workbox-*.js'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'pages-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+              },
+            },
+          },
+        ],
       },
       devOptions: {
         enabled: true,

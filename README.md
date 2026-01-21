@@ -286,9 +286,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ### 5. ✨ UI/UX 體驗
 
-- [ ] **更流暢的視圖過渡 (View Transitions)**：優化頁面切換時的動畫曲線與元件保留效果。
-- [ ] **離線功能強化**：優化 PWA 離線緩存策略，確保在無網路時仍能閱讀基本指南。
-- [ ] **載入 skeleton 設計**：在動態載入資料時提供骨架屏，減少佈局偏移 (CLS)。
+- [x] **更流暢的視圖過渡 (View Transitions)**：優化頁面切換時的動畫曲線與元件保留效果。
+- [x] **離線功能強化**：優化 PWA 離線緩存策略，確保在無網路時仍能閱讀基本指南。
+- [x] **載入 skeleton 設計**：在動態載入資料時提供骨架屏，減少佈局偏移 (CLS)。
 
 ### 6. ⚙️ 進階技術優化 (Advanced Technical Optimizations)
 

@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 
-<header class="header" id="main-header">
+<header class="header" id="main-header" transition:persist>
   <div class="container header-container">
     <!-- Logo -->
     <a href={translatePath('/')} class="logo-area">
