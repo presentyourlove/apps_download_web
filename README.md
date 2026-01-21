@@ -255,49 +255,6 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ---
 
-## 🚀 未來優化方向 (Future Roadmap)
-
-為了持續提升網站品質、使用者體驗與開發效率，以下是目前規劃的優化方向：
-
-### 1. 🛠 功能增強 (Feature Enhancements)
-
-- [x] **全站搜尋**：整合 Pagefind 或 Fuse.js 實作輕量級全站靜態搜尋。
-- [x] **RSS 訂閱**：實作部落格文章與應用程式更新的 RSS Feed (`/rss.xml`)。
-- [x] **多國語言 (i18n)**：支援英文、日文等多語言切換，擴展國際市場。
-- [x] **深層連結 (Deep Link) 支援**：在下載頁面新增直接開啟 App 的 Universal Links 選項。
-
-### 2. ⚡ 效能優化 (Performance Optimization)
-
-- [x] **Astro Prefetching**：啟用 `astro:prefetch` 提升頁面切換的體感速度。
-- [x] **圖片優化進階**：針對不同螢幕尺寸提供穩定的 `srcset` 資料，減少不必要的頻寬消耗。
-- [x] **更精細的字體加載**：使用 `font-display: swap` 並優化自託管字體的子集化。
-
-### 3. 🛡 品質與自動化 (Quality & CI/CD)
-
-- [x] **CI 測試整合**：將目前的 Playwright (E2E) 與 Vitest (Unit) 整合至 GitHub Actions。
-- [x] **Lighthouse CI**：在每次 PR 時自動執行 Lighthouse 監控，防止效能退化。
-- [x] **自動化 Commit 檢查**：加強 Husky 與 Commitlint 確保訊息格式一致。
-
-### 4. 🔍 SEO 與內容 (SEO & Content)
-
-- [x] **動態 OG 圖片**：使用 Satori 生成包含應用程式標題與版本的動態分享圖 (目前為靜態 Fallback)。
-- [x] **專屬下載按鈕動畫**：為不同平台 (App Store / Google Play) 加入更具質感的互動效果。
-- [x] **隱私友善分析**：導入 Umami 或 Beam Analytics 追蹤下載轉化率而不侵犯隱私。
-
-### 5. ✨ UI/UX 體驗
-
-- [x] **更流暢的視圖過渡 (View Transitions)**：優化頁面切換時的動畫曲線與元件保留效果。
-- [x] **離線功能強化**：優化 PWA 離線緩存策略，確保在無網路時仍能閱讀基本指南。
-- [x] **載入 skeleton 設計**：在動態載入資料時提供骨架屏，減少佈局偏移 (CLS)。
-
-### 6. ⚙️ 進階技術優化 (Advanced Technical Optimizations)
-
-- [x] **內容集合 (Content Collections) 移轉**：將 `versions.json` 移至 Astro Content Collections，利用 Zod 進行 schema 驗證與強型別支援。
-- [x] **SoftwareApplication 結構化資料**：在詳情頁實作進階 JSON-LD，讓搜尋引擎能直接顯示 App 版本、評分與下載連結。
-- [x] **自定義安裝引導 (PWA Install UI)**：實作 `beforeinstallprompt` 監聽，提供與官網設計一致的軟體安裝引導彈窗。
-- [x] **資安強化 (Security Headers)**：導入子資源完整性 (SRI) 檢查，並針對 GitHub Pages 環境優化 CSP 策略。
-- [x] **視覺回歸測試**：使用 Playwright 實作截圖對比測試，確保 UI 在不同平台修改後不會跑版。
-
 ---
 
 ## 📄 授權

@@ -1,3 +1,7 @@
+import type { CollectionEntry } from 'astro:content';
+
+export type App = CollectionEntry<'apps'>['data'];
+
 // 型別定義
 export interface Platform {
   type: string;
@@ -9,23 +13,15 @@ export interface Platform {
   size?: string;
   url?: string;
   universalLink?: string;
+  status?: 'coming_soon' | 'active';
+  expectedDate?: string;
+  altstore?: { status: string };
 }
 
 export interface Changelog {
   version: string;
   date: string;
   changes: string[];
-}
-
-export interface App {
-  id: string;
-  name: string;
-  displayName: string;
-  version: string;
-  releaseDate: string;
-  scheme?: string;
-  platforms: Record<string, Omit<Platform, 'type'>>;
-  changelog: Changelog[];
 }
 
 export interface AppsData {
@@ -46,9 +42,10 @@ export async function getAppsData(): Promise<AppsData> {
 
 // 輔助函式:將 platforms 物件轉為陣列
 export function getPlatformsArray(app: App): Platform[] {
+  // @ts-ignore: Object.entries deduction on optional keys
   return Object.entries(app.platforms).map(([type, details]) => ({
     type,
-    ...details,
+    ...(details as any),
   }));
 }
 

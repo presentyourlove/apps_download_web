@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const appsCollection = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/*.json', base: "./src/content/apps" }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -44,13 +45,13 @@ const appsCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
+  schema: ({ image }) => z.object({
     title: z.string(),
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().optional(),
-    heroImage: z.string().optional(),
+    heroImage: image().optional(),
     image: z.object({
       url: z.string(),
       alt: z.string()
