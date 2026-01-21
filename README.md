@@ -279,7 +279,7 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ### 🔧 進階功能擴充
 
-1. **圖片載入最佳化**
+1. **圖片載入最佳化** ✅ (已完成)
    - 重構 `AppCard` 元件，改用 Astro 內建 `<Image />` 元件搭配 `import.meta.glob`。
    - 自動產生多種解析度 srcsets，提升各種裝置的載入效能。
 
@@ -318,5 +318,12 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 2. **網站安全強化**
     - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
     - 限制外部資源載入來源，防範 XSS 攻擊。
+
+### 📝 最近更新 (Latest Updates)
+
+- [2026-01-21] **圖片載入最佳化**
+  - `[MODIFY]` src/components/AppCard.astro - 改用 Astro Image 搭配 import.meta.glob
+  - `[MODIFY]` src/pages/index.astro - 移除 iconPath 屬性
+  - `[ADD]` src/assets/icons/ - 新增應用程式高解析圖示 (financeapp, subtrack, sub-buddy)
 
 Copyright © 2026 Presentyourlove. All rights reserved.
