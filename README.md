@@ -269,8 +269,8 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 ### 2. ⚡ 效能優化 (Performance Optimization)
 
 - [x] **Astro Prefetching**：啟用 `astro:prefetch` 提升頁面切換的體感速度。
-- [ ] **圖片優化進階**：針對不同螢幕尺寸提供穩定的 `srcset` 資料，減少不必要的頻寬消耗。
-- [ ] **更精細的字體加載**：使用 `font-display: swap` 並優化自託管字體的子集化。
+- [x] **圖片優化進階**：針對不同螢幕尺寸提供穩定的 `srcset` 資料，減少不必要的頻寬消耗。
+- [x] **更精細的字體加載**：使用 `font-display: swap` 並優化自託管字體的子集化。
 
 ### 3. 🛡 品質與自動化 (Quality & CI/CD)
 

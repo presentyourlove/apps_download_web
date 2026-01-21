@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/presentyourlove-logo-32.webp';
 import { getAppsData } from '../lib/data';
 import Search from './Search.astro';
 import LanguagePicker from './LanguagePicker.astro';
@@ -16,12 +18,12 @@ const translatePath = useTranslatedPath(lang);
   <div class="container header-container">
     <!-- Logo -->
     <a href={translatePath('/')} class="logo-area">
-      <img
-        src={`${import.meta.env.BASE_URL}/assets/presentyourlove-logo-32.webp`}
+      <Image
+        src={logoImage}
         alt="Logo"
         class="logo-img"
-        width="40"
-        height="40"
+        width={40}
+        height={40}
       />
       <span class="app-name">Presentyourlove</span>
     </a>
