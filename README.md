@@ -255,114 +255,45 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ---
 
-## 📄 授權
+## 🚀 未來優化方向 (Future Roadmap)
+
+為了持續提升網站品質、使用者體驗與開發效率，以下是目前規劃的優化方向：
+
+### 1. 🛠 功能增強 (Feature Enhancements)
+
+- [ ] **全站搜尋**：整合 Pagefind 或 Fuse.js 實作輕量級全站靜態搜尋。
+- [ ] **RSS 訂閱**：實作部落格文章與應用程式更新的 RSS Feed (`/rss.xml`)。
+- [ ] **多國語言 (i18n)**：支援英文、日文等多語言切換，擴展國際市場。
+- [ ] **深層連結 (Deep Link) 支援**：在下載頁面新增直接開啟 App 的 Universal Links 選項。
+
+### 2. ⚡ 效能優化 (Performance Optimization)
+
+- [ ] **Astro Prefetching**：啟用 `astro:prefetch` 提升頁面切換的體感速度。
+- [ ] **圖片優化進階**：針對不同螢幕尺寸提供穩定的 `srcset` 資料，減少不必要的頻寬消耗。
+- [ ] **更精細的字體加載**：使用 `font-display: swap` 並優化自託管字體的子集化。
+
+### 3. 🛡 品質與自動化 (Quality & CI/CD)
+
+- [ ] **CI 測試整合**：將目前的 Playwright (E2E) 與 Vitest (Unit) 整合至 GitHub Actions。
+- [ ] **Lighthouse CI**：在每次 PR 時自動執行 Lighthouse 監控，防止效能退化。
+- [ ] **自動化 Commit 檢查**：加強 Husky 與 Commitlint 確保訊息格式一致。
+
+### 4. 🔍 SEO 與內容 (SEO & Content)
+
+- [ ] **動態 OG 圖片**：使用 Satori 生成包含應用程式標題與版本的動態分享圖。
+- [ ] **專屬下載按鈕動畫**：為不同平台 (App Store / Google Play) 加入更具質感的互動效果。
+- [ ] **隱私友善分析**：導入 Umami 或 Beam Analytics 追蹤下載轉化率而不侵犯隱私。
+
+### 5. ✨ UI/UX 體驗
+
+- [ ] **更流暢的視圖過渡 (View Transitions)**：優化頁面切換時的動畫曲線與元件保留效果。
+- [ ] **離線功能強化**：優化 PWA 離線緩存策略，確保在無網路時仍能閱讀基本指南。
+- [ ] **載入 skeleton 設計**：在動態載入資料時提供骨架屏，減少佈局偏移 (CLS)。
 
 ---
 
-## 🔮 效能優化與常見問題 (Performance & Troubleshooting)
+## 📄 授權
 
-為了提供最佳的使用者體驗，本專案持續針對以下方向進行優化：
-
-### 🚀 核心優化策略
-
-1. **流暢轉場 (View Transitions)** ✅ (已完成)
-   - 採用 Astro `ClientRouter` 技術，實現類似原生 App 的無縫換頁體驗。
-   - 解決傳統網頁切換時的閃爍問題，保持視覺連貫性。
-
-2. **PWA 架構現代化** ✅ (已完成)
-   - 遷移至 `@vite-pwa/astro`，自動產生 Service Worker 與 Workbox 快取策略。
-   - 預快取所有靜態資源，優化離線體驗與載入速度。
-
-3. **相依性與效能升級** ✅ (已完成)
-   - 使用 Astro 5.x 最新版本。
-   - 移除手動 SW 實作，改用自動化生成。
-
-### 🔧 進階功能擴充
-
-1. **圖片載入最佳化** ✅ (已完成)
-   - 重構 `AppCard` 元件，改用 Astro 內建 `<Image />` 元件搭配 `import.meta.glob`。
-   - 自動產生多種解析度 srcsets，提升各種裝置的載入效能。
-
-2. **內容訂閱服務 (RSS)**
-   - 實作 RSS Feed (`rss.xml.js`)，讓使用者能訂閱部落格更新。
-   - 擴大內容觸及率與讀者黏著度。
-
-3. **CSS 架構重構** ✅ (已完成)
-   - 將龐大的 `global.css` (1475 行) 重構為模組化 CSS (~380 行)。
-   - 利用 Astro Scoped Styles 特性，將 Header、Footer、頁面專屬樣式遷移至各元件。
-
-4. **404 頁面引導增強** ✅ (已完成)
-   - 加入快速導覽連結 (首頁、部落格、關於我們)。
-   - 動態顯示應用程式推薦卡片與最新部落格文章。
-
-### 🛡️ 品質保證與深度 SEO
-
-1. **自動化測試導入** ✅ (已完成)
-   - 引入 Vitest 進行單元測試 (8 個測試案例)。
-   - 使用 Playwright 進行 E2E 測試 (多瀏覽器 + 行動裝置)。
-
-2. **深度 SEO 結構化資料** ✅ (已完成)
-   - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
-   - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
-
-3. **字體本地化 (Self-hosted Fonts)** ✅ (已完成)
-   - 改用 `@fontsource` 將 Google Fonts 本地化，避免第三方 CDN 請求。
-   - 提升隱私隱私性與載入穩定度。
-
-### ⚙️ 開發維運與資安 (DevOps & Security)
-
-1. **程式碼規範自動化** ✅ (已完成)
-   - 導入 `ESLint` 與 `Prettier` 並整合至 git hook (Husky)。
-   - 強制統一程式碼風格，減少團隊協作衝突。
-
-2. **網站安全強化** ✅ (已完成)
-   - 實作 `Content-Security-Policy (CSP)` Meta 標籤。
-   - 限制外部資源載入來源，防範 XSS 攻擊。
-
-### 📝 最近更新 (Latest Updates)
-
-- [2026-01-21] **網站安全強化**
-  - `[MODIFY]` src/layouts/BaseLayout.astro - 實作 Strict CSP (Script/Style 'self' + 'unsafe-inline')
-
-- [2026-01-21] **程式碼規範自動化**
-  - `[ADD]` eslint.config.mjs, .prettierrc.mjs - 建立代碼規範設定
-  - `[ADD]` .husky, .lintstagedrc - 設定 Git Commit Hook 自動檢查
-  - `[MODIFY]` package.json - 新增 lint 與 format 腳本
-
-- [2026-01-21] **字體本地化 (Self-hosted Fonts)**
-  - `[ADD]` @fontsource/inter, @fontsource/noto-sans-tc - 安裝本地字體包
-  - `[MODIFY]` src/layouts/BaseLayout.astro - 移除 Google Fonts CDN，改用本地引入
-
-- [2026-01-21] **核心優化策略實作**
-  - `[ADD]` @vite-pwa/astro - 遷移 PWA 架構至自動化 Workbox 生成
-  - `[DELETE]` public/sw.js - 移除手動 Service Worker
-  - `[DELETE]` public/manifest.json - 改由 @vite-pwa/astro 自動產生
-  - `[MODIFY]` astro.config.mjs - 加入 AstroPWA 整合配置
-  - `[MODIFY]` src/lib/pwa.ts - 使用 virtual:pwa-register 模組
-  - `[MODIFY]` tsconfig.json - 加入 vite-plugin-pwa/client 型別
-
-- [2026-01-21] **深度 SEO 結構化資料**
-  - `[MODIFY]` src/pages/blog/[...slug].astro - 自動生成 JSON-LD (BlogPosting) 並注入 head
-
-- [2026-01-21] **自動化測試導入**
-  - `[ADD]` vitest.config.ts - Vitest 測試設定
-  - `[ADD]` playwright.config.ts - Playwright E2E 設定
-  - `[ADD]` src/lib/**tests**/data.test.ts - 單元測試 (8 案例)
-  - `[ADD]` e2e/home.spec.ts - 首頁/導航 E2E 測試
-  - `[ADD]` e2e/pages.spec.ts - 404/部落格/詳情頁 E2E 測試
-
-- [2026-01-21] **404 頁面引導增強**
-  - `[MODIFY]` src/pages/404.astro - 新增快速導覽、應用推薦、最新文章區塊
-
-- [2026-01-21] **CSS 架構重構**
-  - `[MODIFY]` src/styles/global.css - 從 1475 行精簡為 ~380 行
-  - `[MODIFY]` src/components/Header.astro - 加入完整 Header/Nav/Sidebar 樣式
-  - `[MODIFY]` src/components/Footer.astro - 加入完整 Footer 樣式
-  - `[MODIFY]` src/pages/index.astro - 加入首頁專屬樣式
-
-- [2026-01-21] **圖片載入最佳化**
-  - `[MODIFY]` src/components/AppCard.astro - 改用 Astro Image 搭配 import.meta.glob
-  - `[MODIFY]` src/pages/index.astro - 移除 iconPath 屬性
-  - `[ADD]` src/assets/icons/ - 新增應用程式高解析圖示 (financeapp, subtrack, sub-buddy)
+---
 
 Copyright © 2026 Presentyourlove. All rights reserved.
