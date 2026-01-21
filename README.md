@@ -305,7 +305,7 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
     - 為部落格文章加入 `SEO Schema (JSON-LD)`，支援 `Article` 或 `BlogPosting` 格式。
     - 提升文章在 Google 搜尋結果中的豐富顯示 (Rich Snippets)。
 
-3. **字體本地化 (Self-hosted Fonts)**
+3. **字體本地化 (Self-hosted Fonts)** ✅ (已完成)
     - 改用 `@fontsource` 將 Google Fonts 本地化，避免第三方 CDN 請求。
     - 提升隱私隱私性與載入穩定度。
 
@@ -320,6 +320,10 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
     - 限制外部資源載入來源，防範 XSS 攻擊。
 
 ### 📝 最近更新 (Latest Updates)
+
+- [2026-01-21] **字體本地化 (Self-hosted Fonts)**
+  - `[ADD]` @fontsource/inter, @fontsource/noto-sans-tc - 安裝本地字體包
+  - `[MODIFY]` src/layouts/BaseLayout.astro - 移除 Google Fonts CDN，改用本地引入
 
 - [2026-01-21] **核心優化策略實作**
   - `[ADD]` @vite-pwa/astro - 遷移 PWA 架構至自動化 Workbox 生成
