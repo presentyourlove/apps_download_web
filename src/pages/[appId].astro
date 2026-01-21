@@ -40,7 +40,7 @@ const showAltStoreGuide = hasIOS;
 <BaseLayout
   title={`${app.displayName} - 下載 | Presentyourlove`}
   description={`下載 ${app.displayName} v${app.version},支援多平台安裝`}
-  ogImage={`${import.meta.env.BASE_URL}/assets/${app.id}-icon-192.webp`}
+  ogImage={`${import.meta.env.BASE_URL}/open-graph/${app.id}.png`}
 >
   <article class="app-detail">
     <div class="container">
@@ -285,6 +285,41 @@ const showAltStoreGuide = hasIOS;
     margin-top: 16px;
     width: 100%;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .platform-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
+  }
+
+  .platform-card .btn:active {
+    transform: translateY(0);
+  }
+
+  /* Shimmer Effect */
+  .platform-card .btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transform: skewX(-15deg);
+    transition: 0.5s;
+  }
+
+  .platform-card .btn:hover::after {
+    left: 100%;
+    transition: 0.7s ease-in-out;
   }
 
   /* Coming Soon Badge */

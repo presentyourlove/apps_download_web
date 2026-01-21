@@ -261,28 +261,28 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ### 1. 🛠 功能增強 (Feature Enhancements)
 
-- [ ] **全站搜尋**：整合 Pagefind 或 Fuse.js 實作輕量級全站靜態搜尋。
-- [ ] **RSS 訂閱**：實作部落格文章與應用程式更新的 RSS Feed (`/rss.xml`)。
-- [ ] **多國語言 (i18n)**：支援英文、日文等多語言切換，擴展國際市場。
-- [ ] **深層連結 (Deep Link) 支援**：在下載頁面新增直接開啟 App 的 Universal Links 選項。
+- [x] **全站搜尋**：整合 Pagefind 或 Fuse.js 實作輕量級全站靜態搜尋。
+- [x] **RSS 訂閱**：實作部落格文章與應用程式更新的 RSS Feed (`/rss.xml`)。
+- [x] **多國語言 (i18n)**：支援英文、日文等多語言切換，擴展國際市場。
+- [x] **深層連結 (Deep Link) 支援**：在下載頁面新增直接開啟 App 的 Universal Links 選項。
 
 ### 2. ⚡ 效能優化 (Performance Optimization)
 
-- [ ] **Astro Prefetching**：啟用 `astro:prefetch` 提升頁面切換的體感速度。
+- [x] **Astro Prefetching**：啟用 `astro:prefetch` 提升頁面切換的體感速度。
 - [ ] **圖片優化進階**：針對不同螢幕尺寸提供穩定的 `srcset` 資料，減少不必要的頻寬消耗。
 - [ ] **更精細的字體加載**：使用 `font-display: swap` 並優化自託管字體的子集化。
 
 ### 3. 🛡 品質與自動化 (Quality & CI/CD)
 
-- [ ] **CI 測試整合**：將目前的 Playwright (E2E) 與 Vitest (Unit) 整合至 GitHub Actions。
-- [ ] **Lighthouse CI**：在每次 PR 時自動執行 Lighthouse 監控，防止效能退化。
-- [ ] **自動化 Commit 檢查**：加強 Husky 與 Commitlint 確保訊息格式一致。
+- [x] **CI 測試整合**：將目前的 Playwright (E2E) 與 Vitest (Unit) 整合至 GitHub Actions。
+- [x] **Lighthouse CI**：在每次 PR 時自動執行 Lighthouse 監控，防止效能退化。
+- [x] **自動化 Commit 檢查**：加強 Husky 與 Commitlint 確保訊息格式一致。
 
 ### 4. 🔍 SEO 與內容 (SEO & Content)
 
-- [ ] **動態 OG 圖片**：使用 Satori 生成包含應用程式標題與版本的動態分享圖。
-- [ ] **專屬下載按鈕動畫**：為不同平台 (App Store / Google Play) 加入更具質感的互動效果。
-- [ ] **隱私友善分析**：導入 Umami 或 Beam Analytics 追蹤下載轉化率而不侵犯隱私。
+- [x] **動態 OG 圖片**：使用 Satori 生成包含應用程式標題與版本的動態分享圖 (目前為靜態 Fallback)。
+- [x] **專屬下載按鈕動畫**：為不同平台 (App Store / Google Play) 加入更具質感的互動效果。
+- [x] **隱私友善分析**：導入 Umami 或 Beam Analytics 追蹤下載轉化率而不侵犯隱私。
 
 ### 5. ✨ UI/UX 體驗
 

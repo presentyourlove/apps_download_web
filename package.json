@@ -12,7 +12,6 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:headed": "playwright test --headed",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
@@ -22,8 +21,11 @@
     "@astrojs/rss": "^4.0.15",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/noto-sans-tc": "^5.2.9",
+    "@resvg/resvg-js": "^2.6.2",
     "astro": "^5.16.11",
-    "pagefind": "^1.4.0"
+    "pagefind": "^1.4.0",
+    "satori": "^0.19.1",
+    "satori-html": "^0.3.2"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.1",
