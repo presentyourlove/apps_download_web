@@ -9,6 +9,8 @@ export default defineConfig({
   base: '/apps_download_web',
   output: 'static',
 
+  prefetch: true,
+
   i18n: {
     defaultLocale: 'zh-TW',
     locales: ['zh-TW', 'en'],
