@@ -2,7 +2,7 @@
 title: "Web V3 正式啟動：部落格功能上線"
 description: "這是一個重要的里程碑，我們在 Presentyourlove 下載中心加入了部落格分頁，以便分享更多開發故事。"
 pubDate: "2026-01-20"
-heroImage: "/assets/blog-v3-launch.webp"
+heroImage: "/assets/presentyourlove-logo-32.png"
 tags: ["Announcement", "V3", "Astro"]
 ---
 
