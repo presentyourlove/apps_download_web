@@ -290,6 +290,14 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 - [ ] **離線功能強化**：優化 PWA 離線緩存策略，確保在無網路時仍能閱讀基本指南。
 - [ ] **載入 skeleton 設計**：在動態載入資料時提供骨架屏，減少佈局偏移 (CLS)。
 
+### 6. ⚙️ 進階技術優化 (Advanced Technical Optimizations)
+
+- [ ] **內容集合 (Content Collections) 移轉**：將 `versions.json` 移至 Astro Content Collections，利用 Zod 進行 schema 驗證與強型別支援。
+- [ ] **SoftwareApplication 結構化資料**：在詳情頁實作進階 JSON-LD，讓搜尋引擎能直接顯示 App 版本、評分與下載連結。
+- [ ] **自定義安裝引導 (PWA Install UI)**：實作 `beforeinstallprompt` 監聽，提供與官網設計一致的軟體安裝引導彈窗。
+- [ ] **資安強化 (Security Headers)**：導入子資源完整性 (SRI) 檢查，並針對 GitHub Pages 環境優化 CSP 策略。
+- [ ] **視覺回歸測試**：使用 Playwright 實作截圖對比測試，確保 UI 在不同平台修改後不會跑版。
+
 ---
 
 ## 📄 授權

@@ -1,5 +1,6 @@
 ---
 import { getAppsData } from '../lib/data';
+import Search from './Search.astro';
 
 // 取得應用程式列表 (Build Time)
 const { apps } = await getAppsData();
@@ -58,6 +59,7 @@ const { apps } = await getAppsData();
 
     <!-- Theme Toggle & Mobile Menu Button -->
     <div class="header-actions">
+      <Search />
       <!-- Theme Toggle -->
       <button id="theme-toggle" class="theme-btn" aria-label="切換主題">
         <!-- Sun Icon (for Dark Mode) -->

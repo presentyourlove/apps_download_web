@@ -4,7 +4,7 @@
   "version": "3.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && npx pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
@@ -20,7 +20,8 @@
     "@astrojs/rss": "^4.0.15",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/noto-sans-tc": "^5.2.9",
-    "astro": "^5.16.11"
+    "astro": "^5.16.11",
+    "pagefind": "^1.4.0"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.1",

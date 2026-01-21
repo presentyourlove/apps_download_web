@@ -1,0 +1,379 @@
+---
+/* Search.astro */
+---
+
+<div class="search-container">
+  <button id="search-trigger" class="search-btn" aria-label="開啟搜尋" title="搜尋 (Ctrl+K)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <span class="search-text">搜尋...</span>
+    <kbd class="search-shortcut">⌘K</kbd>
+  </button>
+
+  <div id="search-modal" class="search-modal" aria-hidden="true" role="dialog" aria-labelledby="search-title">
+    <div class="search-modal-overlay"></div>
+    <div class="search-modal-content">
+      <div class="search-header">
+        <div class="search-input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="搜尋應用程式、內容、指南..." 
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button id="search-close" class="close-btn" aria-label="關閉搜尋">ESC</button>
+      </div>
+      
+      <div id="search-results" class="search-results">
+        <div class="search-empty">輸入關鍵字開始搜尋</div>
+      </div>
+
+      <div class="search-footer">
+        <p>由 <strong>Pagefind</strong> 提供技術支援</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-container {
+    display: inline-block;
+  }
+
+  .search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .search-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+  }
+
+  .search-text {
+    font-size: 0.9rem;
+  }
+
+  .search-shortcut {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+  }
+
+  /* Modal Styles */
+  .search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 10vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .search-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+  }
+
+  .search-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 650px;
+    background: var(--bg-secondary);
+    border: var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition: transform 0.3s;
+  }
+
+  .search-modal.active .search-modal-content {
+    transform: translateY(0);
+  }
+
+  .search-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 15px;
+  }
+
+  .search-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0 15px;
+    transition: border-color 0.2s;
+  }
+
+  .search-input-wrapper:focus-within {
+    border-color: var(--accent-color);
+  }
+
+  .search-icon {
+    color: var(--text-secondary);
+  }
+
+  #search-input {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 12px 10px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  .close-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    min-height: 200px;
+  }
+
+  .search-empty {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 0;
+  }
+
+  /* Result Items */
+  :global(.pagefind-result) {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+  }
+
+  :global(.pagefind-result:hover) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(var(--accent-rgb), 0.3);
+  }
+
+  :global(.pagefind-result-title) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+  }
+
+  :global(.pagefind-result-excerpt) {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  :global(.pagefind-result mark) {
+    background: rgba(var(--accent-rgb), 0.3);
+    color: var(--text-primary);
+    border-radius: 2px;
+    padding: 0 2px;
+  }
+
+  .search-footer {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .search-text {
+      display: none;
+    }
+    .search-btn {
+      padding: 8px;
+    }
+    .search-shortcut {
+      display: none;
+    }
+    .search-modal-content {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      border-radius: 0;
+      padding-top: env(safe-area-inset-top);
+    }
+    .search-modal {
+      padding-top: 0;
+    }
+  }
+</style>
+
+<script>
+  let pagefind: any;
+
+  async function loadPagefind() {
+    if (pagefind) return pagefind;
+    try {
+      // 在 Astro 中, base URL 需要考慮
+      const baseUrl = (import.meta as any).env.BASE_URL.replace(/\/$/, "");
+      pagefind = await import(`${baseUrl}/pagefind/pagefind.js`);
+      await pagefind.options({
+        "excerptLength": 20
+      });
+      return pagefind;
+    } catch (e) {
+      console.error("Failed to load pagefind", e);
+      return null;
+    }
+  }
+
+  function initSearch() {
+    const trigger = document.getElementById('search-trigger');
+    const modal = document.getElementById('search-modal');
+    const close = document.getElementById('search-close');
+    const input = document.getElementById('search-input') as HTMLInputElement;
+    const results = document.getElementById('search-results');
+    const overlay = modal?.querySelector('.search-modal-overlay');
+
+    if (!trigger || !modal || !input || !results) return;
+
+    const openModal = async () => {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      input.focus();
+      await loadPagefind();
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      input.value = '';
+    };
+
+    trigger.addEventListener('click', openModal);
+    close?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', closeModal);
+
+    // ESC 關閉
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+      // Ctrl+K 開啟
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openModal();
+      }
+    });
+
+    // 搜尋邏輯
+    let debounceTimer: number;
+    input.addEventListener('input', async (e) => {
+      const query = (e.target as HTMLInputElement).value.trim();
+      
+      clearTimeout(debounceTimer);
+      if (!query) {
+        results.innerHTML = '<div class="search-empty">輸入關鍵字開始搜尋</div>';
+        return;
+      }
+
+      if (!pagefind) {
+        const pf = await loadPagefind();
+        if (!pf) {
+          results.innerHTML = '<div class="search-empty">搜尋功能僅在 Build 後可用</div>';
+          return;
+        }
+      }
+
+      debounceTimer = window.setTimeout(async () => {
+        results.innerHTML = '<div class="search-empty">搜尋中...</div>';
+        
+        try {
+          const search = await pagefind.search(query);
+          if (search.results.length === 0) {
+            results.innerHTML = '<div class="search-empty">找不到相關結果</div>';
+            return;
+          }
+
+          results.innerHTML = '';
+          // 只顯示前 10 筆
+          const topResults = search.results.slice(0, 10);
+          
+          for (const result of topResults) {
+            const data = await result.data();
+            const resultEl = document.createElement('a');
+            resultEl.className = 'pagefind-result';
+            resultEl.href = data.url;
+            resultEl.innerHTML = `
+              <div class="pagefind-result-title">${data.meta.title}</div>
+              <div class="pagefind-result-excerpt">${data.excerpt}</div>
+            `;
+            
+            // 點擊結果關閉
+            resultEl.addEventListener('click', () => {
+              closeModal();
+            });
+            
+            results.appendChild(resultEl);
+          }
+        } catch (err) {
+          console.error("Search error", err);
+        }
+      }, 200);
+    });
+  }
+
+  // 支援 View Transitions
+  document.addEventListener('astro:page-load', initSearch);
+</script>
