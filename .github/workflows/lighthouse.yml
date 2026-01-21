@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Run Lighthouse (Mobile)
-        uses: treosh/lighthouse-ci-action@v11
+        uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: './lighthouserc.json'
           uploadArtifacts: true
