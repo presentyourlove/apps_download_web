@@ -8,6 +8,7 @@ export interface Platform {
   minOS?: string;
   size?: string;
   url?: string;
+  universalLink?: string;
 }
 
 export interface Changelog {
@@ -22,6 +23,7 @@ export interface App {
   displayName: string;
   version: string;
   releaseDate: string;
+  scheme?: string;
   platforms: Record<string, Omit<Platform, 'type'>>;
   changelog: Changelog[];
 }

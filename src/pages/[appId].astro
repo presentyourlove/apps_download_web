@@ -85,6 +85,16 @@ const showAltStoreGuide = hasIOS;
                   </div>
                 )}
 
+                {/* 開啟 Deep Link 按鈕 */}
+                {app.scheme && platform.type !== 'web' && (
+                  <a
+                    href={app.scheme}
+                    class="btn btn-primary"
+                  >
+                    {t('app.openApp')}
+                  </a>
+                )}
+
                 {/* 下載按鈕 */}
                 {platform.downloadUrl && (
                   <a href={platform.downloadUrl} class="btn btn-primary" download>
