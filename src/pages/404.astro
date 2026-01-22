@@ -117,7 +117,7 @@ const posts = (await getCollection('blog'))
             <h3 class="section-subtitle">📝 最新文章</h3>
             <div class="posts-list">
               {posts.map((post) => (
-                <a href={`${import.meta.env.BASE_URL}/blog/${post.slug}/`} class="post-item">
+                <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="post-item">
                   <span class="post-title">{post.data.title}</span>
                   <span class="post-date">
                     {post.data.pubDate.toLocaleDateString('zh-TW', {

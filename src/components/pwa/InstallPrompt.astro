@@ -35,7 +35,7 @@
   // 監聽 beforeinstallprompt
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
-    deferredPrompt = e;
+    deferredPrompt = e as BeforeInstallPromptEvent;
     installContainer?.classList.remove('hidden');
     installContainer?.classList.add('show');
   });
