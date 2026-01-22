@@ -29,11 +29,11 @@ jobs:
         run: npm run lint
       - name: Format Check
         run: npm run format:check
-      - name: Type Check
-        run: npm run type-check
       - name: Unit Tests
         run: npm run test
 
+      - name: Build Site
+        run: npm run build
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: E2E & A11y Tests

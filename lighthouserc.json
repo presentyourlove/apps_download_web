@@ -3,8 +3,8 @@
     "collect": {
       "staticDistDir": "./dist",
       "url": [
-        "http://localhost/apps_download_web/index.html",
-        "http://localhost/apps_download_web/financeapp/index.html"
+        "http://localhost/index.html",
+        "http://localhost/financeapp/index.html"
       ]
     },
     "upload": {
