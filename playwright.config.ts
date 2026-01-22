@@ -34,7 +34,7 @@ export default defineConfig({
   // 共用設定
   use: {
     // 基礎 URL (需先啟動 preview server)
-    baseURL: 'http://127.0.0.1:4321/apps_download_web/',
+    baseURL: 'http://localhost:4321/apps_download_web/',
 
     // 收集追蹤資訊 (僅在失敗時)
     trace: 'on-first-retry',
@@ -67,8 +67,8 @@ export default defineConfig({
   // 自動啟動開發伺服器
   webServer: {
     command: 'npm run preview',
-    url: 'http://127.0.0.1:4321/apps_download_web/',
+    url: 'http://localhost:4321/apps_download_web/',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
+    timeout: 180 * 1000,
   },
 });
