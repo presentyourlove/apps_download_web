@@ -273,9 +273,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 下一階段將著重於極致效能與進階功能：
 
-1. **極致效能**
-   - [ ] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
-   - [ ] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
+1. **極致效能** ✅
+   - [x] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
+   - [x] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
 
 2. **使用者體驗 (UI/UX)**
    - [ ] **主題閃爍修復 (FART Prevention)**: 將主題初始化腳本移至 `<head>`，避免頁面載入時的閃爍。
