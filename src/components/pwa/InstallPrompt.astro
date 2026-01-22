@@ -1,10 +1,16 @@
 ---
+
 ---
 
 <div id="install-pwa-container" class="install-pwa-container hidden">
   <div class="install-pwa-content">
     <div class="install-icon">
-      <img src="/apps_download_web/assets/presentyourlove-logo-192.png" alt="App Icon" width="48" height="48" />
+      <img
+        src="/apps_download_web/assets/presentyourlove-logo-192.png"
+        alt="App Icon"
+        width="48"
+        height="48"
+      />
     </div>
     <div class="install-info">
       <h3>安裝應用程式</h3>
@@ -16,7 +22,12 @@
 </div>
 
 <script>
-  let deferredPrompt: any;
+  interface BeforeInstallPromptEvent extends Event {
+    readonly platforms: string[];
+    readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+    prompt(): Promise<void>;
+  }
+  let deferredPrompt: BeforeInstallPromptEvent | null = null;
   const installContainer = document.getElementById('install-pwa-container');
   const installBtn = document.getElementById('install-trigger');
   const closeBtn = document.getElementById('install-close');
@@ -69,7 +80,7 @@
     display: none; /* 或者是 transform: translateY(150%) 保持隱藏 */
     visibility: hidden;
   }
-  
+
   /* 為了動畫效果，我們主要使用 class toggle 'show'，hidden 用於初始隱藏 */
   .install-pwa-container:not(.hidden) {
     display: block;

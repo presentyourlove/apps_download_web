@@ -14,7 +14,12 @@ export default defineConfig({
   env: {
     schema: {
       PUBLIC_ANALYTICS_ID: envField.string({ context: 'client', access: 'public', optional: true }),
-      PUBLIC_ANALYTICS_SCRIPT_URL: envField.string({ context: 'client', access: 'public', optional: true, url: true }),
+      PUBLIC_ANALYTICS_SCRIPT_URL: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+        url: true,
+      }),
     },
   },
 

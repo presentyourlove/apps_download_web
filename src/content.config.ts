@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const appsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: "./src/content/apps" }),
+  loader: glob({ pattern: '**/*.json', base: './src/content/apps' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -45,19 +45,22 @@ const appsCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/blog" }),
-  schema: ({ image }) => z.object({
-    title: z.string(),
-    pubDate: z.coerce.date(),
-    description: z.string(),
-    author: z.string().optional(),
-    heroImage: image().optional(),
-    image: z.object({
-      url: z.string(),
-      alt: z.string()
-    }).optional(),
-    tags: z.array(z.string()).optional()
-  })
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      pubDate: z.coerce.date(),
+      description: z.string(),
+      author: z.string().optional(),
+      heroImage: image().optional(),
+      image: z
+        .object({
+          url: z.string(),
+          alt: z.string(),
+        })
+        .optional(),
+      tags: z.array(z.string()).optional(),
+    }),
 });
 
 export const collections = {

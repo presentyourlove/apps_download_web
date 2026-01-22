@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import path from 'path';
 
 export default defineConfig({
   test: {
@@ -21,5 +22,10 @@ export default defineConfig({
 
     // 全域設定
     globals: true,
+  },
+  resolve: {
+    alias: {
+      'astro:content': path.resolve(__dirname, './src/lib/__tests__/__mocks__/astro-content.ts'),
+    },
   },
 });

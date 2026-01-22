@@ -5,19 +5,16 @@ import { join, dirname } from 'path';
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
 function getAbsolutePath(value) {
-    return dirname(require.resolve(join(value, 'package.json')));
+  return dirname(require.resolve(join(value, 'package.json')));
 }
 
 /** @type { import('@storybook/astro').StorybookConfig } */
 const config = {
-    stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-    addons: [
-        getAbsolutePath('@storybook/addon-essentials'),
-        getAbsolutePath('@storybook/blocks'),
-    ],
-    framework: {
-        name: getAbsolutePath('@storybook/astro'),
-        options: {},
-    },
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [getAbsolutePath('@storybook/addon-essentials'), getAbsolutePath('@storybook/blocks')],
+  framework: {
+    name: getAbsolutePath('@storybook/astro'),
+    options: {},
+  },
 };
 export default config;

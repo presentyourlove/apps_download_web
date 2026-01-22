@@ -42,10 +42,10 @@ export async function getAppsData(): Promise<AppsData> {
 
 // 輔助函式:將 platforms 物件轉為陣列
 export function getPlatformsArray(app: App): Platform[] {
-  // @ts-ignore: Object.entries deduction on optional keys
+  // @ts-expect-error: Object.entries deduction on optional keys
   return Object.entries(app.platforms).map(([type, details]) => ({
     type,
-    ...(details as any),
+    ...(details as Omit<Platform, 'type'>),
   }));
 }
 

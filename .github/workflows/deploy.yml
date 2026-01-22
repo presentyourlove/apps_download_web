@@ -33,7 +33,7 @@ jobs:
         run: npm run type-check
       - name: Unit Tests
         run: npm run test
-      
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: E2E & A11y Tests
