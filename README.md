@@ -269,44 +269,34 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ---
 
-## 🚀 未來優化方向 (Phase 8: Optimization & Automation)
+## 🚀 未來優化方向
 
-目前專案已完成核心功能開發與基礎優化，下一階段將著重於自動化流程與極致效能：
+下一階段將著重於極致效能與進階功能：
 
-1. **DevOps 與自動化**
-   - [x] **嚴格品質閘門 (Quality Gates)**: 在 CI 部署流程前強制執行 Lint, Type Check 與單元測試。
-   - [x] **自動化依賴更新**: 整合 Renovate 或 Dependabot 定期更新 npm 套件。
-   - [x] **無障礙自動化測試 (a11y)**: 整合 `axe-core` 至測試流程，確保符合 WCAG 標準。
-
-2. **開發體驗 (DX)**
-   - [x] **路徑別名 (Import Aliases)**: 設定 `@/` 路徑別名以簡化深層引用。
-   - [x] **元件文件 (Storybook)**: 建立 UI 元件庫文件，獨立測試元件狀態。
-   - [x] **型別安全環境變數 (`astro:env`)**: 升級至 Astro 5 的 `astro:env` 模組，確保環境變數的型別安全與驗證。
-
-3. **極致效能**
+1. **極致效能**
    - [ ] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
    - [ ] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
 
-4. **使用者體驗 (UI/UX)**
+2. **使用者體驗 (UI/UX)**
    - [ ] **主題閃爍修復 (FART Prevention)**: 將主題初始化腳本移至 `<head>`，避免頁面載入時的閃爍。
    - [ ] **跳過導航連結 (Skip Link)**: 新增「跳至主要內容」連結，提升無障礙體驗。
 
-5. **內容與維運 (Content & Ops)**
+3. **內容與維運 (Content & Ops)**
    - [ ] **內容管理 (CMS)**: 整合 Keystatic，提供圖形化介面管理 Markdown 內容。
    - [ ] **錯誤監控 (Sentry)**: 整合 Sentry 捕捉前端執行期錯誤。
    - [ ] **連結檢查 (Link Check)**: 在 CI 中加入 `lychee` 檢查死連結。
    - [ ] **Bundle 分析**: 加入 `rollup-plugin-visualizer` 分析打包體積。
 
-6. **架構與文件 (Architecture & Docs)**
+4. **架構與文件 (Architecture & Docs)**
    - [ ] **決策記錄 (ADR)**: 建立 `docs/adr` 記錄重大架構決策 (Architecture Decision Records)。
    - [ ] **容器化 (Docker)**: 建立 `Dockerfile` 與 `docker-compose.yml` 支援私有化部署。
    - [ ] **API 文件**: 為 `versions.json` 輸出 OpenAPI / Swagger 文件。
 
-7. **進階資安 (Security++)**
+5. **進階資安 (Security++)**
    - [ ] **依賴弱點掃描**: 在 CI 加入 `npm audit` 或 Snyk 安全掃描。
    - [ ] **Secret Scanning**: 設定 GitGuardian 或 GitHub Secret Scanning 防止金鑰洩漏。
 
-8. **技術債消除 (Technical Debt)**
+6. **技術債消除 (Technical Debt)**
    - [ ] **嚴格型別 (Strict Types)**: 移除 `src/lib/data.ts` 中的 `as any` 強制轉型，建立完整的 Zod 推導型別。
 
 ---
