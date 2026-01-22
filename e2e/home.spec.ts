@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('首頁測試', () => {
   test('應正確載入首頁', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 檢查頁面標題
     await expect(page).toHaveTitle(/Presentyourlove/);
@@ -12,7 +12,7 @@ test.describe('首頁測試', () => {
   });
 
   test('應顯示所有應用程式卡片', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 檢查應用程式網格存在
     await expect(page.locator('.app-grid')).toBeVisible();
@@ -23,7 +23,7 @@ test.describe('首頁測試', () => {
   });
 
   test('應能點擊應用卡片導航至詳情頁', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 點擊第一個應用卡片
     const firstCard = page.locator('.app-card').first();
@@ -39,7 +39,7 @@ test.describe('首頁測試', () => {
 
 test.describe('主題切換測試', () => {
   test('應能切換深淺主題', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 預設應為深色主題
     const html = page.locator('html');
@@ -60,14 +60,14 @@ test.describe('主題切換測試', () => {
 
 test.describe('Header 導航測試', () => {
   test('應顯示桌面導航欄', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 桌面版應顯示導航
     await expect(page.locator('.desktop-nav')).toBeVisible();
   });
 
   test('應能導航至部落格', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 點擊部落格連結
     await page.click('a.nav-tab:has-text("部落格")');
@@ -77,7 +77,7 @@ test.describe('Header 導航測試', () => {
   });
 
   test('應能導航至關於我們', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // 點擊關於我們連結
     await page.click('a.nav-tab:has-text("關於我們")');

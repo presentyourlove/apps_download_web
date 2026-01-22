@@ -5,7 +5,7 @@ test.describe('Accessibility Checks', () => {
   test('Home Page should not have any automatically detectable accessibility issues', async ({
     page,
   }) => {
-    await page.goto('/');
+    await page.goto('');
 
     // Using default axe-core configuration
     const accessibilityScanResults = await new AxeBuilder({ page })
@@ -21,7 +21,7 @@ test.describe('Accessibility Checks', () => {
   });
 
   test('Blog Page should be accessible', async ({ page }) => {
-    await page.goto('/blog/');
+    await page.goto('blog/');
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
