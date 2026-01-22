@@ -1,1 +1,0 @@
-error: option '--type <type>' argument 'astro' is invalid. Allowed choices are angular, ember, html, nextjs, nuxt, preact, qwik, react, react_native, react_native_and_rnw, react_native_web, react_scripts, server, solid, svelte, sveltekit, vue3, web_components.

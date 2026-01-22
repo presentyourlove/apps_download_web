@@ -9,6 +9,7 @@
 🌐 **線上網站**: <https://presentyourlove.github.io/apps_download_web/>
 
 [![Deploy to GitHub Pages](https://github.com/presentyourlove/apps_download_web/actions/workflows/deploy.yml/badge.svg)](https://github.com/presentyourlove/apps_download_web/actions/workflows/deploy.yml)
+[![CI](https://github.com/presentyourlove/apps_download_web/actions/workflows/ci.yml/badge.svg)](https://github.com/presentyourlove/apps_download_web/actions/workflows/ci.yml)
 
 ---
 
@@ -164,21 +165,32 @@ apps_download_web/
 
 ## 🧪 測試
 
-```bash
-# 建置測試
-npm run build
+### 自動化測試
 
-# 本地預覽
-npm run preview
+```bash
+# 單元測試
+npm run test
+
+# 單元測試 (含覆蓋率報告)
+npm run test:coverage
+
+# E2E 測試 (需先 npm run build)
+npm run build
+npm run test:e2e
+
+# 程式碼檢查
+npm run lint
+npm run format:check
+npm run type-check
 ```
 
-**手動測試清單**:
+### CI/CD 流程
 
-- [ ] 首頁載入正常
-- [ ] 應用程式下拉選單
-- [ ] 主題切換
-- [ ] 響應式設計
-- [ ] 404 頁面
+推送到 `main` 分支會自動執行：
+
+1. **Quality Check**: Lint, Format, Type Check, Unit Tests
+2. **E2E Tests**: Playwright (Chromium, Firefox)
+3. **Deploy**: 建置並部署至 GitHub Pages
 
 ---
 
