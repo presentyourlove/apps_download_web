@@ -116,8 +116,8 @@ const pageTitle = '部落格 - Presentyourlove';
   }
 
   .blog-tag {
-    background: rgba(var(--accent-rgb), 0.1);
-    color: var(--accent-color);
+    background: rgba(var(--accent-rgb), 0.15);
+    color: #a5a7fc; /* Lighter shade for WCAG AA contrast */
     padding: 2px 8px;
     border-radius: 6px;
     font-weight: 500;
@@ -151,5 +151,13 @@ const pageTitle = '部落格 - Presentyourlove';
 
   .text-link {
     margin-top: auto;
+    color: #a5a7fc; /* High contrast link color for WCAG AA */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: #c5c7ff;
   }
 </style>
