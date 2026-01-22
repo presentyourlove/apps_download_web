@@ -2,6 +2,8 @@
 import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import AstroPWA from '@vite-pwa/astro';
+import partytown from '@astrojs/partytown';
+import compress from 'astro-compress';
 
 // https://astro.build/config
 export default defineConfig({
@@ -87,6 +89,21 @@ export default defineConfig({
         enabled: true,
         navigateFallbackAllowlist: [/^\/apps_download_web\//],
       },
+    }),
+    // Partytown: 將第三方腳本移至 Web Worker
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+    // Compress: 建置時壓縮資源 (放最後)
+    compress({
+      CSS: true,
+      HTML: true,
+      Image: false, // 圖片已由 Astro Image 優化
+      JavaScript: true,
+      SVG: true,
+      Logger: 1,
     }),
   ],
 

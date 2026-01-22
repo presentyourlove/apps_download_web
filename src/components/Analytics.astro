@@ -7,4 +7,11 @@ const analyticsUrl = PUBLIC_ANALYTICS_SCRIPT_URL;
 const shouldRender = !!(analyticsId && analyticsUrl);
 ---
 
-{shouldRender && <script defer src={analyticsUrl} data-website-id={analyticsId} />}
+{shouldRender && (
+  <script
+    type="text/partytown"
+    defer
+    src={analyticsUrl}
+    data-website-id={analyticsId}
+  />
+)}
