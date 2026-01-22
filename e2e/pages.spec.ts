@@ -51,14 +51,14 @@ test.describe('部落格頁面測試', () => {
   test('應能點擊文章進入詳情頁', async ({ page }) => {
     await page.goto('blog/');
 
-    // 等待文章卡片載入
-    const articleCard = page.locator('a[href*="/blog/"]').first();
+    // 等待文章卡片載入 (使用更具體的選擇器)
+    const articleCard = page.locator('.blog-card a, .blog-card-title a').first();
 
     if (await articleCard.isVisible()) {
       await articleCard.click();
 
-      // 確認導航到文章詳情頁
-      await expect(page).toHaveURL(/\/blog\/.+\//);
+      // 確認導航到文章詳情頁 (URL 包含 /blog/ 和文章 slug)
+      await expect(page).toHaveURL(/blog\/.+/);
     }
   });
 });

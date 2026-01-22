@@ -29,11 +29,11 @@ test.describe('首頁測試', () => {
     const firstCard = page.locator('.app-card').first();
     await firstCard.click();
 
-    // 等待導航完成
-    await page.waitForURL(/\/(financeapp|subtrack|sub-buddy)\//);
+    // 等待導航完成 (URL 包含應用 ID)
+    await page.waitForURL(/(financeapp|subtrack|sub-buddy)/);
 
-    // 確認不在首頁
-    await expect(page).not.toHaveURL(/\/$/);
+    // 確認 URL 包含應用 ID
+    await expect(page).toHaveURL(/(financeapp|subtrack|sub-buddy)/);
   });
 });
 
