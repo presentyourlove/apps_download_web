@@ -1,0 +1,140 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="blog-card">
+  {
+    post.data.heroImage && (
+      <div class="blog-card-image">
+        <Image src={post.data.heroImage} alt={post.data.title} width={400} height={225} />
+      </div>
+    )
+  }
+  <div class="blog-card-content">
+    <div class="blog-card-meta">
+      <time datetime={post.data.pubDate.toISOString()}>
+        {
+          post.data.pubDate.toLocaleDateString('zh-TW', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+        }
+      </time>
+      {post.data.tags && post.data.tags.map((tag) => <span class="blog-tag">{tag}</span>)}
+    </div>
+    <h2 class="blog-card-title">
+      <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`}>{post.data.title}</a>
+    </h2>
+    <p class="blog-card-desc">{post.data.description}</p>
+    <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="text-link"> 閱讀更多 → </a>
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    background: var(--card-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--accent-color) 0px 15px 50px -20px;
+    border-color: var(--accent-color);
+  }
+
+  .blog-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .blog-card:hover .blog-card-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-card-content {
+    padding: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+  }
+
+  .blog-tag {
+    background: rgba(var(--accent-rgb), 0.15);
+    color: #a5a7fc; /* Lighter shade for WCAG AA contrast */
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  .blog-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .blog-card-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .blog-card-title a:hover {
+    color: var(--accent-color);
+  }
+
+  .blog-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .text-link {
+    margin-top: auto;
+    color: #a5a7fc; /* High contrast link color for WCAG AA */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: #c5c7ff;
+  }
+</style>

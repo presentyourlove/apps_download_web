@@ -37,6 +37,8 @@ export const ui = {
     'about.appCenter': '應用程式下載中心',
     'about.facebook': 'Facebook專頁',
     'about.contact': '聯絡我們',
+    'home.updates': '最新動態',
+    'home.viewAll': '查看所有文章',
   },
   en: {
     'nav.home': 'Home',
@@ -72,5 +74,7 @@ export const ui = {
     'about.appCenter': 'App Download Center',
     'about.facebook': 'Facebook Page',
     'about.contact': 'Contact Us',
+    'home.updates': 'Latest Updates',
+    'home.viewAll': 'View All Posts',
   },
 } as const;
