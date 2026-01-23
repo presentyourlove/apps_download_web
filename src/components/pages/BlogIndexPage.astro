@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const t = useTranslations(lang);
+// const t = useTranslations(lang);
 
 // 獲取所有部落格文章並按日期排序
 const posts = (await getCollection('blog'))
