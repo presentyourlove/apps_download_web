@@ -371,6 +371,16 @@ docker-compose up -d --build
 
 - **焦點鎖定 (Focus Trap)**: 在搜尋視窗與手機版選單開啟時，強制將鍵盤焦點鎖定於視窗內，符合 WCAG 對於 Modal Dialog 的要求。
 
+### 12. 🧹 維護自動化 (Maintenance Automation)
+
+- **依賴更新**: 設定 **Dependabot** 或 **Renovate** 自動建立 Pull Request 更新 npm 套件，保持專案依賴的新鮮度。
+- **死碼偵測**: 導入 **Knip** 掃描未使用的檔案與 export，定期清理累積的技術債。
+
+### 13. 🧑‍💻 開發者體驗 (Developer Experience)
+
+- **統一工具鏈**: 評估導入 **Biome** (前身為 Rome) 取代 ESLint + Prettier，提供更快速且設定更簡單的 Lint/Format 體驗。
+- **Git Hooks**: 強化 `husky` 設定，加入 `commitlint` 確保提交訊息符合 Conventional Commits 規範 (目前已安裝但需確認強制性)。
+
 ---
 
 ## �📄 授權
