@@ -282,10 +282,10 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - [x] **跳過導航連結 (Skip Link)**: 新增「跳至主要內容」連結，提升無障礙體驗。
 
 3. **內容與維運 (Content & Ops)**
-   - [ ] **內容管理 (CMS)**: 整合 Keystatic，提供圖形化介面管理 Markdown 內容。
-   - [ ] **錯誤監控 (Sentry)**: 整合 Sentry 捕捉前端執行期錯誤。
-   - [ ] **連結檢查 (Link Check)**: 在 CI 中加入 `lychee` 檢查死連結。
-   - [ ] **Bundle 分析**: 加入 `rollup-plugin-visualizer` 分析打包體積。
+   - [x] **內容管理 (CMS)**: 整合 Keystatic，提供圖形化介面管理 Markdown 內容。
+   - [x] **錯誤監控 (Sentry)**: 整合 Sentry 捕捉前端執行期錯誤。
+   - [x] **連結檢查 (Link Check)**: 在 CI 中加入 `lychee` 檢查死連結。
+   - [x] **Bundle 分析**: 加入 `rollup-plugin-visualizer` 分析打包體積。
 
 4. **架構與文件 (Architecture & Docs)**
    - [ ] **決策記錄 (ADR)**: 建立 `docs/adr` 記錄重大架構決策 (Architecture Decision Records)。
