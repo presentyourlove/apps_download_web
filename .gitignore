@@ -27,3 +27,6 @@ pnpm-debug.log*
 coverage/
 playwright-report/
 test-results/
+storybook-static/
+dist-sb-test/
+build-storybook.log
