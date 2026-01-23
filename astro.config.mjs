@@ -6,7 +6,6 @@ import sentry from '@sentry/astro';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
 
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://presentyourlove.github.io',

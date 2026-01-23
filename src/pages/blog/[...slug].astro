@@ -45,7 +45,7 @@ const schema = {
 
 <BaseLayout title={`${post.data.title} - Blog`}>
   <!-- SEO Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <article class="post-detail">
     {
