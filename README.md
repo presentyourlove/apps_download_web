@@ -288,9 +288,9 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - [x] **Bundle 分析**: 加入 `rollup-plugin-visualizer` 分析打包體積。
 
 4. **架構與文件 (Architecture & Docs)**
-   - [ ] **決策記錄 (ADR)**: 建立 `docs/adr` 記錄重大架構決策 (Architecture Decision Records)。
-   - [ ] **容器化 (Docker)**: 建立 `Dockerfile` 與 `docker-compose.yml` 支援私有化部署。
-   - [ ] **API 文件**: 為 `versions.json` 輸出 OpenAPI / Swagger 文件。
+   - [x] **決策記錄 (ADR)**: 建立 `docs/adr` 記錄重大架構決策 (Architecture Decision Records)。
+   - [x] **容器化 (Docker)**: 建立 `Dockerfile` 與 `docker-compose.yml` 支援私有化部署。
+   - [x] **API 文件**: 為 `versions.json` 輸出 OpenAPI / Swagger 文件。
 
 5. **進階資安 (Security++)**
    - [ ] **依賴弱點掃描**: 在 CI 加入 `npm audit` 或 Snyk 安全掃描。
