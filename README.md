@@ -342,6 +342,7 @@ docker-compose up -d --build
 
 - **圖片優化**: 實作 `astro:assets` 的自動格式轉換 (AVIF) 與 RWD 圖片集。
 - **自動化部署**: 評估導入 Vercel 或 Cloudflare Pages 以獲得更佳的 Edge 效能 (目前為 GitHub Pages)。
+- **CSS 渲染效能**: 在長列表 (如 Changelog) 實作 `content-visibility: auto` 以優化渲染效能。
 
 ### 6. 🛠 架構重構 (Refactoring)
 
