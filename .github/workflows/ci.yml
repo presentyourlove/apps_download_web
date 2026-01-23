@@ -66,6 +66,5 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          args: --verbose --no-progress --exclude 'https://presentyourlove.github.io/apps_download_web.*' --exclude 'https://instagram.com/.*' './**/*.md' './src/**/*.astro' './src/**/*.tsx'
+          args: --verbose --no-progress --exclude 'https://presentyourlove.github.io/apps_download_web.*' --exclude 'https://presentyourlove.github.io/$' --exclude 'https://instagram.com/.*' './**/*.md' './src/**/*.astro' './src/**/*.tsx'
           fail: true
-

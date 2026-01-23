@@ -34,10 +34,10 @@
 4. 在 "Repository secrets" 區域，點擊 **New repository secret** (新增儲存庫密鑰)。
 5. 新增以下兩組 Secret：
 
-   | Name | Secret | 說明 |
-   | :--- | :--- | :--- |
-   | `PUBLIC_SENTRY_DSN` | (貼上步驟 1 的 DSN) | 雖然可以在前端公開，但在 Build 階段注入較安全 |
-   | `SENTRY_AUTH_TOKEN` | (貼上步驟 2 的 Token) | **絕對不能公開**，僅限 CI 建置使用 |
+   | Name                | Secret                | 說明                                          |
+   | :------------------ | :-------------------- | :-------------------------------------------- |
+   | `PUBLIC_SENTRY_DSN` | (貼上步驟 1 的 DSN)   | 雖然可以在前端公開，但在 Build 階段注入較安全 |
+   | `SENTRY_AUTH_TOKEN` | (貼上步驟 2 的 Token) | **絕對不能公開**，僅限 CI 建置使用            |
 
 6. 設定完成後，下次推送程式碼時，CI 流程就會自動讀取這些設定並上傳 Source Maps。
 
