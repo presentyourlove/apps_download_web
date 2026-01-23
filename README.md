@@ -343,6 +343,16 @@ docker-compose up -d --build
 - **圖片優化**: 實作 `astro:assets` 的自動格式轉換 (AVIF) 與 RWD 圖片集。
 - **自動化部署**: 評估導入 Vercel 或 Cloudflare Pages 以獲得更佳的 Edge 效能 (目前為 GitHub Pages)。
 
+### 6. 🛠 架構重構 (Refactoring)
+
+- **CSS 模組化**: 將龐大的 `global.css` 拆分為 `base`, `components`, `utilities` 等獨立模組，提升維護性。
+- **邏輯抽離**: 將 `Search.astro` 中的複雜互動邏輯抽離為獨立的 TypeScript Hook/Utility，以利單元測試。
+
+### 7. 📲 PWA 使用者體驗 (App UX)
+
+- **更新通知**: 實作 Service Worker 的 `onNeedRefresh` UI 提示 (Toast)，讓使用者手動觸發更新，而非僅在 Console 顯示。
+- **離線頁面**: 設計專屬的 Offline Fallback 頁面，優化斷網體驗。
+
 ---
 
 ## �📄 授權
