@@ -381,6 +381,14 @@ docker-compose up -d --build
 - **統一工具鏈**: 評估導入 **Biome** (前身為 Rome) 取代 ESLint + Prettier，提供更快速且設定更簡單的 Lint/Format 體驗。
 - **Git Hooks**: 強化 `husky` 設定，加入 `commitlint` 確保提交訊息符合 Conventional Commits 規範 (目前已安裝但需確認強制性)。
 
+### 14. 🤝 社群治理 (Community Health)
+
+- **開源文件**: 建立 `LICENSE` (MIT/Apache), `CONTRIBUTING.md` (貢獻指南), `CODE_OF_CONDUCT.md` (行為準則)，完善開源專案治理。
+
+### 15. 🏝️ 群島架構優化 (Islands Architecture)
+
+- **部分水合 (Partial Hydration)**: 審計所有互動元件 (如 Theme Toggle)，確保使用 `client:visible` 或 `client:idle` 等指令，實現真正的 Zero-JS by default。
+
 ---
 
 ## �📄 授權
