@@ -2,8 +2,11 @@
 import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import AstroPWA from '@vite-pwa/astro';
+import keystatic from '@keystatic/astro';
+import sentry from '@sentry/astro';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +25,7 @@ export default defineConfig({
         optional: true,
         url: true,
       }),
+      PUBLIC_SENTRY_DSN: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
 
@@ -35,6 +39,14 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
+    keystatic(),
+    sentry({
+      dsn: process.env.PUBLIC_SENTRY_DSN,
+      sourceMapsUploadOptions: {
+        project: 'apps_download_web',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+      },
+    }),
     AstroPWA({
       registerType: 'autoUpdate',
       manifest: {

@@ -57,3 +57,15 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  link-check:
+    name: Link Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          args: --verbose --no-progress './**/*.md' './src/**/*.astro' './src/**/*.tsx'
+          fail: true
+
