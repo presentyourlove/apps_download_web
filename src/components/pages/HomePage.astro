@@ -43,7 +43,10 @@ const latestPosts = (await getCollection('blog'))
       </div>
 
       <div class="view-all-container">
-        <a href={`${import.meta.env.BASE_URL}/${lang === 'zh-TW' ? '' : 'en/'}blog/`} class="view-all-btn">
+        <a
+          href={`${import.meta.env.BASE_URL}/${lang === 'zh-TW' ? '' : 'en/'}blog/`}
+          class="view-all-btn"
+        >
           {t('home.viewAll')} →
         </a>
       </div>

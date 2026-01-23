@@ -96,7 +96,9 @@ const showAltStoreGuide = hasIOS;
                 </h3>
 
                 {/* 版本資訊 */}
-                <p class="platform-version">{t('app.version')}: {platform.version}</p>
+                <p class="platform-version">
+                  {t('app.version')}: {platform.version}
+                </p>
                 {platform.minOS && <p class="platform-req">Minimum OS: iOS {platform.minOS}</p>}
                 {platform.minSdk && (
                   <p class="platform-req">Minimum SDK: Android API {platform.minSdk}</p>

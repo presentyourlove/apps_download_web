@@ -2,7 +2,7 @@
 title: 'Hello V3'
 description: 'Welcome to the new version of our website.'
 pubDate: '2026-01-20'
-heroImage: '/assets/blog-placeholder-3.jpg'
+heroImage: '../../_assets/blog-launch.webp'
 tags: ['general']
 ---
 
