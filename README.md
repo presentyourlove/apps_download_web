@@ -278,8 +278,8 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - [x] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
 
 2. **使用者體驗 (UI/UX)**
-   - [ ] **主題閃爍修復 (FART Prevention)**: 將主題初始化腳本移至 `<head>`，避免頁面載入時的閃爍。
-   - [ ] **跳過導航連結 (Skip Link)**: 新增「跳至主要內容」連結，提升無障礙體驗。
+   - [x] **主題閃爍修復 (FART Prevention)**: 將主題初始化腳本移至 `<head>`，避免頁面載入時的閃爍。
+   - [x] **跳過導航連結 (Skip Link)**: 新增「跳至主要內容」連結，提升無障礙體驗。
 
 3. **內容與維運 (Content & Ops)**
    - [ ] **內容管理 (CMS)**: 整合 Keystatic，提供圖形化介面管理 Markdown 內容。
