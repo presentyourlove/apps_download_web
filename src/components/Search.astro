@@ -19,11 +19,11 @@ const navPaths = {
   about: translatePath('/about/'),
 };
 
-const appPaths = apps.map(app => ({
+const appPaths = apps.map((app) => ({
   id: app.id,
   name: app.displayName,
   path: translatePath(`/${app.id}/`),
-  icon: app.icon
+  icon: app.icon,
 }));
 ---
 
@@ -95,7 +95,8 @@ const appPaths = apps.map(app => ({
 
       <div class="search-footer">
         <div class="footer-hint">
-          <kbd>↑</kbd> <kbd>↓</kbd> to navigate
+          <kbd>↑</kbd>
+          <kbd>↓</kbd> to navigate
         </div>
         <div class="footer-hint">
           <kbd>↵</kbd> to select
@@ -190,7 +191,9 @@ const appPaths = apps.map(app => ({
     flex-direction: column;
     max-height: 70vh;
     transform: scale(0.98);
-    transition: opacity 0.2s, transform 0.2s;
+    transition:
+      opacity 0.2s,
+      transform 0.2s;
     opacity: 0;
     overflow: hidden;
   }
@@ -288,7 +291,7 @@ const appPaths = apps.map(app => ({
     align-items: center;
     justify-content: center;
   }
-  
+
   :global(.result-item.selected .result-icon) {
     color: var(--accent-color);
   }
@@ -350,7 +353,9 @@ const appPaths = apps.map(app => ({
   }
 
   @media (max-width: 600px) {
-    .search-text, .search-shortcut, .search-footer {
+    .search-text,
+    .search-shortcut,
+    .search-footer {
       display: none;
     }
     .search-btn {
@@ -425,7 +430,7 @@ const appPaths = apps.map(app => ({
         desc: 'Go to homepage',
         section: 'Navigation',
         icon: ICONS.link,
-        action: () => window.location.href = navPaths.home
+        action: () => (window.location.href = navPaths.home),
       },
       {
         id: 'nav-blog',
@@ -433,7 +438,7 @@ const appPaths = apps.map(app => ({
         desc: 'Read our latest articles',
         section: 'Navigation',
         icon: ICONS.link,
-        action: () => window.location.href = navPaths.blog
+        action: () => (window.location.href = navPaths.blog),
       },
       {
         id: 'nav-about',
@@ -441,7 +446,7 @@ const appPaths = apps.map(app => ({
         desc: 'Learn more about us',
         section: 'Navigation',
         icon: ICONS.link,
-        action: () => window.location.href = navPaths.about
+        action: () => (window.location.href = navPaths.about),
       },
       {
         id: 'sys-theme',
@@ -455,7 +460,7 @@ const appPaths = apps.map(app => ({
           document.documentElement.setAttribute('data-theme', newTheme);
           localStorage.setItem('theme', newTheme);
           closeModal();
-        }
+        },
       },
       // App Commands
       ...appPaths.map((app: any) => ({
@@ -464,8 +469,8 @@ const appPaths = apps.map(app => ({
         desc: `Go to ${app.name} download page`,
         section: 'Apps' as const,
         icon: ICONS.app,
-        action: () => window.location.href = app.path
-      }))
+        action: () => (window.location.href = app.path),
+      })),
     ];
 
     const openModal = async () => {
@@ -490,9 +495,10 @@ const appPaths = apps.map(app => ({
 
       // Filter static commands
       const lowerQuery = query.toLowerCase();
-      filteredCommands = baseCommands.filter(cmd => 
-        cmd.title.toLowerCase().includes(lowerQuery) || 
-        cmd.desc?.toLowerCase().includes(lowerQuery)
+      filteredCommands = baseCommands.filter(
+        (cmd) =>
+          cmd.title.toLowerCase().includes(lowerQuery) ||
+          cmd.desc?.toLowerCase().includes(lowerQuery)
       );
 
       // Add Pagefind results if query exists
@@ -500,7 +506,7 @@ const appPaths = apps.map(app => ({
         try {
           const search = await pagefind.search(query);
           const topResults = search.results.slice(0, 5);
-          
+
           for (const result of topResults) {
             const data = await result.data();
             filteredCommands.push({
@@ -509,7 +515,7 @@ const appPaths = apps.map(app => ({
               desc: data.excerpt.replace(/<[^>]*>?/gm, ''), // strip html tags from excerpt
               section: 'Search Results',
               icon: ICONS.search,
-              action: () => window.location.href = data.url
+              action: () => (window.location.href = data.url),
             });
           }
         } catch (e) {
@@ -522,24 +528,27 @@ const appPaths = apps.map(app => ({
 
     const renderList = () => {
       resultsContainer.innerHTML = '';
-      
+
       if (filteredCommands.length === 0) {
         resultsContainer.innerHTML = `<div class="search-empty">${modal.dataset.noResults}</div>`;
         return;
       }
 
-      const grouped = filteredCommands.reduce((acc, cmd) => {
-        if (!acc[cmd.section]) acc[cmd.section] = [];
-        acc[cmd.section].push(cmd);
-        return acc;
-      }, {} as Record<string, Command[]>);
+      const grouped = filteredCommands.reduce(
+        (acc, cmd) => {
+          if (!acc[cmd.section]) acc[cmd.section] = [];
+          acc[cmd.section].push(cmd);
+          return acc;
+        },
+        {} as Record<string, Command[]>
+      );
 
       // Order: Navigation, Apps, System, Search Results
       const sections = ['Navigation', 'Apps', 'System', 'Search Results'];
-      
+
       let globalIndex = 0;
 
-      sections.forEach(section => {
+      sections.forEach((section) => {
         const cmds = grouped[section];
         if (cmds && cmds.length > 0) {
           const titleEl = document.createElement('div');
@@ -547,7 +556,7 @@ const appPaths = apps.map(app => ({
           titleEl.textContent = section;
           resultsContainer.appendChild(titleEl);
 
-          cmds.forEach(cmd => {
+          cmds.forEach((cmd) => {
             const el = document.createElement('div');
             el.className = `result-item ${globalIndex === selectedIndex ? 'selected' : ''}`;
             el.innerHTML = `
@@ -557,7 +566,7 @@ const appPaths = apps.map(app => ({
                 ${cmd.desc ? `<div class="result-desc">${cmd.desc}</div>` : ''}
               </div>
             `;
-            
+
             // Click handler
             el.addEventListener('click', () => {
               cmd.action();
@@ -616,7 +625,7 @@ const appPaths = apps.map(app => ({
 
       if (!modal.classList.contains('active')) return;
 
-      switch(e.key) {
+      switch (e.key) {
         case 'Escape':
           closeModal();
           break;
