@@ -40,10 +40,12 @@ export default defineConfig({
     process.env.NODE_ENV !== 'production' ? keystatic() : null,
     sentry({
       dsn: process.env.PUBLIC_SENTRY_DSN,
-      sourceMapsUploadOptions: {
-        project: 'apps_download_web',
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
+      sourceMapsUploadOptions: process.env.SENTRY_AUTH_TOKEN
+        ? {
+          project: 'apps_download_web',
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+        }
+        : undefined,
     }),
     AstroPWA({
       registerType: 'autoUpdate',

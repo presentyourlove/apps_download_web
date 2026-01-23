@@ -1,9 +1,30 @@
 ---
-/* Search.astro */
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+/* Search.astro - Command Palette & Search */
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import type { App } from '../lib/data';
 
+interface Props {
+  apps?: App[];
+}
+
+const { apps = [] } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// 預先產生導航路徑供 Client-side 使用
+const navPaths = {
+  home: translatePath('/'),
+  blog: translatePath('/blog/'),
+  about: translatePath('/about/'),
+};
+
+const appPaths = apps.map(app => ({
+  id: app.id,
+  name: app.displayName,
+  path: translatePath(`/${app.id}/`),
+  icon: app.icon
+}));
 ---
 
 <div class="search-container">
@@ -36,53 +57,52 @@ const t = useTranslations(lang);
     class="search-modal"
     aria-hidden="true"
     role="dialog"
-    aria-labelledby="search-title"
+    aria-labelledby="search-input"
     data-empty={t('search.placeholder')}
     data-loading="Searching..."
     data-no-results="No results found"
-    data-dev-info="Search only works after build"
+    data-nav-paths={JSON.stringify(navPaths)}
+    data-app-paths={JSON.stringify(appPaths)}
   >
     <div class="search-modal-overlay"></div>
     <div class="search-modal-content">
-      <h2
-        id="search-title"
-        style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0"
-      >
-        {t('search.placeholder')}
-      </h2>
       <div class="search-header">
-        <div class="search-input-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="search-icon"
-            ><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"
-            ></line></svg
-          >
-          <input
-            type="text"
-            id="search-input"
-            placeholder={t('search.placeholder')}
-            autocomplete="off"
-            spellcheck="false"
-          />
-        </div>
-        <button id="search-close" class="close-btn" aria-label="關閉搜尋">ESC</button>
+        <svg
+          class="search-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search commands and files..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <kbd class="esc-hint">ESC</kbd>
       </div>
 
       <div id="search-results" class="search-results">
-        <div class="search-empty">{t('search.placeholder')}</div>
+        <!-- Results will be injected here -->
       </div>
 
       <div class="search-footer">
-        <p>Powered by <strong>Pagefind</strong></p>
+        <div class="footer-hint">
+          <kbd>↑</kbd> <kbd>↓</kbd> to navigate
+        </div>
+        <div class="footer-hint">
+          <kbd>↵</kbd> to select
+        </div>
+        <div class="footer-powered">
+          Powered by <strong>Pagefind</strong>
+        </div>
       </div>
     </div>
   </div>
@@ -123,7 +143,7 @@ const t = useTranslations(lang);
     padding: 2px 6px;
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #a8b4c6; /* Updated for WCAG AA contrast ratio */
+    color: var(--text-secondary);
   }
 
   /* Modal Styles */
@@ -140,7 +160,7 @@ const t = useTranslations(lang);
     padding-top: 10vh;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
 
   .search-modal.active {
@@ -155,50 +175,37 @@ const t = useTranslations(lang);
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
   }
 
   .search-modal-content {
     position: relative;
     width: 90%;
-    max-width: 650px;
+    max-width: 600px;
     background: var(--bg-secondary);
     border: var(--glass-border);
-    border-radius: 20px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
+    max-height: 70vh;
+    transform: scale(0.98);
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0;
     overflow: hidden;
-    transform: translateY(-20px);
-    transition: transform 0.3s;
   }
 
   .search-modal.active .search-modal-content {
-    transform: translateY(0);
+    transform: scale(1);
+    opacity: 1;
   }
 
   .search-header {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 16px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    gap: 15px;
-  }
-
-  .search-input-wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 0 15px;
-    transition: border-color 0.2s;
-  }
-
-  .search-input-wrapper:focus-within {
-    border-color: var(--accent-color);
+    gap: 12px;
   }
 
   .search-icon {
@@ -206,31 +213,28 @@ const t = useTranslations(lang);
   }
 
   #search-input {
-    width: 100%;
+    flex: 1;
     background: none;
     border: none;
-    padding: 12px 10px;
     color: var(--text-primary);
     font-size: 1.1rem;
     outline: none;
+    padding: 0;
   }
 
-  .close-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .esc-hint {
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
     color: var(--text-secondary);
-    padding: 5px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: 600;
   }
 
   .search-results {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
-    min-height: 200px;
+    padding: 12px;
+    scroll-behavior: smooth;
   }
 
   .search-empty {
@@ -239,70 +243,124 @@ const t = useTranslations(lang);
     padding: 40px 0;
   }
 
+  /* Group Titles */
+  :global(.search-group-title) {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  :global(.search-group-title:first-child) {
+    margin-top: 0;
+  }
+
   /* Result Items */
-  :global(.pagefind-result) {
+  :global(.result-item) {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 2px solid transparent;
+    cursor: pointer;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+
+  :global(.result-item.selected),
+  :global(.result-item:hover) {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  :global(.result-item.selected) {
+    border-left-color: var(--accent-color);
+  }
+
+  :global(.result-icon) {
+    color: var(--text-secondary);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  :global(.result-item.selected .result-icon) {
+    color: var(--accent-color);
+  }
+
+  :global(.result-content) {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    margin-bottom: 15px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s;
-    border: 1px solid transparent;
+    overflow: hidden;
   }
 
-  :global(.pagefind-result:hover) {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(var(--accent-rgb), 0.3);
+  :global(.result-title) {
+    font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  :global(.pagefind-result-title) {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-bottom: 5px;
-  }
-
-  :global(.pagefind-result-excerpt) {
-    font-size: 0.9rem;
+  :global(.result-desc) {
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
   }
 
-  :global(.pagefind-result mark) {
-    background: rgba(var(--accent-rgb), 0.3);
-    color: var(--text-primary);
-    border-radius: 2px;
-    padding: 0 2px;
+  :global(mark) {
+    background: transparent;
+    color: var(--accent-color);
+    font-weight: 700;
+    padding: 0;
   }
 
   .search-footer {
-    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
     background: rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 0.8rem;
     color: var(--text-secondary);
-    text-align: right;
+  }
+
+  .footer-hint {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer-hint kbd {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    min-width: 18px;
+    text-align: center;
   }
 
   @media (max-width: 600px) {
-    .search-text {
+    .search-text, .search-shortcut, .search-footer {
       display: none;
     }
     .search-btn {
       padding: 8px;
-    }
-    .search-shortcut {
-      display: none;
     }
     .search-modal-content {
       width: 100%;
       height: 100%;
       max-height: 100%;
       border-radius: 0;
-      padding-top: env(safe-area-inset-top);
     }
     .search-modal {
       padding-top: 0;
@@ -311,18 +369,32 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   let pagefind: any;
+
+  interface Command {
+    id: string;
+    title: string;
+    desc?: string;
+    section: 'Navigation' | 'System' | 'Apps' | 'Search Results';
+    icon?: string;
+    action: () => void;
+  }
+
+  // Icons SVG Strings
+  const ICONS = {
+    link: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`,
+    app: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>`,
+    theme: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
+    search: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
+  };
 
   async function loadPagefind() {
     if (pagefind) return pagefind;
     try {
-      // 在 Astro 中, base URL 需要考慮
       const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       pagefind = await import(`${baseUrl}/pagefind/pagefind.js`);
-      await pagefind.options({
-        excerptLength: 20,
-      });
+      await pagefind.options({ excerptLength: 20 });
       return pagefind;
     } catch (e) {
       console.error('Failed to load pagefind', e);
@@ -333,17 +405,75 @@ const t = useTranslations(lang);
   function initSearch() {
     const trigger = document.getElementById('search-trigger');
     const modal = document.getElementById('search-modal');
-    const close = document.getElementById('search-close');
     const input = document.getElementById('search-input') as HTMLInputElement;
-    const results = document.getElementById('search-results');
+    const resultsContainer = document.getElementById('search-results');
     const overlay = modal?.querySelector('.search-modal-overlay');
 
-    if (!trigger || !modal || !input || !results) return;
+    if (!trigger || !modal || !input || !resultsContainer) return;
+
+    // Load data attributes
+    const navPaths = JSON.parse(modal.dataset.navPaths || '{}');
+    const appPaths = JSON.parse(modal.dataset.appPaths || '[]');
+    let selectedIndex = 0;
+    let filteredCommands: Command[] = [];
+
+    // Base Commands
+    const baseCommands: Command[] = [
+      {
+        id: 'nav-home',
+        title: 'Home',
+        desc: 'Go to homepage',
+        section: 'Navigation',
+        icon: ICONS.link,
+        action: () => window.location.href = navPaths.home
+      },
+      {
+        id: 'nav-blog',
+        title: 'Blog',
+        desc: 'Read our latest articles',
+        section: 'Navigation',
+        icon: ICONS.link,
+        action: () => window.location.href = navPaths.blog
+      },
+      {
+        id: 'nav-about',
+        title: 'About',
+        desc: 'Learn more about us',
+        section: 'Navigation',
+        icon: ICONS.link,
+        action: () => window.location.href = navPaths.about
+      },
+      {
+        id: 'sys-theme',
+        title: 'Toggle Theme',
+        desc: 'Switch between light and dark mode',
+        section: 'System',
+        icon: ICONS.theme,
+        action: () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          closeModal();
+        }
+      },
+      // App Commands
+      ...appPaths.map((app: any) => ({
+        id: `app-${app.id}`,
+        title: app.name,
+        desc: `Go to ${app.name} download page`,
+        section: 'Apps' as const,
+        icon: ICONS.app,
+        action: () => window.location.href = app.path
+      }))
+    ];
 
     const openModal = async () => {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
+      input.value = '';
       input.focus();
+      updateResults('');
       await loadPagefind();
     };
 
@@ -353,79 +483,163 @@ const t = useTranslations(lang);
       input.value = '';
     };
 
-    trigger.addEventListener('click', openModal);
-    close?.addEventListener('click', closeModal);
-    overlay?.addEventListener('click', closeModal);
+    // Render logic
+    const updateResults = async (query: string) => {
+      selectedIndex = 0;
+      filteredCommands = [];
 
-    // ESC 關閉
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
+      // Filter static commands
+      const lowerQuery = query.toLowerCase();
+      filteredCommands = baseCommands.filter(cmd => 
+        cmd.title.toLowerCase().includes(lowerQuery) || 
+        cmd.desc?.toLowerCase().includes(lowerQuery)
+      );
+
+      // Add Pagefind results if query exists
+      if (query && pagefind) {
+        try {
+          const search = await pagefind.search(query);
+          const topResults = search.results.slice(0, 5);
+          
+          for (const result of topResults) {
+            const data = await result.data();
+            filteredCommands.push({
+              id: `pf-${data.url}`,
+              title: data.meta.title,
+              desc: data.excerpt.replace(/<[^>]*>?/gm, ''), // strip html tags from excerpt
+              section: 'Search Results',
+              icon: ICONS.search,
+              action: () => window.location.href = data.url
+            });
+          }
+        } catch (e) {
+          console.error(e);
+        }
       }
-      // Ctrl+K 開啟
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        openModal();
-      }
-    });
 
-    // 搜尋邏輯
-    let debounceTimer: number;
-    input.addEventListener('input', async (e) => {
-      const query = (e.target as HTMLInputElement).value.trim();
+      renderList();
+    };
 
-      clearTimeout(debounceTimer);
-      if (!query) {
-        results.innerHTML = `<div class="search-empty">${modal.dataset.empty}</div>`;
+    const renderList = () => {
+      resultsContainer.innerHTML = '';
+      
+      if (filteredCommands.length === 0) {
+        resultsContainer.innerHTML = `<div class="search-empty">${modal.dataset.noResults}</div>`;
         return;
       }
 
-      if (!pagefind) {
-        const pf = await loadPagefind();
-        if (!pf) {
-          results.innerHTML = `<div class="search-empty">${modal.dataset.devInfo}</div>`;
-          return;
-        }
-      }
+      const grouped = filteredCommands.reduce((acc, cmd) => {
+        if (!acc[cmd.section]) acc[cmd.section] = [];
+        acc[cmd.section].push(cmd);
+        return acc;
+      }, {} as Record<string, Command[]>);
 
-      debounceTimer = window.setTimeout(async () => {
-        results.innerHTML = `<div class="search-empty">${modal.dataset.loading}</div>`;
+      // Order: Navigation, Apps, System, Search Results
+      const sections = ['Navigation', 'Apps', 'System', 'Search Results'];
+      
+      let globalIndex = 0;
 
-        try {
-          const search = await pagefind.search(query);
-          if (search.results.length === 0) {
-            results.innerHTML = `<div class="search-empty">${modal.dataset.noResults}</div>`;
-            return;
-          }
+      sections.forEach(section => {
+        const cmds = grouped[section];
+        if (cmds && cmds.length > 0) {
+          const titleEl = document.createElement('div');
+          titleEl.className = 'search-group-title';
+          titleEl.textContent = section;
+          resultsContainer.appendChild(titleEl);
 
-          results.innerHTML = '';
-          // 只顯示前 10 筆
-          const topResults = search.results.slice(0, 10);
-
-          for (const result of topResults) {
-            const data = await result.data();
-            const resultEl = document.createElement('a');
-            resultEl.className = 'pagefind-result';
-            resultEl.href = data.url;
-            resultEl.innerHTML = `
-              <div class="pagefind-result-title">${data.meta.title}</div>
-              <div class="pagefind-result-excerpt">${data.excerpt}</div>
+          cmds.forEach(cmd => {
+            const el = document.createElement('div');
+            el.className = `result-item ${globalIndex === selectedIndex ? 'selected' : ''}`;
+            el.innerHTML = `
+              <div class="result-icon">${cmd.icon}</div>
+              <div class="result-content">
+                <div class="result-title">${highlight(cmd.title, input.value)}</div>
+                ${cmd.desc ? `<div class="result-desc">${cmd.desc}</div>` : ''}
+              </div>
             `;
-
-            // 點擊結果關閉
-            resultEl.addEventListener('click', () => {
-              closeModal();
+            
+            // Click handler
+            el.addEventListener('click', () => {
+              cmd.action();
             });
 
-            results.appendChild(resultEl);
-          }
-        } catch (err) {
-          console.error('Search error', err);
+            // Hover handler to update selection
+            const currentIndex = globalIndex;
+            el.addEventListener('mouseenter', () => {
+              selectedIndex = currentIndex;
+              updateSelection();
+            });
+
+            resultsContainer.appendChild(el);
+            globalIndex++;
+          });
         }
-      }, 200);
+      });
+    };
+
+    const highlight = (text: string, query: string) => {
+      if (!query) return text;
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    };
+
+    const updateSelection = () => {
+      const items = resultsContainer.querySelectorAll('.result-item');
+      items.forEach((item, index) => {
+        if (index === selectedIndex) {
+          item.classList.add('selected');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    };
+
+    // Event Listeners
+    trigger.addEventListener('click', openModal);
+    overlay?.addEventListener('click', closeModal);
+
+    let debounceTimer: number;
+    input.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.trim();
+      clearTimeout(debounceTimer);
+      debounceTimer = window.setTimeout(() => updateResults(query), 200);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      // Toggle
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (modal.classList.contains('active')) closeModal();
+        else openModal();
+      }
+
+      if (!modal.classList.contains('active')) return;
+
+      switch(e.key) {
+        case 'Escape':
+          closeModal();
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, filteredCommands.length - 1);
+          updateSelection();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, 0);
+          updateSelection();
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (filteredCommands[selectedIndex]) {
+            filteredCommands[selectedIndex].action();
+          }
+          break;
+      }
     });
   }
 
-  // 支援 View Transitions
+  // View Transitions Support
   document.addEventListener('astro:page-load', initSearch);
 </script>
