@@ -18,7 +18,7 @@ export async function getAppsData() {
  * 使用嚴格型別映射，確保輸出的物件符合預期
  */
 export function getPlatformsArray(app: App) {
-  const platforms: Array<{ type: string } & Record<string, any>> = [];
+  const platforms: Array<{ type: string } & Record<string, unknown>> = [];
 
   if (app.platforms.android) {
     platforms.push({ type: 'android', ...app.platforms.android });
