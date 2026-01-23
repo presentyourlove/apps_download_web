@@ -362,6 +362,15 @@ docker-compose up -d --build
 
 - **API 穩定性**: 為 `versions.json` 加入 Zod Schema 輸出驗證，確保資料格式變更不會破壞既有的行動應用程式 (Backward Compatibility)。
 
+### 10. 🛡️ 伺服器強化 (Server Hardening)
+
+- **Nginx 資安標頭**: 設定 HSTS, X-Frame-Options, X-Content-Type-Options 等 HTTP Response Headers，強化安全性。
+- **Brotli 壓縮**: 於 Nginx 啟用 Brotli 演算法，提供比 Gzip 更優異的壓縮率。
+
+### 11. ♿ 無障礙細節 (A11y Polish)
+
+- **焦點鎖定 (Focus Trap)**: 在搜尋視窗與手機版選單開啟時，強制將鍵盤焦點鎖定於視窗內，符合 WCAG 對於 Modal Dialog 的要求。
+
 ---
 
 ## �📄 授權
