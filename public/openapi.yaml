@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Apps Download Web API
+  version: 1.0.0
+  description: API for retrieving application version information.
+servers:
+  - url: https://presentyourlove.github.io/apps_download_web
+    description: Production Server
+  - url: http://localhost:4321
+    description: Local Development Server
+
+paths:
+  /api/versions.json:
+    get:
+      summary: Get all apps data
+      description: Returns a list of all applications with their latest version details and platform information.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppsData'
+
+components:
+  schemas:
+    AppsData:
+      type: object
+      properties:
+        lastUpdated:
+          type: string
+          format: date-time
+          example: '2023-10-27T10:00:00Z'
+        apps:
+          type: array
+          items:
+            $ref: '#/components/schemas/App'
+
+    App:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 'finance-app'
+        name:
+          type: string
+          example: 'FinanceApp'
+        displayName:
+          type: string
+          example: 'Finance Master'
+        version:
+          type: string
+          example: '1.0.0'
+        releaseDate:
+          type: string
+          format: date
+          example: '2023-10-01'
+        scheme:
+          type: string
+          nullable: true
+          example: 'financeapp://'
+        platforms:
+          type: object
+          properties:
+            android:
+              $ref: '#/components/schemas/AndroidPlatform'
+            ios:
+              $ref: '#/components/schemas/iOSPlatform'
+            web:
+              $ref: '#/components/schemas/WebPlatform'
+        changelog:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChangelogEntry'
+
+    AndroidPlatform:
+      type: object
+      properties:
+        version:
+          type: string
+        minSdk:
+          type: integer
+        downloadUrl:
+          type: string
+          format: uri
+        size:
+          type: string
+
+    iOSPlatform:
+      type: object
+      properties:
+        version:
+          type: string
+        status:
+          type: string
+          enum: ['released', 'coming_soon', 'active']
+        expectedDate:
+          type: string
+        minOS:
+          type: string
+
+    WebPlatform:
+      type: object
+      properties:
+        version:
+          type: string
+        url:
+          type: string
+          format: uri
+
+    ChangelogEntry:
+      type: object
+      properties:
+        version:
+          type: string
+        date:
+          type: string
+        changes:
+          type: array
+          items:
+            type: string
