@@ -49,7 +49,8 @@
 
 ### 使用的最佳實踐
 
-- TypeScript 嚴格模式
+- **TypeScript 嚴格模式** (Strict Types + Zod)
+- **架構決策記錄** (ADR)
 - 元件化架構 (Astro Components)
 - CSS 變數管理主題
 - 語義化 HTML
@@ -90,15 +91,17 @@ npm run dev
 
 ## 🛠 技術堆疊
 
-| 類別      | 技術                          |
-| :-------- | :---------------------------- |
-| **框架**  | Astro 5.x (SSG)               |
-| **語言**  | TypeScript (Strict)           |
-| **樣式**  | CSS Variables + Glassmorphism |
-| **建置**  | Vite                          |
-| **部署**  | GitHub Pages                  |
-| **CI/CD** | GitHub Actions                |
-| **SEO**   | Sitemap, JSON-LD, OpenGraph   |
+| 類別      | 技術                                   |
+| :-------- | :------------------------------------- |
+| **框架**  | Astro 5.x (SSG)                        |
+| **語言**  | TypeScript (Strict)                    |
+| **樣式**  | CSS Variables + Glassmorphism          |
+| **內容**  | Keystatic CMS                          |
+| **建置**  | Vite + Docker (Multi-stage)            |
+| **部署**  | GitHub Pages / Nginx (Container)       |
+| **監控**  | Sentry                                 |
+| **CI/CD** | GitHub Actions (Build, Test, Security) |
+| **SEO**   | Sitemap, JSON-LD, OpenGraph            |
 
 ---
 
@@ -269,35 +272,41 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
 
 ---
 
-## 🚀 未來優化方向
+## 🏗️ 系統架構 (Architecture)
 
-下一階段將著重於極致效能與進階功能：
+### 📂 架構決策 (ADR)
 
-1. **極致效能** ✅
-   - [x] **資源壓縮 (Compression)**: 導入 `astro-compress` 進行 Gzip/Brotli 建置壓縮。
-   - [x] **Web Worker (Partytown)**: 將第三方腳本 (Analytics) 移至 Worker 執行以釋放主執行緒。
+本專案採用 **Architecture Decision Records** 記錄重大技術決策。
+詳細文件請見: [`docs/adr/`](docs/adr/README.md)
 
-2. **使用者體驗 (UI/UX)**
-   - [x] **主題閃爍修復 (FART Prevention)**: 將主題初始化腳本移至 `<head>`，避免頁面載入時的閃爍。
-   - [x] **跳過導航連結 (Skip Link)**: 新增「跳至主要內容」連結，提升無障礙體驗。
+### 🐳 容器化部署 (Containerization)
 
-3. **內容與維運 (Content & Ops)**
-   - [x] **內容管理 (CMS)**: 整合 Keystatic，提供圖形化介面管理 Markdown 內容。
-   - [x] **錯誤監控 (Sentry)**: 整合 Sentry 捕捉前端執行期錯誤。
-   - [x] **連結檢查 (Link Check)**: 在 CI 中加入 `lychee` 檢查死連結。
-   - [x] **Bundle 分析**: 加入 `rollup-plugin-visualizer` 分析打包體積。
+支援使用 Docker 進行標準化部署 (Based on Nginx Alpine)。
 
-4. **架構與文件 (Architecture & Docs)**
-   - [x] **決策記錄 (ADR)**: 建立 `docs/adr` 記錄重大架構決策 (Architecture Decision Records)。
-   - [x] **容器化 (Docker)**: 建立 `Dockerfile` 與 `docker-compose.yml` 支援私有化部署。
-   - [x] **API 文件**: 為 `versions.json` 輸出 OpenAPI / Swagger 文件。
+```bash
+# 使用 Docker Compose 啟動
+docker-compose up -d --build
+```
 
-5. **進階資安 (Security++)**
-   - [x] **依賴弱點掃描**: 在 CI 加入 `npm audit` 或 Snyk 安全掃描。
-   - [x] **Secret Scanning**: 設定 GitGuardian 或 GitHub Secret Scanning 防止金鑰洩漏。
+### 🔌 API 文件
 
-6. **技術債消除 (Technical Debt)**
-   - [x] **嚴格型別 (Strict Types)**: 移除 `src/lib/data.ts` 中的 `as any` 強制轉型，建立完整的 Zod 推導型別。
+提供完整的應用程式版本資訊 API。
+規格文件: [`public/openapi.yaml`](public/openapi.yaml)
+
+---
+
+## 🛡️ 資安與維運 (SecOps & DevOps)
+
+### 🔒 資安防護 (Security++)
+
+- **依賴掃描**: CI 流程整合 `npm audit` 阻擋高風險漏洞。
+- **秘密掃描**: 整合 `gitleaks` 防止金鑰與敏感資訊外洩。
+- **連結檢查**: 定期檢查站內死連結 (`lychee`)。
+
+### 📡 監控與觀測 (Monitoring)
+
+- **錯誤追蹤**: 整合 **Sentry** 即時捕捉前端錯誤。
+- **效能分析**: 建置報告包含 Bundle Size 分析 (`rollup-plugin-visualizer`)。
 
 ---
 
