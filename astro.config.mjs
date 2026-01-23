@@ -8,14 +8,12 @@ import compress from 'astro-compress';
 import { visualizer } from 'rollup-plugin-visualizer';
 import node from '@astrojs/node';
 
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://presentyourlove.github.io',
   base: '/apps_download_web',
   output: 'static',
-  adapter: node({
-    mode: 'standalone',
-  }),
 
   prefetch: true,
 
@@ -42,7 +40,7 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
-    keystatic(),
+    process.env.NODE_ENV !== 'production' ? keystatic() : null,
     sentry({
       dsn: process.env.PUBLIC_SENTRY_DSN,
       sourceMapsUploadOptions: {
