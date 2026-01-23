@@ -312,7 +312,40 @@ docker-compose up -d --build
 
 ---
 
-## 📄 授權
+---
+
+## � 未來優化方向 (Roadmap)
+
+基於目前的架構，下一階段的優化重點將包含：
+
+### 1. 📚 元件庫與設計系統 (Design System)
+
+- **Storybook 覆蓋率**: 目前僅有 `AppCard` 範例，需為所有通用元件 (`Header`, `Footer`, `BaseLayout`, `BlogCard`) 建立 Storybook 文件。
+- **視覺回歸測試**: 整合 Chromatic 進行自動化 UI 測試。
+
+### 2. 🌍 完整國際化 (Deep i18n)
+
+- **多語系內容**: 目前僅部分 UI 支援 i18n，需擴展至所有部落格文章與應用程式描述。
+- **自動化翻譯**: 評估導入 AI 輔助翻譯工作流。
+
+### 3. 🔍 進階搜尋體驗 (Advanced Search)
+
+- **全站搜尋**: 優化 `Search.astro`，支援模糊搜尋與標籤過濾。
+- **Cmd+K Command Palette**: 實作類似 Raycast 的命令面板，提升導航效率。
+
+### 4. 🧪 測試覆蓋率 (Code Quality)
+
+- **單元測試**: 為 `src/utils` 與 `src/lib` 中的核心邏輯補全 Vitest 測試。
+- **E2E 測試**: 增加關於「深色模式切換」與「表單互動」的 Playwright 測試案例。
+
+### 5. 🤖 效能與自動化 (Performance & DX)
+
+- **圖片優化**: 實作 `astro:assets` 的自動格式轉換 (AVIF) 與 RWD 圖片集。
+- **自動化部署**: 評估導入 Vercel 或 Cloudflare Pages 以獲得更佳的 Edge 效能 (目前為 GitHub Pages)。
+
+---
+
+## �📄 授權
 
 ---
 
