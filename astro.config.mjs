@@ -83,6 +83,7 @@ export default defineConfig({
       },
       workbox: {
         navigateFallback: '/apps_download_web/404',
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MiB
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,json,webp}'],
         // 忽略一些不需快取的檔案
         globIgnores: ['**/node_modules/**/*', 'sw.js', 'workbox-*.js'],
