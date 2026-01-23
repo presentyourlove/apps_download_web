@@ -329,11 +329,6 @@ docker-compose up -d --build
 - **多語系內容**: 目前僅部分 UI 支援 i18n，需擴展至所有部落格文章與應用程式描述。
 - **自動化翻譯**: 評估導入 AI 輔助翻譯工作流。
 
-### 3. 🔍 進階搜尋體驗 (Advanced Search)
-
-- [x] **全站搜尋**: 優化 `Search.astro`，支援模糊搜尋與標籤過濾。(已完成)
-- [x] **Cmd+K Command Palette**: 實作類似 Raycast 的命令面板，提升導航效率。(已完成)
-
 ### 4. 🧪 測試覆蓋率 (Code Quality)
 
 - **單元測試**: 為 `src/utils` 與 `src/lib` 中的核心邏輯補全 Vitest 測試。
