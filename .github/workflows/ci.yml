@@ -32,6 +32,9 @@ jobs:
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      PUBLIC_SENTRY_DSN: ${{ secrets.PUBLIC_SENTRY_DSN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
