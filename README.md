@@ -389,6 +389,25 @@ docker-compose up -d --build
 
 - **部分水合 (Partial Hydration)**: 審計所有互動元件 (如 Theme Toggle)，確保使用 `client:visible` 或 `client:idle` 等指令，實現真正的 Zero-JS by default。
 
+### 16. ⚙️ 開發環境一致性 (IDE Consistency)
+
+- **EditorConfig**: 新增 `.editorconfig` 檔案，統一不同 IDE (VS Code, JetBrains) 間的縮排與編碼設定，減少 Git diff 雜訊。
+
+### 17. 🔠 字體效能極致優化 (Font Performance)
+
+- **字體子集化 (Subsetting)**: 針對中文字體 (Noto Sans TC) 實作 `unicode-range` 切割，僅載入頁面實際用到的字元，大幅降低 CJK 字體傳輸量。
+- **Font Display**: 確保所有 `@font-face` 設定包含 `font-display: swap`，避免文字隱形 (FOIT)。
+
+### 18. 🚨 無障礙持續整合 (A11y CI)
+
+### 19. 🧭 結構化資料導航 (SEO Breadcrumbs)
+
+- **麵包屑 Schema**: 為所有頁面 (尤其是部落格與 App 詳情頁) 實作 `BreadcrumbList` JSON-LD，明確告訴搜尋引擎頁面階層結構，提升 SERP 點擊率。
+
+### 20. 🛡️ 流量速率限制 (Rate Limiting)
+
+- **Nginx Limit Req**: 為了防止 DDoS 或暴力掃描，於 Nginx 設定 `limit_req_zone`，針對單一 IP 限制每秒請求數 (RPS)，保護靜態伺服器資源。
+
 ---
 
 ## �📄 授權

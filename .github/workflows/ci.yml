@@ -96,3 +96,26 @@ jobs:
         with:
           args: --verbose --no-progress --exclude 'https://presentyourlove.github.io/apps_download_web.*' --exclude 'https://presentyourlove.github.io/$' --exclude 'https://instagram.com/.*' './**/*.md' './src/**/*.astro' './src/**/*.tsx'
           fail: true
+
+  visual-test:
+    name: Visual Regression (Chromatic)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          # Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true 

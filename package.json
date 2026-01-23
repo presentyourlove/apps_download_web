@@ -18,7 +18,8 @@
     "lint": "eslint .",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -59,6 +60,7 @@
     "storybook": "^10.2.0",
     "typescript-eslint": "^8.53.1",
     "vite-plugin-pwa": "^1.2.0",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.17",
+    "chromatic": "^11.3.0"
   }
 }
