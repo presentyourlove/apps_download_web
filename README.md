@@ -293,11 +293,11 @@ curl https://presentyourlove.github.io/apps_download_web/api/versions.json
    - [x] **API 文件**: 為 `versions.json` 輸出 OpenAPI / Swagger 文件。
 
 5. **進階資安 (Security++)**
-   - [ ] **依賴弱點掃描**: 在 CI 加入 `npm audit` 或 Snyk 安全掃描。
-   - [ ] **Secret Scanning**: 設定 GitGuardian 或 GitHub Secret Scanning 防止金鑰洩漏。
+   - [x] **依賴弱點掃描**: 在 CI 加入 `npm audit` 或 Snyk 安全掃描。
+   - [x] **Secret Scanning**: 設定 GitGuardian 或 GitHub Secret Scanning 防止金鑰洩漏。
 
 6. **技術債消除 (Technical Debt)**
-   - [ ] **嚴格型別 (Strict Types)**: 移除 `src/lib/data.ts` 中的 `as any` 強制轉型，建立完整的 Zod 推導型別。
+   - [x] **嚴格型別 (Strict Types)**: 移除 `src/lib/data.ts` 中的 `as any` 強制轉型，建立完整的 Zod 推導型別。
 
 ---
 
