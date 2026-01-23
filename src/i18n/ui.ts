@@ -39,6 +39,10 @@ export const ui = {
     'about.contact': '聯絡我們',
     'home.updates': '最新動態',
     'home.viewAll': '查看所有文章',
+    'blog.readMore': '閱讀更多',
+    'blog.back': '返回部落格',
+    'common.next': '下一頁',
+    'common.prev': '上一頁',
   },
   en: {
     'nav.home': 'Home',
@@ -76,5 +80,9 @@ export const ui = {
     'about.contact': 'Contact Us',
     'home.updates': 'Latest Updates',
     'home.viewAll': 'View All Posts',
+    'blog.readMore': 'Read More',
+    'blog.back': 'Back to Blog',
+    'common.next': 'Next',
+    'common.prev': 'Previous',
   },
 } as const;

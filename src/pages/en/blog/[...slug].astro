@@ -1,14 +1,13 @@
----
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts
-    .filter((post) => post.id.startsWith('zh-TW/'))
+    .filter((post) => post.id.startsWith('en/'))
     .map((post) => ({
-      params: { slug: post.id.replace(/^zh-TW\//, '') },
+      params: { slug: post.id.replace(/^en\//, '') },
       props: post,
     }));
 }
@@ -63,7 +62,7 @@ const schema = {
         <div class="post-meta">
           <time datetime={post.data.pubDate.toISOString()}>
             {
-              post.data.pubDate.toLocaleDateString('zh-TW', {
+              post.data.pubDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -82,10 +81,8 @@ const schema = {
       </div>
 
       <div class="post-footer">
-        <a href={`${import.meta.env.BASE_URL}/blog/`} class="back-link">
-          ← {
-            post.id.startsWith('zh-TW/') ? '返回部落格列表' : 'Back to Blog'
-          }
+        <a href={`${import.meta.env.BASE_URL}/en/blog/`} class="back-link">
+          ← Back to Blog
         </a>
       </div>
     </div>
@@ -222,7 +219,7 @@ const schema = {
   }
 
   .back-link:hover {
-    transform: translateX(-5px);
+    transform: translateY(-5px);
   }
 
   @media (max-width: 768px) {

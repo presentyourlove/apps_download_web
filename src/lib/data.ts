@@ -9,8 +9,15 @@ export async function getAppsData() {
   const apps = await getCollection('apps');
   return {
     lastUpdated: new Date().toISOString(),
-    apps: apps.map((app) => app.data),
+    apps: apps.map((app) => ({ ...app.data, _id: app.id })),
   };
+}
+
+export async function getAppsByLang(lang: string) {
+  const apps = await getCollection('apps');
+  return apps
+    .filter((app) => app.id.startsWith(`${lang}/`))
+    .map((app) => ({ ...app.data, _id: app.id }));
 }
 
 /**

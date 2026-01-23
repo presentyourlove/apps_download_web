@@ -324,10 +324,11 @@ docker-compose up -d --build
 
 - **Storybook**: (已暫停) 由於與 Astro 5 的整合性問題，目前暫時移除了 Storybook 整合。
 
-### 2. 🌍 完整國際化 (Deep i18n)
+### 2. ✅ 完整國際化 (Deep i18n) (Completed)
 
-- **多語系內容**: 目前僅部分 UI 支援 i18n，需擴展至所有部落格文章與應用程式描述。
-- **自動化翻譯**: 評估導入 AI 輔助翻譯工作流。
+- **多語系內容**: 已擴展至所有部落格文章與應用程式描述 (zh-TW/en)。
+- **路由架構**: 實作 `src/pages/en/` 與 `src/content/**/zh-TW/` 分離架構。
+- **自動化翻譯**: (待評估) 評估導入 AI 輔助翻譯工作流。
 
 ### 4. 🧪 測試覆蓋率 (Code Quality)
 
@@ -411,3 +412,17 @@ docker-compose up -d --build
 ---
 
 Copyright © 2026 Presentyourlove. All rights reserved.
+
+---
+
+## 📝 最近更新 (Latest Changes)
+
+### V3.1.0 - Deep i18n Implementation
+
+- **架構重構**: 將 `src/content` 遷移至 `zh-TW` 與 `en` 子目錄，支援多語系內容管理。
+- **路由升級**: 新增 `src/pages/en/` 路由，並將頁面邏輯抽離至 `src/components/pages/` 以實現代碼共用。
+- **功能新增**:
+  - `LanguagePicker`: 新增語言切換功能。
+  - `i18n/ui.ts`: 擴充全站 UI 翻譯字串。
+  - `data.ts`: 支援依語言篩選應用程式資料。
+- **修正**: 修復了 `AppCard` 與 Blog Post 的連結生成邏輯，確保在不同語系下導向正確路徑。

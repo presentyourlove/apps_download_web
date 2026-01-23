@@ -1,0 +1,161 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AppCard from '@/components/AppCard.astro';
+import { getAppsByLang } from '@/lib/data';
+import { useTranslations } from '@/i18n/utils';
+import { getCollection } from 'astro:content';
+import BlogCard from '@/components/BlogCard.astro';
+
+interface Props {
+  lang: 'zh-TW' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const apps = await getAppsByLang(lang);
+const latestPosts = (await getCollection('blog'))
+  .filter((post) => post.id.startsWith(`${lang}/`))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title={`Presentyourlove - ${t('nav.apps')}`}>
+  <section class="welcome-section">
+    <div class="container welcome-container">
+      <div class="welcome-content">
+        <h1 class="welcome-title text-gradient-animated">{t('hero.title')}</h1>
+        <p class="welcome-desc">{t('hero.desc')}</p>
+
+        <div class="app-grid">
+          {apps.map((app) => <AppCard id={app.id} name={app.name} displayName={app.displayName} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="updates-section">
+    <div class="container updates-container">
+      <h2 class="section-title text-gradient-animated">{t('home.updates')}</h2>
+
+      <div class="blog-grid">
+        {latestPosts.map((post) => <BlogCard post={post} />)}
+      </div>
+
+      <div class="view-all-container">
+        <a href={`${import.meta.env.BASE_URL}/${lang === 'zh-TW' ? '' : 'en/'}blog/`} class="view-all-btn">
+          {t('home.viewAll')} →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Welcome Section */
+  .welcome-section {
+    padding: 160px 0 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .welcome-container {
+    text-align: center;
+  }
+
+  .welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .welcome-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .welcome-desc {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+  }
+
+  /* App Grid */
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Updates Section */
+  .updates-section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .updates-container {
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 48px;
+    display: inline-block;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+    text-align: left; /* Reset text align for cards */
+  }
+
+  .view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    background: rgba(var(--accent-rgb), 0.1);
+    color: #a5a7fc; /* High contrast for WCAG AA */
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    border-radius: 99px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px var(--accent-color);
+  }
+
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 2.5rem;
+    }
+
+    .welcome-desc {
+      font-size: 1.2rem;
+    }
+
+    .app-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>

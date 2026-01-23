@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
+import { getLangFromUrl, useTranslatedPath } from '@/i18n/utils';
+
 interface Props {
   id: string;
   name: string;
@@ -9,7 +11,9 @@ interface Props {
 }
 
 const { id, name, displayName } = Astro.props;
-const detailUrl = `${import.meta.env.BASE_URL}/${id}/`;
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const detailUrl = translatePath(`/${id}/`);
 
 // 動態匯入圖示
 const images = import.meta.glob<{ default: ImageMetadata }>(

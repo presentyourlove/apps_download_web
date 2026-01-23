@@ -1,7 +1,18 @@
 ---
-import Page, { getStaticPaths as baseGetStaticPaths } from '../[appId].astro';
-export const getStaticPaths = baseGetStaticPaths;
-const props = Astro.props;
+import { getCollection } from 'astro:content';
+import AppDetailsPage from '@/components/pages/AppDetailsPage.astro';
+
+export async function getStaticPaths() {
+  const apps = await getCollection('apps');
+  return apps
+    .filter((app) => app.id.startsWith('en/'))
+    .map((app) => ({
+      params: { appId: app.data.id },
+      props: { app: { ...app.data, _id: app.id } },
+    }));
+}
+
+const { app } = Astro.props;
 ---
 
-<Page {...props} />
+<AppDetailsPage app={app} lang="en" />

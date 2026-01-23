@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import { useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: 'zh-TW' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// 獲取所有部落格文章並按日期排序
+const posts = (await getCollection('blog'))
+  .filter((post) => post.id.startsWith(`${lang}/`))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const pageTitle = lang === 'zh-TW' ? '部落格 - Presentyourlove' : 'Blog - Presentyourlove';
+---
+
+<BaseLayout title={pageTitle}>
+  <section class="welcome-section">
+    <div class="container">
+      <div class="welcome-content">
+        <h1 class="welcome-title text-gradient-animated">
+          {lang === 'zh-TW' ? '我們的部落格' : 'Our Blog'}
+        </h1>
+        <p class="welcome-desc">
+          {lang === 'zh-TW' ? '分享開發心得、最新消息與技術探討' : 'Sharing development insights, news, and tech discussions'}
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {posts.map((post) => <BlogCard post={post} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+  }
+</style>
