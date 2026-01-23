@@ -15,15 +15,13 @@ export async function getAppsData() {
 
 export async function getAppsByLang(lang: string) {
   const apps = await getCollection('apps');
-  console.log(`[getAppsByLang] lang: ${lang}, total apps: ${apps.length}`);
 
   const filtered = apps.filter((app) => {
     // Standardize separators to forward slash
     const normalizedId = app.id.replace(/\\/g, '/');
-    return normalizedId.startsWith(`${lang}/`);
+    return normalizedId.toLowerCase().startsWith(`${lang.toLowerCase()}/`);
   });
 
-  console.log(`[getAppsByLang] Filtered count: ${filtered.length}`);
   return filtered.map((app) => ({ ...app.data, _id: app.id }));
 }
 

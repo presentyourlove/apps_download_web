@@ -15,7 +15,7 @@ const t = useTranslations(lang);
 
 const apps = await getAppsByLang(lang);
 const latestPosts = (await getCollection('blog'))
-  .filter((post) => post.id.startsWith(`${lang}/`))
+  .filter((post) => post.id.toLowerCase().startsWith(`${lang.toLowerCase()}/`))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---

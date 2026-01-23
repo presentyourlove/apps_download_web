@@ -1,10 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import path from 'node:path';
-import process from 'node:process';
 
 const appsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: path.join(process.cwd(), 'src/content/apps') }),
+  loader: glob({ pattern: '**/*.json', base: 'src/content/apps' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
@@ -49,7 +47,7 @@ const appsCollection = defineCollection({
 const blogCollection = defineCollection({
   loader: glob({
     pattern: '**/[^_]*.{md,mdx}',
-    base: path.join(process.cwd(), 'src/content/blog'),
+    base: 'src/content/blog',
   }),
   schema: ({ image }) =>
     z.object({

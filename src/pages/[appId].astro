@@ -5,7 +5,7 @@ import AppDetailsPage from '@/components/pages/AppDetailsPage.astro';
 export async function getStaticPaths() {
   const apps = await getCollection('apps');
   return apps
-    .filter((app) => app.id.startsWith('zh-TW/'))
+    .filter((app) => app.id.toLowerCase().startsWith('zh-tw/'))
     .map((app) => ({
       params: { appId: app.data.id },
       props: { app: { ...app.data, _id: app.id } },

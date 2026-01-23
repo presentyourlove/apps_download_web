@@ -20,7 +20,7 @@ const posts = (await getCollection('blog'))
         <h1 class="error-code">404</h1>
         <h2 class="error-title">找不到頁面</h2>
         <p class="error-desc">抱歉，您訪問的頁面不存在或已被移除。</p>
-        <a href={import.meta.env.BASE_URL} class="btn btn-primary"> 返回首頁 </a>
+        <a href={`${import.meta.env.BASE_URL}/`} class="btn btn-primary"> 返回首頁 </a>
       </div>
 
       <!-- 快速導覽 -->
