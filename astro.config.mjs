@@ -6,8 +6,6 @@ import sentry from '@sentry/astro';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
 import { visualizer } from 'rollup-plugin-visualizer';
-import node from '@astrojs/node';
-
 
 // https://astro.build/config
 export default defineConfig({
