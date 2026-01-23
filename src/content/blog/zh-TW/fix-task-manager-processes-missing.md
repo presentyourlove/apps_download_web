@@ -2,7 +2,7 @@
 title: '工作管理員「處理程序」分頁消失？5 個步驟快速修復系統錯誤'
 description: '當 Windows 工作管理員出現異常或分頁消失時，這通常是系統檔案損毀的徵兆。本文整理了微軟建議的 DISM 與 SFC 修復指令，助你快速排除故障。'
 pubDate: '2026-01-21'
-heroImage: './_assets/task-manager-fix.png'
+heroImage: '../_assets/task-manager-fix.png'
 tags: ['Troubleshooting', 'Windows', 'Tutorial']
 ---
 
