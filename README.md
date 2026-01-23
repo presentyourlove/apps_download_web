@@ -353,6 +353,14 @@ docker-compose up -d --build
 - **更新通知**: 實作 Service Worker 的 `onNeedRefresh` UI 提示 (Toast)，讓使用者手動觸發更新，而非僅在 Console 顯示。
 - **離線頁面**: 設計專屬的 Offline Fallback 頁面，優化斷網體驗。
 
+### 8. 🖼️ Open Graph 動態生成 (Dynamic OG)
+
+- **修復 OG Image**: 解決 `resvg` 在建置時的 Panic 問題，恢復為每個應用程式動態生成專屬的 Social Sharing 圖片 (包含版本號、更新日期)。
+
+### 9. 🛡️ API 契約測試 (Contract Testing)
+
+- **API 穩定性**: 為 `versions.json` 加入 Zod Schema 輸出驗證，確保資料格式變更不會破壞既有的行動應用程式 (Backward Compatibility)。
+
 ---
 
 ## �📄 授權
