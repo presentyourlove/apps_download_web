@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const appsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/apps' }),
+  loader: glob({ pattern: '**/*.json', base: 'src/content/apps' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),
