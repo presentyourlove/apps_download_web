@@ -21,6 +21,7 @@
 - 🔍 **SEO 滿分** - Lighthouse SEO 100/100
 - 🌙 **深淺主題** - 一鍵切換深色/淺色模式
 - ♿ **無障礙友善** - 符合 WCAG 規範
+- ⌨️ **命令面板** - `Ctrl+K` 快速導航全站
 
 ---
 
@@ -102,6 +103,7 @@ npm run dev
 | **監控**  | Sentry                                 |
 | **CI/CD** | GitHub Actions (Build, Test, Security) |
 | **SEO**   | Sitemap, JSON-LD, OpenGraph            |
+| **搜尋**  | Pagefind (Static Search)               |
 
 ---
 
@@ -320,8 +322,7 @@ docker-compose up -d --build
 
 ### 1. 📚 元件庫與設計系統 (Design System)
 
-- **Storybook 覆蓋率**: 目前僅有 `AppCard` 範例，需為所有通用元件 (`Header`, `Footer`, `BaseLayout`, `BlogCard`) 建立 Storybook 文件。
-- **視覺回歸測試**: 整合 Chromatic 進行自動化 UI 測試。
+- **Storybook**: (已暫停) 由於與 Astro 5 的整合性問題，目前暫時移除了 Storybook 整合。
 
 ### 2. 🌍 完整國際化 (Deep i18n)
 
@@ -330,8 +331,8 @@ docker-compose up -d --build
 
 ### 3. 🔍 進階搜尋體驗 (Advanced Search)
 
-- **全站搜尋**: 優化 `Search.astro`，支援模糊搜尋與標籤過濾。
-- **Cmd+K Command Palette**: 實作類似 Raycast 的命令面板，提升導航效率。
+- [x] **全站搜尋**: 優化 `Search.astro`，支援模糊搜尋與標籤過濾。(已完成)
+- [x] **Cmd+K Command Palette**: 實作類似 Raycast 的命令面板，提升導航效率。(已完成)
 
 ### 4. 🧪 測試覆蓋率 (Code Quality)
 
