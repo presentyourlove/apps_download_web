@@ -346,7 +346,9 @@ docker-compose up -d --build
 
 - **Lighthouse CI**: 在 `lighthouserc.json` 中設定嚴格的 Performance Budget (如 JS < 50KB, FCP < 1s)，確保隨著專案增長，效能分數不退步。
 
-### 8. 🌐 邊緣計算 (Edge Middleware)
+### 8. 🌐 邊緣計算 (Edge Middleware) ⏸️
+
+> **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Pages**: 評估遷移至 Edge 平台，利用 Middleware 實作動態標頭 (Security Headers) 與 Geo-IP 路由 (自動導向對應語系)，即便是靜態網站也能擁有動態能力。
 
