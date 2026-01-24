@@ -3,8 +3,8 @@ import path from 'path';
 
 export default defineConfig({
   test: {
-    // 測試環境
-    environment: 'node',
+    // 測試環境 - 使用 happy-dom 模擬 DOM
+    environment: 'happy-dom',
 
     // 包含測試檔案
     include: ['src/**/*.{test,spec}.{js,ts}'],
