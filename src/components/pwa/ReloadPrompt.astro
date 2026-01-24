@@ -1,45 +1,4 @@
 <script>
-  // @ts-expect-error virtual module
-  import { useRegisterSW } from 'virtual:pwa-register/astro';
-
-  const { needRefresh, updateServiceWorker, offlineReady } = useRegisterSW({
-    onRegistered(r) {
-      // SW Registered
-    },
-    onRegisterError(error) {
-      // SW registration error
-    },
-  });
-
-  const closeButton = document.getElementById('pwa-close-btn');
-  const updateButton = document.getElementById('pwa-update-btn');
-  const toast = document.getElementById('pwa-toast');
-  const toastMessage = document.getElementById('pwa-toast-message');
-
-  function updateToast() {
-    if (!toast || !toastMessage) return;
-
-    if (offlineReady.value) {
-      // toastMessage.textContent = 'App ready to work offline';
-      // Show toast briefly? Or just ignore. Common pattern is to ignore offline ready message UI
-      // to avoid annoyance, unless specifically requested.
-      // For now, let's only show "Need Refresh".
-    } else if (needRefresh.value) {
-      toastMessage.textContent = '發現新內容，請點擊更新。';
-      toast.classList.add('show');
-    } else {
-      toast.classList.remove('show');
-    }
-  }
-
-  // Subscribe to changes (Astro nano-store style if available, or just check interval?)
-  // useRegisterSW returns reactive stores (nanostores) in Astro integration context usually?
-  // Actually, VitePWA for Astro uses standard virtual module. The `useRegisterSW` helper
-  // might not be standard. Let's use standard registerSW for Vanilla JS within Astro script
-  // to be safe and dependency-free from specific framework bindings.
-</script>
-
-<script>
   import { registerSW } from 'virtual:pwa-register';
 
   const updateSW = registerSW({
