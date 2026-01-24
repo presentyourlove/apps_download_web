@@ -1,43 +1,43 @@
 version: 2
 updates:
   # Maintain npm dependencies
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "Asia/Taipei"
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Asia/Taipei'
     open-pull-requests-limit: 10
     # Grouping to reduce PR noise
     groups:
       astro-dependencies:
         patterns:
-          - "astro"
-          - "@astrojs/*"
-          - "@fontsource-variable/*"
-          - "@fontsource/*"
+          - 'astro'
+          - '@astrojs/*'
+          - '@fontsource-variable/*'
+          - '@fontsource/*'
       testing:
         patterns:
-          - "vitest"
-          - "@vitest/*"
-          - "playwright"
-          - "@playwright/*"
-          - "@axe-core/*"
+          - 'vitest'
+          - '@vitest/*'
+          - 'playwright'
+          - '@playwright/*'
+          - '@axe-core/*'
       linting:
         patterns:
-          - "eslint"
-          - "@typescript-eslint/*"
-          - "prettier"
-          - "knip"
-          - "husky"
+          - 'eslint'
+          - '@typescript-eslint/*'
+          - 'prettier'
+          - 'knip'
+          - 'husky'
 
   # Maintain GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
     groups:
       github-actions:
         patterns:
-          - "*"
+          - '*'
