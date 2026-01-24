@@ -1,0 +1,46 @@
+/* ========================================
+   1. Variables & Theme
+   ======================================== */
+
+:root {
+  /* Core variable definitions */
+  --font-primary: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+
+  /* Dark Theme (Default) */
+  --bg-color: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-color: #6366f1;
+  --accent-hover: #4f46e5;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition-speed: 0.3s;
+  --btn-text-color: #ffffff;
+  --hero-glow: rgba(var(--accent-rgb), 0.15);
+  --accent-rgb: 99, 102, 241;
+  --bg-rgb: 15, 23, 42;
+  --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
+  --gradient-primary: linear-gradient(-45deg, #6366f1, #e11d48, #22d3ee, #6366f1);
+}
+
+[data-theme='light'] {
+  --bg-color: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent-color: #e11d48;
+  --accent-hover: #be123c;
+  --border-color: rgba(var(--bg-rgb), 0.1);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --glass-border: 1px solid rgba(var(--bg-rgb), 0.05);
+  --btn-text-color: #ffffff;
+  --hero-glow: rgba(var(--accent-rgb), 0.1);
+  --accent-rgb: 225, 29, 72;
+  --bg-rgb: 248, 250, 252;
+}
