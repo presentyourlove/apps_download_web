@@ -360,11 +360,15 @@ docker-compose up -d --build
 
 - **Stryker JS**: 引入突變測試工具，自動修改程式碼 (如移除條件判斷) 來驗證單元測試是否能有效抓出錯誤，提升測試的可信度。
 
-### 11. 📑 API 文件自動化 (Automated OpenAPI)
+### 11. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
+
+> **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Zod to OpenAPI**: 利用 `src/content.config.ts` 中已定義的 Zod Schema，透過 `zod-to-openapi` 自動生成 `openapi.yaml`，確保 API 文件與實際資料結構永遠同步。
 
-### 12. ⚡ 無伺服器表單 (Serverless Functions)
+### 12. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
+
+> **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Workers**: 將 `mailto` 聯絡方式升級為真實的聯絡表單，利用 Serverless Function 處理後端邏輯並發送通知 (Telegram/Discord)，維持前端純靜態架構。
 
