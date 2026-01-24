@@ -30,7 +30,8 @@ export async function getAppsByLang(lang: string) {
  * 使用嚴格型別映射，確保輸出的物件符合預期
  */
 export function getPlatformsArray(app: App) {
-  const platforms: Array<{ type: string } & Record<string, unknown>> = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const platforms: Array<{ type: string } & Record<string, any>> = [];
 
   if (app.platforms.android) {
     platforms.push({ type: 'android', ...app.platforms.android });

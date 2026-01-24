@@ -97,6 +97,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <!-- JSON-LD Structured Data -->
     <script
       type="application/ld+json"
+      is:inline
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',

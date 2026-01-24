@@ -2,7 +2,6 @@
 import { getAppsData } from '../../lib/data';
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
-import { html } from 'satori-html';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import type { APIRoute } from 'astro';
@@ -25,9 +24,8 @@ async function loadGoogleFont() {
   return await fs.readFile(fontPath);
 }
 
-export const GET: APIRoute = async ({ params, props }) => {
+export const GET: APIRoute = async ({ props }) => {
   const { app } = props;
-  const { appId } = params;
 
   if (!app) {
     return new Response('App not found', { status: 404 });
@@ -170,7 +168,8 @@ export const GET: APIRoute = async ({ params, props }) => {
       fonts: [
         {
           name: 'Noto Sans TC',
-          data: fontData,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data: fontData as any,
           weight: 700,
           style: 'normal',
         },
@@ -186,7 +185,8 @@ export const GET: APIRoute = async ({ params, props }) => {
 
     const image = resvg.render();
 
-    return new Response(image.asPng(), {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return new Response(image.asPng() as any, {
       headers: {
         'Content-Type': 'image/png',
         'Cache-Control': 'public, max-age=31536000, immutable',

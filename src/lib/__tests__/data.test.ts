@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getPlatformsArray, getAppById, type App, type Platform } from '../data';
+import { getPlatformsArray, getAppById, type App } from '../data';
 
 // 測試用模擬資料
 const mockApp: App = {
@@ -62,7 +62,7 @@ describe('getPlatformsArray', () => {
   it('應在每個平台項目中包含 type 屬性', () => {
     const result = getPlatformsArray(mockApp);
 
-    const types = result.map((p: Platform) => p.type);
+    const types = result.map((p) => p.type);
     expect(types).toContain('android');
     expect(types).toContain('ios');
     expect(types).toContain('web');
@@ -71,7 +71,7 @@ describe('getPlatformsArray', () => {
   it('應保留原始平台屬性', () => {
     const result = getPlatformsArray(mockApp);
 
-    const android = result.find((p: Platform) => p.type === 'android');
+    const android = result.find((p) => p.type === 'android');
     expect(android).toBeDefined();
     expect(android?.version).toBe('1.0.0');
     expect(android?.downloadUrl).toBe('https://example.com/download.apk');
