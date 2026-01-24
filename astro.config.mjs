@@ -65,15 +65,15 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/png',
             form_factor: 'narrow',
-            label: '首頁瀏覽 (Placeholder)'
+            label: '首頁瀏覽 (Placeholder)',
           },
           {
             src: 'assets/presentyourlove-logo-512.png',
             sizes: '512x512',
             type: 'image/png',
             form_factor: 'wide',
-            label: '桌面版體驗 (Placeholder)'
-          }
+            label: '桌面版體驗 (Placeholder)',
+          },
         ],
         icons: [
           {
