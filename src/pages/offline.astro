@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="無網路連線 | Presentyourlove"
+  description="目前無法連線到網路，請檢查您的網路設定。"
+>
+  <section class="offline-section">
+    <div class="container offline-container">
+      <div class="offline-content">
+        <div class="icon-wrapper">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="offline-icon"
+          >
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+          </svg>
+        </div>
+        <h1 class="offline-title">無網路連線</h1>
+        <p class="offline-desc">看起來您目前離線中。請檢查網路連線後重試。</p>
+        <button onclick="window.location.reload()" class="btn btn-primary"> 重試連線 </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .offline-section {
+    padding: 120px 0 80px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .offline-container {
+    text-align: center;
+  }
+
+  .offline-content {
+    background: var(--card-bg);
+    border: var(--glass-border);
+    backdrop-filter: blur(12px);
+    padding: 48px;
+    border-radius: 24px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: var(--glass-shadow);
+  }
+
+  .icon-wrapper {
+    width: 96px;
+    height: 96px;
+    background: rgba(var(--accent-rgb), 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+
+  .offline-icon {
+    color: var(--accent-color);
+  }
+
+  .offline-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .offline-desc {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    font-size: 1.1rem;
+  }
+</style>

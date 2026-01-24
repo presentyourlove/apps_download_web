@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import InstallPrompt from '../components/pwa/InstallPrompt.astro';
+import ReloadPrompt from '../components/pwa/ReloadPrompt.astro';
 import { ClientRouter } from 'astro:transitions';
 import { getLangFromUrl } from '../i18n/utils';
 
@@ -140,8 +141,6 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <Footer />
 
     <script>
-      import { registerServiceWorker } from '../lib/pwa';
-
       // Theme Logic for View Transitions (Re-run on navigation)
       function initTheme() {
         const theme = localStorage.getItem('theme') || 'dark';
@@ -150,12 +149,10 @@ const ogImageURL = new URL(ogImage, Astro.site);
 
       // Re-initialize after swapping pages
       document.addEventListener('astro:after-swap', initTheme);
-
-      // Register PWA
-      registerServiceWorker();
     </script>
     <Analytics />
     <InstallPrompt />
+    <ReloadPrompt />
 
     <style>
       .skip-link {

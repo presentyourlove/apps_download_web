@@ -48,7 +48,7 @@ export default defineConfig({
       }),
     }),
     AstroPWA({
-      registerType: 'autoUpdate',
+      // registerType: 'autoUpdate', // Default is 'prompt' which we want for manual updates
       manifest: {
         name: 'Presentyourlove 應用程式下載中心',
         short_name: 'Presentyourlove',
@@ -79,7 +79,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        navigateFallback: '/apps_download_web/404',
+        navigateFallback: '/apps_download_web/offline',
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MiB
         globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,json,webp}'],
         // 忽略一些不需快取的檔案
@@ -100,6 +100,7 @@ export default defineConfig({
       },
       devOptions: {
         enabled: true,
+        navigateFallback: '/apps_download_web/offline',
         navigateFallbackAllowlist: [/^\/apps_download_web\//],
       },
     }),
