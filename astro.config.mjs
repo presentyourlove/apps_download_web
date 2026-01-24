@@ -59,6 +59,22 @@ export default defineConfig({
         display: 'standalone',
         scope: '/apps_download_web/',
         start_url: '/apps_download_web/',
+        screenshots: [
+          {
+            src: 'assets/presentyourlove-logo-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            form_factor: 'narrow',
+            label: '首頁瀏覽 (Placeholder)'
+          },
+          {
+            src: 'assets/presentyourlove-logo-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: '桌面版體驗 (Placeholder)'
+          }
+        ],
         icons: [
           {
             src: 'assets/presentyourlove-logo-192.png',

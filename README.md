@@ -372,7 +372,9 @@ docker-compose up -d --build
 
 - **Cloudflare Workers**: 將 `mailto` 聯絡方式升級為真實的聯絡表單，利用 Serverless Function 處理後端邏輯並發送通知 (Telegram/Discord)，維持前端純靜態架構。
 
-### 13. 📚 內部文件入口 (Documentation Portal)
+### 13. 📚 內部文件入口 (Documentation Portal) ⏸️
+
+> **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
 
 - **Starlight Integration**: 引入 **Starlight** 建置專屬的 Developer Portal (`/docs`)，整合現有的 ADRs 與元件使用手冊，提升團隊協作效率。
 

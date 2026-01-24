@@ -70,5 +70,11 @@
     "typescript-eslint": "^8.53.1",
     "vite-plugin-pwa": "^1.2.0",
     "vitest": "^4.0.17"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead",
+    "not IE 11"
+  ]
 }
