@@ -72,6 +72,7 @@ const showAltStoreGuide = hasIOS;
           width={120}
           height={120}
           densities={[1, 1.5, 2]}
+          format="avif"
           class="app-icon"
         />
         <div class="app-info">
@@ -259,6 +260,8 @@ const showAltStoreGuide = hasIOS;
   .changelog-section,
   .guide-section {
     margin-bottom: 60px;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px; /* Prevent scrollbar jumping */
   }
 
   .platforms-section h2,
