@@ -1,0 +1,20 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/pages/**/*.{astro,ts,js}",
+    "src/content.config.ts",
+    "astro.config.mjs",
+    "src/env.d.ts"
+  ],
+  "project": ["src/**/*.{astro,ts,js}"],
+  "ignore": ["dist/**", "node_modules/**", ".astro/**"],
+  "ignoreDependencies": [
+    "sharp",
+    "@fontsource/noto-sans-tc",
+    "@fontsource/inter",
+    "@fontsource-variable/inter"
+  ],
+  "astro": {
+    "entry": ["astro.config.mjs", "src/content.config.ts"]
+  }
+}
