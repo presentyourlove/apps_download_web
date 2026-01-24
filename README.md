@@ -318,9 +318,7 @@ docker-compose up -d --build
 
 ## � 未來優化方向 (Roadmap)
 
-### 1. 🎨 元件文件化 (Storybook)
-
-- **UI Documentation**: 初始化 `.storybook` 設定，為 `AppCard`, `Button` 等通用元件建立互動式文件，確保設計系統的一致性與可維護性。
+> 目前暫無一般優化項目。
 
 ---
 
