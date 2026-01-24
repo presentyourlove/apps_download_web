@@ -10,7 +10,7 @@ interface ButtonProps {
 const meta: Meta<ButtonProps> = {
   title: 'Components/Button',
   tags: ['autodocs'],
-  render: ({ label, primary, size, icon }) => {
+  render: ({ label, primary: _primary, size, icon }) => {
     const btn = document.createElement('button');
     btn.innerText = label;
 
