@@ -4,7 +4,8 @@
 
 :root {
   /* Core variable definitions */
-  --font-primary: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-primary:
+    'Inter Variable', 'Inter', 'Noto Sans TC Variable', system-ui, -apple-system, sans-serif;
 
   /* Dark Theme (Default) */
   --bg-color: #0f172a;
