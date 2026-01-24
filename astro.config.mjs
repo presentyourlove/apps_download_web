@@ -5,6 +5,7 @@ import keystatic from '@keystatic/astro';
 import sentry from '@sentry/astro';
 import partytown from '@astrojs/partytown';
 import compress from 'astro-compress';
+import shield from '@kindspells/astro-shield';
 
 // https://astro.build/config
 export default defineConfig({
@@ -118,6 +119,24 @@ export default defineConfig({
       JavaScript: true,
       SVG: true,
       Logger: 1,
+    }),
+    // Shield: Hash-based CSP & Security Headers
+    shield({
+      security: {
+        xFrameOptions: 'SAMEORIGIN',
+        xContentTypeOptions: 'nosniff',
+        referrerPolicy: 'strict-origin-when-cross-origin',
+        contentSecurityPolicy: {
+          cspDirectives: {
+            'default-src': ["'self'"],
+            'script-src': ["'self'", "https://www.googletagmanager.com"],
+            'style-src': ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            'img-src': ["'self'", "data:", "https:"],
+            'font-src': ["'self'", "data:", "https://fonts.gstatic.com"],
+            'connect-src': ["'self'", "https://*.google-analytics.com"],
+          },
+        },
+      },
     }),
   ],
 

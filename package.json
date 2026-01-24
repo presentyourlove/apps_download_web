@@ -29,6 +29,7 @@
     "@fontsource/noto-sans-tc": "^5.2.9",
     "@keystatic/astro": "^5.0.0",
     "@keystatic/core": "^0.5.0",
+    "@kindspells/astro-shield": "^1.7.1",
     "@resvg/resvg-js": "^2.6.2",
     "@sentry/astro": "^8.0.0",
     "astro": "^5.16.11",
