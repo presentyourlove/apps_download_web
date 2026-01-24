@@ -318,7 +318,13 @@ docker-compose up -d --build
 
 ## � 未來優化方向 (Roadmap)
 
-> 目前暫無一般優化項目。
+### 1. 🛡️ Nginx 配置優化 (Header Fix)
+
+- **Inheritance Issue**: 解決 Nginx `add_header` 在 `location` 區塊中導致全域 Security Headers 失效的問題 (如 `X-Content-Type-Options`)，確保所有靜態資源皆受防護。
+
+### 2. ♿ 無障礙體驗微調 (Reduced Motion)
+
+- **Motion Safety**: 檢視所有 CSS 動畫與轉場，加入 `@media (prefers-reduced-motion: reduce)` 查詢，為敏感使用者提供關閉動畫的選項。
 
 ---
 
