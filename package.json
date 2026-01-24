@@ -30,7 +30,7 @@
     "@keystatic/astro": "^5.0.0",
     "@keystatic/core": "^0.5.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@sentry/astro": "^8.0.0",
+    "@sentry/astro": "^10.36.0",
     "astro": "^5.16.11",
     "pagefind": "^1.4.0",
     "satori": "^0.19.1",
