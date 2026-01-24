@@ -28,16 +28,16 @@
 
 ## ✨ 功能特色
 
-| 功能             | 說明                               |
-| :--------------- | :--------------------------------- |
-| 🏠 **首頁**      | 展示所有應用程式，支援即時搜尋 (Pagefind) |
+| 功能             | 說明                                           |
+| :--------------- | :--------------------------------------------- |
+| 🏠 **首頁**      | 展示所有應用程式，支援即時搜尋 (Pagefind)      |
 | 📱 **應用詳情**  | 顯示版本、跨平台下載連結、更新日誌、Schema.org |
-| 📝 **部落格**    | 分享開發心得與技術文章 (支援 Markdown/MDX) |
-| � **RSS 訂閱**  | 支援多語系 RSS (`/rss.xml`, `/en/rss.xml`) |
-| �📋 **AltStore**  | iOS 側載安裝詳細圖文指南           |
-| 👤 **關於我們**  | 社交連結與團隊資訊                 |
-| � **UI 文件**   | 內建 Storybook 元件庫              |
-| � **CMS 管理**  | 內建 Keystatic 後台管理內容        |
+| 📝 **部落格**    | 分享開發心得與技術文章 (支援 Markdown/MDX)     |
+| � **RSS 訂閱**   | 支援多語系 RSS (`/rss.xml`, `/en/rss.xml`)     |
+| �📋 **AltStore** | iOS 側載安裝詳細圖文指南                       |
+| 👤 **關於我們**  | 社交連結與團隊資訊                             |
+| � **UI 文件**    | 內建 Storybook 元件庫                          |
+| � **CMS 管理**   | 內建 Keystatic 後台管理內容                    |
 
 ---
 
@@ -45,12 +45,12 @@
 
 專案堅持最高的軟體工程標準：
 
-| 指標              | 分數    | 說明 |
-| :---------------- | :------ | :--- |
+| 指標              | 分數    | 說明                                    |
+| :---------------- | :------ | :-------------------------------------- |
 | 🚀 Performance    | 96/100  | 圖片優化 (AVIF), 資源壓縮 (Gzip/Brotli) |
-| ♿ Accessibility  | 100/100 | 語義化標籤, ARIA, Focus Management |
-| ✅ Best Practices | 96/100  | HTTPS, Secure Headers (CSP, HSTS) |
-| 🔍 SEO            | 100/100 | Meta Tags, Sitemap, Robots.txt |
+| ♿ Accessibility  | 100/100 | 語義化標籤, ARIA, Focus Management      |
+| ✅ Best Practices | 96/100  | HTTPS, Secure Headers (CSP, HSTS)       |
+| 🔍 SEO            | 100/100 | Meta Tags, Sitemap, Robots.txt          |
 
 ### 開發規範
 
@@ -99,18 +99,18 @@ npm run dev
 
 ## 🛠 技術堆疊
 
-| 類別      | 技術                                   |
-| :-------- | :------------------------------------- |
-| **核心**  | Astro 5.x (SSG)                        |
-| **語言**  | TypeScript (Strict)                    |
-| **樣式**  | CSS Variables + Glassmorphism          |
-| **內容**  | Keystatic CMS, Markdoc, MDX            |
-| **互動**  | Vanilla JS (Partytown for 3rd-party)   |
-| **建置**  | Vite + Docker (Multi-stage)            |
-| **測試**  | Vitest (Unit), Playwright (E2E)        |
-| **文檔**  | Storybook (UI Components)              |
-| **監控**  | Sentry (Error Tracking)                |
-| **部署**  | GitHub Pages / Nginx (Container)       |
+| 類別     | 技術                                 |
+| :------- | :----------------------------------- |
+| **核心** | Astro 5.x (SSG)                      |
+| **語言** | TypeScript (Strict)                  |
+| **樣式** | CSS Variables + Glassmorphism        |
+| **內容** | Keystatic CMS, Markdoc, MDX          |
+| **互動** | Vanilla JS (Partytown for 3rd-party) |
+| **建置** | Vite + Docker (Multi-stage)          |
+| **測試** | Vitest (Unit), Playwright (E2E)      |
+| **文檔** | Storybook (UI Components)            |
+| **監控** | Sentry (Error Tracking)              |
+| **部署** | GitHub Pages / Nginx (Container)     |
 
 ---
 
