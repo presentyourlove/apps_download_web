@@ -318,7 +318,13 @@ docker-compose up -d --build
 
 ## � 未來優化方向 (Roadmap)
 
-> 目前暫無一般優化項目。
+### 1. 📰 多語系 RSS (i18n RSS)
+
+- **Localized Feeds**: 將單一的 `rss.xml`這拆分為 `/rss.xml` (zh-TW) 與 `/en/rss.xml`，避免不同語系的內容混雜，並確保 `link` 連結正確指向對應語言的頁面。
+
+### 2. 📝 CMS 同步 (Keystatic Sync)
+
+- **Schema Parity**: 更新 `keystatic.config.ts` 以支援現有的 i18n 目錄結構 (`src/content/apps/**`)，並補齊 `blog` 集合設定與 `category`、`changelog` 等缺失欄位，讓非技術人員也能完整管理網站內容。
 
 ---
 
