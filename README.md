@@ -342,53 +342,35 @@ docker-compose up -d --build
 
 - **UI Snapshot**: 啟用 Playwright 的 Visual Comparison 或整合 Chromatic (目前 CI 中已註解)，自動偵測 UI 意外變更，防止樣式跑版。
 
-### 7. 📉 效能預算 (Performance Budget)
-
-- **Lighthouse CI**: 在 `lighthouserc.json` 中設定嚴格的 Performance Budget (如 JS < 50KB, FCP < 1s)，確保隨著專案增長，效能分數不退步。
-
-### 8. 🌐 邊緣計算 (Edge Middleware) ⏸️
+### 7. 🌐 邊緣計算 (Edge Middleware) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Pages**: 評估遷移至 Edge 平台，利用 Middleware 實作動態標頭 (Security Headers) 與 Geo-IP 路由 (自動導向對應語系)，即便是靜態網站也能擁有動態能力。
 
-### 9. 🔐 資源完整性 (Subresource Integrity)
+### 8. 🔐 資源完整性 (Subresource Integrity) ⏸️
+
+> **備註**: 暫緩實作 (vite-plugin-sri3 與 Astro 5 不相容)。
 
 - **SRI Implementation**: 整合 `vite-plugin-sri` 於建置時自動為 JS/CSS 資源生成雜湊值 (Hash)，並在 CSP 標頭中強制檢查，防止 CDN 劫持或資源篡改。
 
-### 10. 🧬 突變測試 (Mutation Testing)
-
-- **Stryker JS**: 引入突變測試工具，自動修改程式碼 (如移除條件判斷) 來驗證單元測試是否能有效抓出錯誤，提升測試的可信度。
-
-### 11. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
+### 9. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Zod to OpenAPI**: 利用 `src/content.config.ts` 中已定義的 Zod Schema，透過 `zod-to-openapi` 自動生成 `openapi.yaml`，確保 API 文件與實際資料結構永遠同步。
 
-### 12. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
+### 10. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Workers**: 將 `mailto` 聯絡方式升級為真實的聯絡表單，利用 Serverless Function 處理後端邏輯並發送通知 (Telegram/Discord)，維持前端純靜態架構。
 
-### 13. 📚 內部文件入口 (Documentation Portal) ⏸️
+### 11. 📚 內部文件入口 (Documentation Portal) ⏸️
 
 > **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
 
 - **Starlight Integration**: 引入 **Starlight** 建置專屬的 Developer Portal (`/docs`)，整合現有的 ADRs 與元件使用手冊，提升團隊協作效率。
-
-### 14. 🏗️ 基礎設施即代碼 (IaC)
-
-### 15. 📱 PWA 豐富安裝體驗 (Rich Install)
-
-- **Manifest Screenshots**: 為 `manifest.json` 加入 `screenshots` 欄位，讓使用者在安裝 PWA 時能預覽應用程式畫面 (Rich Install UI)，提升安裝轉換率。
-
-### 16. 🎯 建置目標一致性 (Target Consistency)
-
-- **Browserslist**: 在 `package.json` 或 `.browserslistrc` 中明確定義支援的瀏覽器範圍 (如 `> 0.2%, last 2 versions`)，統一 Babel/PostCSS 的轉譯目標，避免不必要的 Polyfill 肥大。
-
-- **開源文件**: 建立 `LICENSE` (MIT/Apache), `CONTRIBUTING.md` (貢獻指南), `CODE_OF_CONDUCT.md` (行為準則)，完善開源專案治理。
 
 ---
 
