@@ -1,0 +1,26 @@
+---
+interface ListItem {
+  position: number;
+  name: string;
+  item: string;
+}
+
+interface Props {
+  itemListElement: ListItem[];
+}
+
+const { itemListElement } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: itemListElement.map((item) => ({
+    '@type': 'ListItem',
+    position: item.position,
+    name: item.name,
+    item: item.item,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

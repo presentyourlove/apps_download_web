@@ -4,6 +4,7 @@ import { getPlatformsArray, type App } from '@/lib/data';
 import { useTranslations } from '@/i18n/utils';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import BreadcrumbJSONLD from '@/components/seo/BreadcrumbJSONLD.astro';
 
 interface Props {
   app: App;
@@ -64,6 +65,18 @@ const showAltStoreGuide = hasIOS;
       })}
     />
   </Fragment>
+  <BreadcrumbJSONLD
+    slot="head"
+    itemListElement={[
+      { position: 1, name: t('nav.home'), item: Astro.site?.origin || '' },
+      { position: 2, name: t('nav.apps'), item: `${Astro.site?.origin}/#apps` },
+      {
+        position: 3,
+        name: app.displayName,
+        item: `${Astro.site?.origin}/${app.id}`,
+      },
+    ]}
+  />
   <article class="app-detail">
     <div class="container">
       <header class="app-header">

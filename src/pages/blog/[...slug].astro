@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbJSONLD from '@/components/seo/BreadcrumbJSONLD.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -48,6 +49,14 @@ const schema = {
 <BaseLayout title={`${post.data.title} - Blog`}>
   <!-- SEO Schema -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <BreadcrumbJSONLD
+    slot="head"
+    itemListElement={[
+      { position: 1, name: '首頁', item: Astro.site?.origin || '' },
+      { position: 2, name: '部落格', item: `${Astro.site?.origin}/blog/` },
+      { position: 3, name: post.data.title, item: Astro.url.href },
+    ]}
+  />
 
   <article class="post-detail">
     {
