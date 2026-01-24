@@ -14,6 +14,11 @@ export default defineConfig({
   // 預期 (expect) 的超時時間
   expect: {
     timeout: 5000,
+    // Visual Regression 設定
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.01, // 允許 1% 差異
+      animations: 'disabled', // 停用動畫以確保一致性
+    },
   },
 
   // 完整並行執行

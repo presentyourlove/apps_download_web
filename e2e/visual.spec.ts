@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Visual Regression', () => {
-  // 由于 CI 環境 (Linux) 與本地 (Windows) 截圖不一致且缺乏基準圖，暫時在 CI 跳過
-  test.skip(!!process.env.CI, 'Skip visual regression in CI due to missing snapshots');
+  // CI 跳過視覺測試 (因平台差異導致截圖不一致)
+  // 本地執行: npx playwright test e2e/visual.spec.ts --update-snapshots
+  test.skip(!!process.env.CI, 'Skip visual regression in CI due to platform differences');
 
   test('home page matches snapshot', async ({ page }) => {
     await page.goto('');
