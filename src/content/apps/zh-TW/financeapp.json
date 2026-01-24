@@ -4,6 +4,7 @@
   "displayName": "智慧理財助手",
   "version": "1.0.0",
   "releaseDate": "2026-01-08",
+  "category": "FinanceApplication",
   "scheme": "financeapp://open",
   "platforms": {
     "android": {

@@ -1,0 +1,91 @@
+/* ========================================
+   8. Print Styles
+   ======================================== */
+
+@media print {
+  /* Reset Backgrounds & Colors for Ink Saving */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+
+  /* Hide Navigation, Footer, and UI Elements */
+  header,
+    /* Global Header */
+    footer,
+    /* Global Footer */
+    .search-trigger,
+    .pwa-toast,
+    .btn,
+    /* Action Buttons usually useless on paper */
+    iframe,
+    video {
+    display: none !important;
+  }
+
+  /* Optimize App Card for Print */
+  .app-detail {
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .app-header {
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .app-icon {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Expand Content */
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+
+  p,
+  ul,
+  li {
+    color: #333 !important;
+  }
+
+  /* Layout */
+  .platform-grid {
+    display: block !important;
+  }
+
+  .platform-card {
+    border: 1px solid #ccc !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline !important;
+    color: black !important;
+  }
+
+  /* Show URL after links (Optional, maybe too noisy for this site) */
+  /* a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8rem;
+  } */
+}

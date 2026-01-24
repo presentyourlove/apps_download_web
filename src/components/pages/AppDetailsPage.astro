@@ -48,7 +48,7 @@ const showAltStoreGuide = hasIOS;
         operatingSystem: Object.keys(app.platforms)
           .map((p) => (p === 'android' ? 'Android' : p === 'ios' ? 'iOS' : 'Web'))
           .join(', '),
-        applicationCategory: 'FinanceApplication', // 範例類別
+        applicationCategory: app.category || 'Application',
         offers: {
           '@type': 'Offer',
           price: '0',

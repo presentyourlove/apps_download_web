@@ -10,6 +10,7 @@ const appsCollection = defineCollection({
     version: z.string(),
     releaseDate: z.string(),
     scheme: z.string().optional(),
+    category: z.string().default('Application'),
     platforms: z.object({
       android: z
         .object({

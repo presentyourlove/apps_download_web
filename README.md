@@ -318,17 +318,7 @@ docker-compose up -d --build
 
 ## � 未來優化方向 (Roadmap)
 
-### 1. 🐛 路由修復 (OG Image Fix)
-
-- **Hierarchical IDs**: 將 `src/pages/open-graph/[appId].png.ts` 重命名為 `[...appId].png.ts`，以支援 Content Collections 的巢狀 ID (如 `zh-TW/financeapp`)，避免生成失敗。
-
-### 2. 🖨️ 列印樣式 (Print Styles)
-
-- **Print Optimization**: 建立 `_print.css` 並於 `global.css` 引入，隱藏導覽列/頁尾並優化排版，提升網頁列印或 PDF 轉存的體驗。
-
-### 3. 📊 動態結構化資料 (Dynamic Schema)
-
-- **Rich Snippets**: 在 `content.config.ts` 新增 `category` 欄位，讓 `AppDetailsPage` 的 JSON-LD 能動態輸出 `applicationCategory` (如 Finance, Utilities)，而非硬編碼。
+> 目前暫無一般優化項目。
 
 ---
 
