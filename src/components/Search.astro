@@ -23,7 +23,6 @@ const appPaths = apps.map((app) => ({
   id: app.id,
   name: app.displayName,
   path: translatePath(`/${app.id}/`),
-  icon: app.icon,
 }));
 ---
 
@@ -374,15 +373,60 @@ const appPaths = apps.map((app) => ({
 </style>
 
 <script>
-  import { SearchController } from '../lib/search';
+  // Lazy Load Search Logic
+  // Only import the heavy controller when the user actually wants to search
+  import type { SearchController as SearchControllerType } from '../lib/search';
 
-  // View Transitions Support
-  document.addEventListener('astro:page-load', () => {
-    // Try-catch block to prevent errors if elements are missing (e.g. 404 page)
-    try {
-      new SearchController();
-    } catch (e) {
-      console.warn('SearchController init failed:', e);
+  let controller: SearchControllerType | null = null;
+  let isLoading = false;
+
+  const trigger = document.getElementById('search-trigger');
+
+  async function loadAndOpenSearch() {
+    if (isLoading) return;
+
+    if (!controller) {
+      isLoading = true;
+      try {
+        // Dynamic import
+        const { SearchController } = await import('../lib/search');
+        controller = new SearchController();
+      } catch (e) {
+        console.error('Failed to load search module:', e);
+        isLoading = false;
+        return;
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    controller?.openModal();
+  }
+
+  // Click Trigger
+  trigger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    loadAndOpenSearch();
+  });
+
+  // Keyboard Shortcut (Cmd+K / Ctrl+K)
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      loadAndOpenSearch();
     }
   });
+
+  // View Transitions Clean up (optional, but good practice)
+  document.addEventListener(
+    'astro:before-preparation',
+    () => {
+      // If we needed to destroy the controller, we would do it here.
+      // Since it's a singleton-like behavior attached to DOM, we let new page load handle it?
+      // Actually, Astro View Transitions might re-run script, creating new listeners.
+      // But since elements are replaced, listeners on elements are gone.
+      // Window listener needs cleanup though.
+    },
+    { once: true }
+  );
 </script>
