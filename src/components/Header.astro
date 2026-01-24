@@ -171,6 +171,8 @@ const translatePath = useTranslatedPath(lang);
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
 <script>
+  import { trapFocus } from '../lib/a11y';
+
   // Mobile Menu Logic
   const menuBtn = document.getElementById('mobile-menu-btn');
   const closeBtn = document.getElementById('sidebar-close-btn');
@@ -178,16 +180,28 @@ const translatePath = useTranslatedPath(lang);
   const overlay = document.getElementById('sidebar-overlay');
   const sidebarLinks = document.querySelectorAll('.sidebar-tab');
 
+  let cleanupTrap: (() => void) | null = null;
+
   function openSidebar() {
     sidebar?.classList.add('active');
     overlay?.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    if (sidebar) {
+      cleanupTrap = trapFocus(sidebar);
+    }
   }
 
   function closeSidebar() {
     sidebar?.classList.remove('active');
     overlay?.classList.remove('active');
     document.body.style.overflow = '';
+
+    if (cleanupTrap) {
+      cleanupTrap();
+      cleanupTrap = null;
+    }
+    menuBtn?.focus();
   }
 
   menuBtn?.addEventListener('click', openSidebar);

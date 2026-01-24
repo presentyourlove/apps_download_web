@@ -17,6 +17,8 @@ export const ICONS = {
   search: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
 };
 
+import { trapFocus } from './a11y';
+
 export class SearchController {
   private modal: HTMLElement;
   private input: HTMLInputElement;
@@ -29,6 +31,7 @@ export class SearchController {
   private filteredCommands: Command[] = [];
   private baseCommands: Command[] = [];
   private debounceTimer: number = 0;
+  private cleanupFocusTrap: (() => void) | null = null;
 
   constructor() {
     const trigger = document.getElementById('search-trigger');
@@ -138,6 +141,11 @@ export class SearchController {
     this.input.value = '';
     this.input.focus();
     this.updateResults('');
+
+    // Init Focus Trap
+    if (this.cleanupFocusTrap) this.cleanupFocusTrap();
+    this.cleanupFocusTrap = trapFocus(this.modal);
+
     await this.loadPagefind();
   }
 
@@ -145,6 +153,15 @@ export class SearchController {
     this.modal.classList.remove('active');
     this.modal.setAttribute('aria-hidden', 'true');
     this.input.value = '';
+
+    // Remove Focus Trap
+    if (this.cleanupFocusTrap) {
+      this.cleanupFocusTrap();
+      this.cleanupFocusTrap = null;
+    }
+
+    // Return focus to trigger
+    this.trigger.focus();
   }
 
   private async updateResults(query: string) {
