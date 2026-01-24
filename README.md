@@ -320,7 +320,9 @@ docker-compose up -d --build
 
 基於目前的架構，下一階段的優化重點將包含：
 
-### 1. 📊 搜尋行為分析 (Search Analytics)
+### 1. 📊 搜尋行為分析 (Search Analytics) ⏸️
+
+> **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Query Tracking**: 利用 `partytown` 將使用者的搜尋關鍵字 (Pagefind Queries) 發送至 Google Analytics，以了解使用者需求並優化內容。
 
