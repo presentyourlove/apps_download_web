@@ -10,27 +10,45 @@
     "assert": {
       "assertions": {
         "categories:performance": [
-          "warn",
+          "error",
           {
-            "minScore": 0.8
+            "minScore": 0.9
           }
         ],
         "categories:accessibility": [
-          "warn",
+          "error",
           {
-            "minScore": 0.8
+            "minScore": 0.9
           }
         ],
         "categories:best-practices": [
-          "warn",
+          "error",
           {
-            "minScore": 0.8
+            "minScore": 0.9
           }
         ],
         "categories:seo": [
-          "warn",
+          "error",
           {
-            "minScore": 0.8
+            "minScore": 0.9
+          }
+        ],
+        "first-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 1500
+          }
+        ],
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 2500
+          }
+        ],
+        "total-blocking-time": [
+          "error",
+          {
+            "maxNumericValue": 200
           }
         ],
         "csp-xss": "off",
