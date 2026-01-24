@@ -320,53 +320,39 @@ docker-compose up -d --build
 
 基於目前的架構，下一階段的優化重點將包含：
 
-### 1. 🤖 依賴更新自動化 (Dependency Automation)
-
-- **Renovate/Dependabot**: 設定自動化 PR 以更新 npm 套件與 GitHub Actions，確保專案安全性與最新功能。
-
-### 2. 🛡️ 嚴格 CSP 與 Nonce 自動化 (Strict CSP)
-
-- **CSP Automation**: 透過 `astro-shield` 或 Middleware 自動生成 Nonce，並為所有 Inline Scripts 加上簽章，實現更嚴格的 Content Security Policy，此舉可進一步取代 Nginx 的靜態 CSP 設定。
-
-### 3. 📊 搜尋行為分析 (Search Analytics)
+### 1. 📊 搜尋行為分析 (Search Analytics)
 
 - **Query Tracking**: 利用 `partytown` 將使用者的搜尋關鍵字 (Pagefind Queries) 發送至 Google Analytics，以了解使用者需求並優化內容。
 
-### 4. � 元件級測試 (Component Testing)
+### 2. 元件級測試 (Component Testing)
 
 - **Island Testing**: 針對 `Search.ts` 與 `ReloadPrompt` 等互動邏輯，使用 Vitest 或 Playwright Component Testing 進行隔離測試，確保互動行為穩定。
 
-### 5. 🎞️ 視圖轉場優化 (View Transitions Polish)
-
-### 6. 👁️ 視覺回歸測試 (Visual Regression)
-
-- **UI Snapshot**: 啟用 Playwright 的 Visual Comparison 或整合 Chromatic (目前 CI 中已註解)，自動偵測 UI 意外變更，防止樣式跑版。
-
-### 7. 🌐 邊緣計算 (Edge Middleware) ⏸️
+### 3. 邊緣計算 (Edge Middleware) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Pages**: 評估遷移至 Edge 平台，利用 Middleware 實作動態標頭 (Security Headers) 與 Geo-IP 路由 (自動導向對應語系)，即便是靜態網站也能擁有動態能力。
 
-### 8. 🔐 資源完整性 (Subresource Integrity) ⏸️
+### 4. 🔐 資源完整性 (Subresource Integrity) ⏸️
 
 > **備註**: 暫緩實作 (vite-plugin-sri3 與 Astro 5 不相容)。
 
 - **SRI Implementation**: 整合 `vite-plugin-sri` 於建置時自動為 JS/CSS 資源生成雜湊值 (Hash)，並在 CSP 標頭中強制檢查，防止 CDN 劫持或資源篡改。
 
-### 9. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
+### 5. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Zod to OpenAPI**: 利用 `src/content.config.ts` 中已定義的 Zod Schema，透過 `zod-to-openapi` 自動生成 `openapi.yaml`，確保 API 文件與實際資料結構永遠同步。
 
-### 10. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
+### 6. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
 
 > **備註**: 遷移至 Cloudflare Pages 才實作。
 
 - **Cloudflare Workers**: 將 `mailto` 聯絡方式升級為真實的聯絡表單，利用 Serverless Function 處理後端邏輯並發送通知 (Telegram/Discord)，維持前端純靜態架構。
 
-### 11. 📚 內部文件入口 (Documentation Portal) ⏸️
+### 7. 📚 內部文件入口 (Documentation Portal) ⏸️
 
 > **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
 
