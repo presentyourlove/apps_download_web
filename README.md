@@ -293,3 +293,9 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 > **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
 
 - **Starlight Integration**: 引入 **Starlight** 建置專屬的 Developer Portal (`/docs`)，整合現有的 ADRs 與元件使用手冊，提升團隊協作效率。
+
+---
+
+## 📝 最近更新 (Recent Updates)
+
+- **[MODIFY]** `src/components/BlogCard.astro`: 修復語法錯誤 (Syntax Error)，重構 URL 生成邏輯至 Frontmatter 以提升穩定性。
