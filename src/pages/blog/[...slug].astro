@@ -8,10 +8,13 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts
     .filter((post) => post.id.toLowerCase().startsWith('zh-tw/'))
-    .map((post) => ({
-      params: { slug: post.id.replace(/^zh-tw\//i, '') },
-      props: post,
-    }));
+    .map((post) => {
+      const slug = post.id.replace(/\.[^/.]+$/, '');
+      return {
+        params: { slug },
+        props: post,
+      };
+    });
 }
 
 const post = Astro.props;

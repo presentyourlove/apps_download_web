@@ -31,10 +31,10 @@ const { post } = Astro.props;
       {post.data.tags && post.data.tags.map((tag) => <span class="blog-tag">{tag}</span>)}
     </div>
     <h2 class="blog-card-title">
-      <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`}>{post.data.title}</a>
+      <a href={`${import.meta.env.BASE_URL}${post.id.toLowerCase().startsWith('en/') ? 'en/blog/' + post.id.replace(/^en\//i, '').replace(/\.[^/.]+$/, '') : 'blog/' + post.id.replace(/\.[^/.]+$/, '')}/`}>{post.data.title}</a>
     </h2>
     <p class="blog-card-desc">{post.data.description}</p>
-    <a href={`${import.meta.env.BASE_URL}/blog/${post.id}/`} class="text-link"> 閱讀更多 → </a>
+    <a href={`${import.meta.env.BASE_URL}${post.id.toLowerCase().startsWith('en/') ? 'en/blog/' + post.id.replace(/^en\//i, '').replace(/\.[^/.]+$/, '') : 'blog/' + post.id.replace(/\.[^/.]+$/, '')}/`} class="text-link"> 閱讀更多 → </a>
   </div>
 </article>
 
