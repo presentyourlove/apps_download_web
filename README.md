@@ -299,3 +299,6 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 ## 📝 最近更新 (Recent Updates)
 
 - **[MODIFY]** `src/components/BlogCard.astro`: 修復語法錯誤 (Syntax Error)，重構 URL 生成邏輯至 Frontmatter 以提升穩定性。
+- **[FIX]** `src/components/BlogCard.astro`: 修正文章連結生成邏輯。
+  - **問題**：原連結缺少路徑分隔符，導致生成錯誤的 URL (如 `...webblog/...`)。
+  - **解決**：強制 `BASE_URL` 結尾包含 `/`，確保路徑拼接正確 (`...web/blog/...`)。
