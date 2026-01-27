@@ -302,3 +302,6 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 - **[FIX]** `src/components/BlogCard.astro`: 修正文章連結生成邏輯。
   - **問題**：原連結缺少路徑分隔符，導致生成錯誤的 URL (如 `...webblog/...`)。
   - **解決**：強制 `BASE_URL` 結尾包含 `/`，確保路徑拼接正確 (`...web/blog/...`)。
+- **[NEW]** `.github/workflows/codeql.yml`: 新增 CodeQL 掃描工作流程。
+  - **問題**：GitHub Code Scanning 警告 "Actions workflow file not found"。
+  - **解決**：建立標準 CodeQL 設定檔，針對 `javascript-typescript` 進行自動化弱點掃描。
