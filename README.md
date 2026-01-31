@@ -293,18 +293,3 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 > **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
 
 - **Starlight Integration**: 引入 **Starlight** 建置專屬的 Developer Portal (`/docs`)，整合現有的 ADRs 與元件使用手冊，提升團隊協作效率。
-
----
-
-## 📝 最近更新 (Recent Updates)
-
-- **[MODIFY]** `src/components/BlogCard.astro`: 修復語法錯誤 (Syntax Error)，重構 URL 生成邏輯至 Frontmatter 以提升穩定性。
-- **[FIX]** `src/components/BlogCard.astro`: 修正文章連結生成邏輯。
-  - **問題**：原連結缺少路徑分隔符，導致生成錯誤的 URL (如 `...webblog/...`)。
-  - **解決**：強制 `BASE_URL` 結尾包含 `/`，確保路徑拼接正確 (`...web/blog/...`)。
-- **[NEW]** `.github/workflows/codeql.yml`: 新增 CodeQL 掃描工作流程。
-  - **問題**：GitHub Code Scanning 警告 "Actions workflow file not found"。
-  - **解決**：建立標準 CodeQL 設定檔，針對 `javascript-typescript` 進行自動化弱點掃描。
-- **[MODIFY]** `src/content/apps/zh-TW/subtrack.json`: 新增 SubTrack Android APK 與官方網站連結。
-  - **新增**：Android 平台資訊 (v1.0.0, 下載連結)。
-  - **新增**：Web 平台資訊 (v1.0.0, 網站連結)。
