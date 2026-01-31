@@ -256,40 +256,20 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 
 ---
 
-## ☁️ 遷移至 Cloudflare Pages 後實作
+## ☁️ 待辦事項清單 (Backlog)
 
-### 1. 📊 搜尋行為分析 (Search Analytics) ⏸️
+### � 需遷移至 Cloudflare Pages (Requires Migration)
 
-> **備註**: 遷移至 Cloudflare Pages 才實作。
+| 功能                | 說明                                                  |
+| :------------------ | :---------------------------------------------------- |
+| **搜尋行為分析**    | 透過 `partytown` 追蹤 Pagefind 關鍵字並回傳至 GA4。   |
+| **邊緣計算**        | 實作動態標頭 (Security Headers) 與 Geo-IP 自動導向。  |
+| **自動化 API 文件** | 透過 `zod-to-openapi` 自動生成並同步 `openapi.yaml`。 |
+| **無伺服器表單**    | 利用 Workers 處理聯絡表單後端邏輯與通知發送。         |
 
-- **Query Tracking**: 利用 `partytown` 將使用者的搜尋關鍵字 (Pagefind Queries) 發送至 Google Analytics，以了解使用者需求並優化內容。
+### 🛑 暫緩實作 (On Hold)
 
-### 2. 🌐 邊緣計算 (Edge Middleware) ⏸️
-
-> **備註**: 遷移至 Cloudflare Pages 才實作。
-
-- **Cloudflare Pages**: 評估遷移至 Edge 平台，利用 Middleware 實作動態標頭 (Security Headers) 與 Geo-IP 路由 (自動導向對應語系)，即便是靜態網站也能擁有動態能力。
-
-### 3. 🔐 資源完整性 (Subresource Integrity) ⏸️
-
-> **備註**: 暫緩實作 (vite-plugin-sri3 與 Astro 5 不相容)。
-
-- **SRI Implementation**: 整合 `vite-plugin-sri` 於建置時自動為 JS/CSS 資源生成雜湊值 (Hash)，並在 CSP 標頭中強制檢查，防止 CDN 劫持或資源篡改。
-
-### 4. 📑 API 文件自動化 (Automated OpenAPI) ⏸️
-
-> **備註**: 遷移至 Cloudflare Pages 才實作。
-
-- **Zod to OpenAPI**: 利用 `src/content.config.ts` 中已定義的 Zod Schema，透過 `zod-to-openapi` 自動生成 `openapi.yaml`，確保 API 文件與實際資料結構永遠同步。
-
-### 5. ⚡ 無伺服器表單 (Serverless Functions) ⏸️
-
-> **備註**: 遷移至 Cloudflare Pages 才實作。
-
-- **Cloudflare Workers**: 將 `mailto` 聯絡方式升級為真實的聯絡表單，利用 Serverless Function 處理後端邏輯並發送通知 (Telegram/Discord)，維持前端純靜態架構。
-
-### 6. 📚 內部文件入口 (Documentation Portal) ⏸️
-
-> **備註**: 暫緩實作 (Starlight 與現有 i18n 設定衝突導致建置失敗)。
-
-- **Starlight Integration**: 引入 **Starlight** 建置專屬的 Developer Portal (`/docs`)，整合現有的 ADRs 與元件使用手冊，提升團隊協作效率。
+| 功能                 | 原因                                         |
+| :------------------- | :------------------------------------------- |
+| **資源完整性 (SRI)** | `vite-plugin-sri` 與 Astro 5 目前不相容。    |
+| **內部文件入口**     | Starlight 與現有 i18n 設定衝突導致建置失敗。 |
