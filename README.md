@@ -305,3 +305,6 @@ API 文件定義於 [`public/openapi.yaml`](public/openapi.yaml)。
 - **[NEW]** `.github/workflows/codeql.yml`: 新增 CodeQL 掃描工作流程。
   - **問題**：GitHub Code Scanning 警告 "Actions workflow file not found"。
   - **解決**：建立標準 CodeQL 設定檔，針對 `javascript-typescript` 進行自動化弱點掃描。
+- **[MODIFY]** `src/content/apps/zh-TW/subtrack.json`: 新增 SubTrack Android APK 與官方網站連結。
+  - **新增**：Android 平台資訊 (v1.0.0, 下載連結)。
+  - **新增**：Web 平台資訊 (v1.0.0, 網站連結)。
